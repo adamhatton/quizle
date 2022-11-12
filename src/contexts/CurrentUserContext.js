@@ -9,11 +9,14 @@ export const SetCurrentUserContext = createContext();
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
+/* CurrentUser context provider, CurrentUser custom context hook, and
+axios interceptor code taken from Code Institute 'Moments' walkthrough project */ 
 export const CurrentUserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
 
     const history = useHistory();
 
+    // Get current user and set currentUser context
     const handleMount = async () => {
       try {
         const {data} = await axiosRes.get('dj-rest-auth/user/');
@@ -27,7 +30,10 @@ export const CurrentUserProvider = ({children}) => {
       handleMount();
     }, []);
 
+    // Axios interceptors
     useMemo(() => {
+      /* Request interceptor. Attempt token refresh before making post 
+      request, if refresh fails then set user to Null */
       axiosReq.interceptors.request.use(
         async(config) => {
           try {
@@ -48,6 +54,8 @@ export const CurrentUserProvider = ({children}) => {
         }
       );
 
+      /* Response interceptor. Attempt token refresh if 401 error received, 
+      if refresh fails then set user to Null */
       axiosRes.interceptors.response.use(
         (response) => response,
         async (err) => {

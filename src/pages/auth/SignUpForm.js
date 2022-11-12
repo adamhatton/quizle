@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 import { useHistory } from 'react-router-dom';
 import styles from '../../styles/SignInUpForm.module.css'
 
+/* State variables, handleChange(), handleSubmit() and error handling taken
+ from Code Institute 'Moments' walkthrough project */
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
     username: '',
@@ -18,6 +20,7 @@ const SignUpForm = () => {
 
   const history = useHistory();
 
+  // handleChange function uses computed property so all inputs can call it
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
@@ -25,10 +28,10 @@ const SignUpForm = () => {
     });
   };
 
+  // Submit registration form data and redirect user to sign in page
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log('API Called')
       await axios.post('/dj-rest-auth/registration/', signUpData);
       history.push("/signin");
     } catch (err) {
@@ -39,8 +42,6 @@ const SignUpForm = () => {
   return (
     <Form onSubmit={handleSubmit} className={`${styles.SignInUpForm} mt-5`}>
       <h1 className='mb-4'>Sign Up</h1>
-
-
       <Form.Group controlId='username'>
         <Form.Label>Username</Form.Label>
         <Form.Control
@@ -55,7 +56,6 @@ const SignUpForm = () => {
       {errors.username?.map((message, idx) =>
         <Alert variant="warning" key={idx}>{message}</Alert>
       )}
-
 
       <Form.Group controlId='password1'>
         <Form.Label>Password</Form.Label>

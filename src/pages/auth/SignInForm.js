@@ -7,6 +7,8 @@ import { useHistory } from 'react-router-dom';
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import styles from '../../styles/SignInUpForm.module.css'
 
+/* State variables, handleChange(), handleSubmit() and error handling taken
+ from Code Institute 'Moments' walkthrough project */
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
 
@@ -20,6 +22,7 @@ const SignInForm = () => {
 
   const history = useHistory();
 
+  // handleChange function uses computed property so all inputs can call it
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
@@ -27,6 +30,7 @@ const SignInForm = () => {
     });
   };
 
+  // Submit login form data and redirect user to home page
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
