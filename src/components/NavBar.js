@@ -65,7 +65,7 @@ const NavBar = () => {
               activeClassName={styles.Active}>
                 Quizzes
             </NavLink>
-            (currentUser ? loggedInIcons : loggedOutIcons)
+            {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
       </Container>
