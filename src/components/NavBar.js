@@ -1,15 +1,44 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { NavLink } from 'react-router-dom'
 import styles from '../styles/NavBar.module.css';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import Avatar from './Avatar';
+import axios from 'axios';
 
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+  const ref = useRef(null);
+
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)){
+        setExpanded(false);
+      }
+    }
+
+    document.addEventListener('mouseup', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mouseup', handleClickOutside)
+    }
+
+  }, [ref]);
+
+  const handleSignOut = async () => {
+    try{
+      await axios.post('dj-rest-auth/logout/');
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const loggedInIcons = (
     <>
@@ -24,7 +53,7 @@ const NavBar = () => {
       <NavLink
         to='/signout'
         className={styles.NavLink}
-        onClick={() => {}}
+        onClick={handleSignOut}
       >
         <i class="fas fa-sign-out-alt"></i>
           Sign Out
@@ -46,6 +75,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
+        <i class="fas fa-sign-in-alt"></i>
           Sign In
       </NavLink>
       <NavLink
@@ -53,18 +83,23 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
+        <i class="far fa-user-circle"></i>
           Sign Up
       </NavLink>
     </>
   )
 
   return (
-    <Navbar className={styles.NavBar} expand='md' fixed='top'>
+    <Navbar expanded={expanded} className={styles.NavBar} expand='md' fixed='top'>
       <Container>
         <NavLink to='/'>
           <Navbar.Brand>Quizle</Navbar.Brand>
         </NavLink>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Toggle
+        ref={ref}
+          onClick={() => setExpanded(!expanded)}
+          aria-controls='basic-navbar-nav'
+        />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto'>
             <NavLink
