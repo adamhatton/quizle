@@ -18,6 +18,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
+        <i class="fas fa-plus"></i>
           Create
       </NavLink>
       <NavLink
@@ -25,6 +26,7 @@ const NavBar = () => {
         className={styles.NavLink}
         onClick={() => {}}
       >
+        <i class="fas fa-sign-out-alt"></i>
           Sign Out
       </NavLink>
       <NavLink 
@@ -71,6 +73,7 @@ const NavBar = () => {
               className={styles.NavLink}
               activeClassName={styles.Active}
             >
+              <i class="far fa-question-circle"></i>
                 Quizzes
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
