@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import { NavLink } from 'react-router-dom'
 import styles from '../styles/NavBar.module.css';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+import Avatar from './Avatar';
 
 
 const NavBar = () => {
@@ -15,19 +16,23 @@ const NavBar = () => {
       <NavLink
         to='/create'
         className={styles.NavLink}
-        activeClassName={styles.Active}>
+        activeClassName={styles.Active}
+      >
           Create
       </NavLink>
       <NavLink
-        to='/profile'
-        className={styles.NavLink}
-        activeClassName={styles.Active}>
-          Profile
-      </NavLink>
-      <NavLink
         to='/signout'
-        className={styles.NavLink}>
+        className={styles.NavLink}
+        onClick={() => {}}
+      >
           Sign Out
+      </NavLink>
+      <NavLink 
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <Avatar src={currentUser?.profile_image} text='Profile' />
       </NavLink>
     </>
   )
@@ -37,13 +42,15 @@ const NavBar = () => {
       <NavLink
         to="/signin"
         className={styles.NavLink}
-        activeClassName={styles.Active}>
+        activeClassName={styles.Active}
+      >
           Sign In
       </NavLink>
       <NavLink
         to="/signup"
         className={styles.NavLink}
-        activeClassName={styles.Active}>
+        activeClassName={styles.Active}
+      >
           Sign Up
       </NavLink>
     </>
@@ -62,7 +69,8 @@ const NavBar = () => {
               to='/'
               exact
               className={styles.NavLink}
-              activeClassName={styles.Active}>
+              activeClassName={styles.Active}
+            >
                 Quizzes
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
