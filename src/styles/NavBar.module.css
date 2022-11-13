@@ -1,6 +1,7 @@
 .NavBar {
-    background-color: rgb(247, 0, 255);
+    background-color: #FFF;
     padding: 15px;
+    border-bottom: 1px solid gray;
 }
 
 .Active {

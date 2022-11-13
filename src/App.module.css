@@ -5,17 +5,34 @@
 
 .App {
     min-height: 100vh;
+    background-color: #0095ff2b;
+    color: #292929;
 }
 
 .Main {
-    padding-top: 70px;
+    padding-top: 85px;
 }
 
 a {
-    color: #000;
+    color: #292929;
 }
 
 a:hover {
     text-decoration: none;
-    color: #f7f700;
+    color: #ff5900;
+}
+
+a:hover i {
+    color: #ff5900;
+}
+
+i {
+    color: #292929;
+    font-size: 1.6rem;
+    padding: 7px;
+    vertical-align: middle;
+}
+
+i:hover {
+    cursor: pointer;
 }
