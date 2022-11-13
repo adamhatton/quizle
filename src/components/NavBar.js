@@ -32,7 +32,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <i class="fas fa-plus"></i>
+        <i className='fas fa-plus'></i>
           Create
       </NavLink>
       <NavLink
@@ -40,7 +40,7 @@ const NavBar = () => {
         className={styles.NavLink}
         onClick={handleSignOut}
       >
-        <i class="fas fa-sign-out-alt"></i>
+        <i className='fas fa-sign-out-alt'></i>
           Sign Out
       </NavLink>
       <NavLink 
@@ -60,7 +60,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <i class="fas fa-sign-in-alt"></i>
+        <i className='fas fa-sign-in-alt'></i>
           Sign In
       </NavLink>
       <NavLink
@@ -68,7 +68,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <i class="far fa-user-circle"></i>
+        <i className='far fa-user-circle'></i>
           Sign Up
       </NavLink>
     </>
@@ -93,7 +93,7 @@ const NavBar = () => {
               className={styles.NavLink}
               activeClassName={styles.Active}
             >
-              <i class="far fa-question-circle"></i>
+              <i className='far fa-question-circle'></i>
                 Quizzes
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}

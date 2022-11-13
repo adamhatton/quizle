@@ -1,0 +1,10 @@
+.NotCompleted {
+    font-size: 4rem;
+    cursor: auto;
+    color: red;
+}
+
+.NoMargins {
+    margin: 0;
+}
+
