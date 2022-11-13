@@ -5,6 +5,8 @@ import Row from 'react-bootstrap/Row'
 import Avatar from '../../components/Avatar';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/Quiz.module.css'
+import Form from 'react-bootstrap/Form';
+import Table from 'react-bootstrap/Table';
 
 const Quiz = (props) => {
   const {
@@ -69,20 +71,46 @@ const Quiz = (props) => {
           </Col>
         </Row>
         <Row>
-          <Col>
-            <p>Search Bar</p>
+          <Col xs={8}>
+            <Form.Group controlId='guess_input'>
+            <Form.Label srOnly>Guess:</Form.Label>
+            <Form.Control
+              type='text'
+              placeholder='Guess'
+              name='title'
+              //   value={title}
+              //   className={styles.Input}
+              //   onChange={handleChange}
+            />
+            </Form.Group>
           </Col>
-          <Col>
+          <Col xs={4}>
             <p>Timer</p>
           </Col>
         </Row>
         <Row>
-          <Col xs={6} lg={4}>
-            <h2>Hints</h2>
-          </Col>
-          <Col xs={6} lg={4}>
-            <h2>Answers</h2>
-          </Col>
+        <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th className={styles.TableCol}>Hints</th>
+                <th className={styles.TableCol}>Answers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <td>Larry</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+        </Table>
         </Row>
       </Col>
     </Row>
