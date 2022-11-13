@@ -6,6 +6,7 @@ import SignUpForm from './pages/auth/SignUpForm';
 import './api/axiosDefaults';
 import SignInForm from './pages/auth/SignInForm';
 import QuizCreateForm from './pages/quizzes/QuizCreateForm';
+import QuizPage from './pages/quizzes/QuizPage';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Switch>
           <Route exact path='/' render={() => <h1>Quizzes</h1>} />
           <Route exact path='/quizzes/create' render={() => <QuizCreateForm />} />
+          <Route exact path='/quizzes/:id' render={() => <QuizPage />} />
           <Route exact path='/profile' render={() => <h1>Profile</h1>} />
           <Route exact path='/signin' render={() => <SignInForm />} />
           <Route exact path='/signup' render={() => <SignUpForm />} />

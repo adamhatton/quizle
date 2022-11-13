@@ -541,6 +541,14 @@ function QuizCreateForm() {
             )} 
           </Form.Group>
         </Form.Row>
+
+        <Button
+        variant='primary'
+        onClick={() => history.goBack()}
+        className='mr-3'
+        >
+          Cancel
+        </Button>
         
         <Button variant='primary' type='submit'>
           Submit
