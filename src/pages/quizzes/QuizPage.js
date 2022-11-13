@@ -10,16 +10,15 @@ function QuizPage() {
   useEffect(() => {
     const handleMount = async () => {
         try {
-            const {data: quiz} = await axiosReq.get(`/quizzes/${id}`)
-            setQuiz({results: [quiz]});
-            console.log(quiz);
+            const {data} = await axiosReq.get(`/quizzes/${id}`)
+            setQuiz({results: [data]});
         } catch(err){
             console.log(err);
         }
     }
     handleMount();
-  }, [id]);
 
+  }, [id]);
 
   return (
     <div>QuizPage</div>
