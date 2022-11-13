@@ -28,7 +28,7 @@ const NavBar = () => {
   const loggedInIcons = (
     <>
       <NavLink
-        to='quizzes/create'
+        to='/quizzes/create'
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
