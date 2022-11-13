@@ -1,10 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import axios from 'axios';
 
 function QuizCreateForm() {
+  const [quizData, setQuizData] = useState({
+    title: '',
+    description: '',
+    category: '',
+    time_limit_seconds: '',
+    ans_1: '',
+    ans_2: '',
+    ans_3: '',
+    ans_4: '',
+    ans_5: '',
+    ans_6: '',
+    ans_7: '',
+    ans_8: '',
+    ans_9: '',
+    ans_10: '',
+    hint_1: '',
+    hint_2: '',
+    hint_3: '',
+    hint_4: '',
+    hint_5: '',
+    hint_6: '',
+    hint_7: '',
+    hint_8: '',
+    hint_9: '',
+    hint_10: '',
+  });
+
+  const {
+    title,
+    description,
+    category,
+    time_limit_seconds,
+    ans_1,
+    ans_2,
+    ans_3,
+    ans_4,
+    ans_5,
+    ans_6,
+    ans_7,
+    ans_8,
+    ans_9,
+    ans_10,
+    hint_1,
+    hint_2,
+    hint_3,
+    hint_4,
+    hint_5,
+    hint_6,
+    hint_7,
+    hint_8,
+    hint_9,
+    hint_10
+  } = quizData;
+
+  // handleChange function uses computed property so all inputs can call it
+  const handleChange = (event) => {
+    setQuizData({
+      ...quizData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  // Submit quiz form data
+//   const handleSubmit = async (event) => {
+//     event.preventDefault();
+//     try {
+//       await axios.post('/dj-rest-auth/registration/', signUpData);
+//     } catch (err) {
+//       setErrors(err.response?.data);
+//     }
+//   };
 
   const instructions = (
     <>
@@ -29,9 +103,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Title'
               name='title'
-              //   value={username}
+              value={title}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Col>
         </Form.Group>
@@ -49,9 +123,9 @@ function QuizCreateForm() {
               rows={3}
               placeholder='Description'
               name='description'
-              //   value={username}
+              value={description}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Col>
         </Form.Group>
@@ -68,9 +142,9 @@ function QuizCreateForm() {
               as='select'
               rows={3}
               name='category'
-              //   value={username}
+              value={category}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             >
               <option value='sport'>Sport</option>
               <option value='music'>Music</option>
@@ -94,9 +168,9 @@ function QuizCreateForm() {
               max='600'
               placeholder='Time Limit (seconds)'
               name='time_limit_seconds'
-              //   value={username}
+              value={time_limit_seconds}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Col>
         </Form.Group>
@@ -120,9 +194,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Hint 1'
               name='hint_1'
-              //   value={username}
+              value={hint_1}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -135,9 +209,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Answer 1'
               name='ans_1'
-              //   value={username}
+              value={ans_1}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -151,9 +225,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Hint 2'
               name='hint_2'
-              //   value={username}
+              value={hint_2}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -166,9 +240,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Answer 2'
               name='ans_2'
-              //   value={username}
+              value={ans_2}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -182,9 +256,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Hint 3'
               name='hint_3'
-              //   value={username}
+              value={hint_3}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -197,9 +271,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Answer 3'
               name='ans_3'
-              //   value={username}
+              value={ans_3}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -213,9 +287,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Hint 4'
               name='hint_4'
-              //   value={username}
+              value={hint_4}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -228,9 +302,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Answer 4'
               name='ans_4'
-              //   value={username}
+              value={ans_4}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -244,9 +318,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Hint 5'
               name='hint_5'
-              //   value={username}
+              value={hint_5}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -259,9 +333,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Answer 5'
               name='ans_5'
-              //   value={username}
+              value={ans_5}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -275,9 +349,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Hint 6'
               name='hint_6'
-              //   value={username}
+              value={hint_6}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -290,9 +364,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Answer 6'
               name='ans_6'
-              //   value={username}
+              value={ans_6}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -306,9 +380,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Hint 7'
               name='hint_7'
-              //   value={username}
+              value={hint_7}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -321,9 +395,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Answer 7'
               name='ans_7'
-              //   value={username}
+              value={ans_7}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -337,9 +411,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Hint 8'
               name='hint_8'
-              //   value={username}
+              value={hint_8}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -352,9 +426,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Answer 8'
               name='ans_8'
-              //   value={username}
+              value={ans_8}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -368,9 +442,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Hint 9'
               name='hint_9'
-              //   value={username}
+              value={hint_9}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -383,9 +457,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Answer 9'
               name='ans_9'
-              //   value={username}
+              value={ans_9}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -399,9 +473,9 @@ function QuizCreateForm() {
               type='text'
               placeholder='Hint 10'
               name='hint_10'
-              //   value={username}
+              value={hint_10}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
@@ -414,15 +488,18 @@ function QuizCreateForm() {
               type='text'
               placeholder='Answer 10'
               name='ans_10'
-              //   value={username}
+              value={ans_10}
               //   className={styles.Input}
-              //   onChange={handleChange}
+              onChange={handleChange}
             />
           </Form.Group>
           {/* {errors.username?.map((message, idx) =>
           <Alert variant="warning" key={idx}>{message}</Alert>
           )} */} 
         </Form.Row>
+        <Button variant='primary' type='submit'>
+          Submit
+        </Button>
     </Form>
   )
 }
