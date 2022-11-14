@@ -257,6 +257,7 @@ function QuizCreateForm() {
             </Col>
         </Row>
         
+        {/* Hints Inputs Column */}
         <Row>
           <Col as={Col} xs={6} lg={4}>
             { hintsArray.map((hint, idx) =>
@@ -276,7 +277,8 @@ function QuizCreateForm() {
               </Form.Group>
             )}
           </Col>
-          
+
+          {/* Answers Inputs Column */}
           <Col as={Col} xs={6} lg={4}>
             { answersArray.map((answer, idx) =>
               <Form.Group key={idx} controlId={answer.name} >

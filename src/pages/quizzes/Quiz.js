@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Media from 'react-bootstrap/Media';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 
 const Quiz = (props) => {
+
   const {
     id,
     owner,
@@ -28,22 +29,38 @@ const Quiz = (props) => {
     ans_8,
     ans_9,
     ans_10,
-    hint_1,
-    hint_2,
-    hint_3,
-    hint_4,
-    hint_5,
-    hint_6,
-    hint_7,
-    hint_8,
-    hint_9,
-    hint_10,
     is_owner,
     profile_id,
     profile_image,
     like_id,
     score_id,
   } = props;
+
+  const hints = [
+    props.hint_1,
+    props.hint_2,
+    props.hint_3,
+    props.hint_4,
+    props.hint_5,
+    props.hint_6,
+    props.hint_7,
+    props.hint_8,
+    props.hint_9,
+    props.hint_10,
+  ]
+
+  const [answers, setAnswers] = useState({
+    ans_1: ans_1,
+    ans_2: ans_2,
+    ans_3: ans_3,
+    ans_4: ans_4,
+    ans_5: ans_5,
+    ans_6: ans_6,
+    ans_7: ans_7,
+    ans_8: ans_8,
+    ans_9: ans_9,
+    ans_10: ans_10,
+  })
 
   return (
     <Row>
@@ -89,28 +106,46 @@ const Quiz = (props) => {
           </Col>
         </Row>
         <Row>
-        <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th className={styles.TableCol}>Hints</th>
-                <th className={styles.TableCol}>Answers</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <td>Larry</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-        </Table>
+          <Col xs={6} className='pr-0'>
+            <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th className={styles.TableCol}>Hints</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{hints[0]}</td>
+                  </tr>
+                  <tr>
+                    <td>Thornton</td>
+                  </tr>
+                  <tr>
+                    <td>Larry</td>
+                  </tr>
+                </tbody>
+            </Table>
+          </Col>
+          <Col xs={6} className='pl-0'>
+            <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th className={styles.TableCol}>Answers</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{answers.ans_1}</td>
+                  </tr>
+                  <tr>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+            </Table>
+          </Col>
         </Row>
       </Col>
     </Row>
