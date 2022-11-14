@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
 
 function QuizCreateForm() {
+  // Set state for quiz data
   const [quizData, setQuizData] = useState({
     title: '',
     description: '',
@@ -35,6 +36,7 @@ function QuizCreateForm() {
     hint_10: '',
   });
 
+  // destructure quiz data into variables
   const {
     title,
     description,
@@ -62,6 +64,35 @@ function QuizCreateForm() {
     hint_10
   } = quizData;
 
+  // set up an array for use with outputting the hints input fields
+  const hintsArray = [
+    {name: 'hint_1', value: hint_1, placeholder: 'Hint 1'},
+    {name: 'hint_2', value: hint_2, placeholder: 'Hint 2'},
+    {name: 'hint_3', value: hint_3, placeholder: 'Hint 3'},
+    {name: 'hint_4', value: hint_4, placeholder: 'Hint 4'},
+    {name: 'hint_5', value: hint_5, placeholder: 'Hint 5'},
+    {name: 'hint_6', value: hint_6, placeholder: 'Hint 6'},
+    {name: 'hint_7', value: hint_7, placeholder: 'Hint 7'},
+    {name: 'hint_8', value: hint_8, placeholder: 'Hint 8'},
+    {name: 'hint_9', value: hint_9, placeholder: 'Hint 9'},
+    {name: 'hint_10', value: hint_10, placeholder: 'Hint 10'},
+
+  ]
+
+  // set up an array for use with outputting the hints input fields
+  const answersArray = [
+    {name: 'ans_1', value: ans_1, placeholder: 'Answer 1'},
+    {name: 'ans_2', value: ans_2, placeholder: 'Answer 2'},
+    {name: 'ans_3', value: ans_3, placeholder: 'Answer 3'},
+    {name: 'ans_4', value: ans_4, placeholder: 'Answer 4'},
+    {name: 'ans_5', value: ans_5, placeholder: 'Answer 5'},
+    {name: 'ans_6', value: ans_6, placeholder: 'Answer 6'},
+    {name: 'ans_7', value: ans_7, placeholder: 'Answer 7'},
+    {name: 'ans_8', value: ans_8, placeholder: 'Answer 8'},
+    {name: 'ans_9', value: ans_9, placeholder: 'Answer 9'},
+    {name: 'ans_10', value: ans_10, placeholder: 'Answer 10'},
+  ]
+
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
@@ -72,6 +103,10 @@ function QuizCreateForm() {
       ...quizData,
       [event.target.name]: event.target.value,
     });
+    console.log(hint_1, ans_1);
+    console.log(hintsArray[0].value, answersArray[0].value)
+    console.log(hint_1 === hintsArray[0].value)
+    console.log(ans_1 === answersArray[0].value)
   };
 
   // Submit quiz form data
@@ -221,326 +256,46 @@ function QuizCreateForm() {
                 <h2>Answers</h2>
             </Col>
         </Row>
-
-        <Form.Row>
-          <Form.Group as={Col} xs={6} lg={4} controlId='hint_1'>
-            <Form.Label srOnly>Hint 1</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Hint 1'
-              name='hint_1'
-              value={hint_1}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.hint_1?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
+        
+        <Row>
+          <Col as={Col} xs={6} lg={4}>
+            { hintsArray.map((hint, idx) =>
+              <Form.Group key={idx} controlId={hint.name} >
+                <Form.Label srOnly>{hint.placeholder}</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder={hint.placeholder}
+                  name={hint.name}
+                  value={hint.value}
+                  //   className={styles.Input}
+                  onChange={handleChange}
+                />
+                {errors[hint.name]?.map((message, idx) =>
+                  <Alert variant="warning" key={idx}>{message}</Alert>
+                )}
+              </Form.Group>
             )}
-          </Form.Group>
-
-          <Form.Group as={Col} xs={6} lg={4} controlId='ans_1'>
-            <Form.Label srOnly>Answer 1</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Answer 1'
-              name='ans_1'
-              value={ans_1}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.ans_1?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )} 
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
-          <Form.Group as={Col} xs={6} lg={4} controlId='hint_2'>
-            <Form.Label srOnly>Hint 2</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Hint 2'
-              name='hint_2'
-              value={hint_2}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.hint_2?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
+          </Col>
+          
+          <Col as={Col} xs={6} lg={4}>
+            { answersArray.map((answer, idx) =>
+              <Form.Group key={idx} controlId={answer.name} >
+                <Form.Label srOnly>{answer.placeholder}</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder={answer.placeholder}
+                  name={answer.name}
+                  value={answer.value}
+                  //   className={styles.Input}
+                  onChange={handleChange}
+                />
+                {errors[answer.name]?.map((message, idx) =>
+                  <Alert variant="warning" key={idx}>{message}</Alert>
+                )}
+              </Form.Group>
             )}
-          </Form.Group>
-
-          <Form.Group as={Col} xs={6} lg={4} controlId='ans_2'>
-            <Form.Label srOnly>Answer 2</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Answer 2'
-              name='ans_2'
-              value={ans_2}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.ans_2?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )} 
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
-          <Form.Group as={Col} xs={6} lg={4} controlId='hint_3'>
-            <Form.Label srOnly>Hint 3</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Hint 3'
-              name='hint_3'
-              value={hint_3}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.hint_3?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )}
-          </Form.Group>
-
-          <Form.Group as={Col} xs={6} lg={4} controlId='ans_3'>
-            <Form.Label srOnly>Answer 3</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Answer 3'
-              name='ans_3'
-              value={ans_3}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.ans_3?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )} 
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
-          <Form.Group as={Col} xs={6} lg={4} controlId='hint_4'>
-            <Form.Label srOnly>Hint 4</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Hint 4'
-              name='hint_4'
-              value={hint_4}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.hint_4?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )}
-          </Form.Group>
-
-          <Form.Group as={Col} xs={6} lg={4} controlId='ans_4'>
-            <Form.Label srOnly>Answer 4</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Answer 4'
-              name='ans_4'
-              value={ans_4}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.ans_4?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )}
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
-          <Form.Group as={Col} xs={6} lg={4} controlId='hint_5'>
-            <Form.Label srOnly>Hint 5</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Hint 5'
-              name='hint_5'
-              value={hint_5}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.hint_5?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )}
-          </Form.Group>
-
-          <Form.Group as={Col} xs={6} lg={4} controlId='ans_5'>
-            <Form.Label srOnly>Answer 5</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Answer 5'
-              name='ans_5'
-              value={ans_5}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.ans_5?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )} 
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
-          <Form.Group as={Col} xs={6} lg={4} controlId='hint_6'>
-            <Form.Label srOnly>Hint 6</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Hint 6'
-              name='hint_6'
-              value={hint_6}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.hint_6?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )}        
-          </Form.Group>
-
-          <Form.Group as={Col} xs={6} lg={4} controlId='ans_6'>
-            <Form.Label srOnly>Answer 6</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Answer 6'
-              name='ans_6'
-              value={ans_6}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.ans_6?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )} 
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
-          <Form.Group as={Col} xs={6} lg={4} controlId='hint_7'>
-            <Form.Label srOnly>Hint 7</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Hint 7'
-              name='hint_7'
-              value={hint_7}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.hint_7?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )}
-          </Form.Group>
-
-          <Form.Group as={Col} xs={6} lg={4} controlId='ans_7'>
-            <Form.Label srOnly>Answer 7</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Answer 7'
-              name='ans_7'
-              value={ans_7}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.ans_7?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )} 
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
-          <Form.Group as={Col} xs={6} lg={4} controlId='hint_8'>
-            <Form.Label srOnly>Hint 8</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Hint 8'
-              name='hint_8'
-              value={hint_8}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.hint_8?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )}          
-          </Form.Group>
-
-          <Form.Group as={Col} xs={6} lg={4} controlId='ans_8'>
-            <Form.Label srOnly>Answer 8</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Answer 8'
-              name='ans_8'
-              value={ans_8}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.ans_8?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )} 
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
-          <Form.Group as={Col} xs={6} lg={4} controlId='hint_9'>
-            <Form.Label srOnly>Hint 9</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Hint 9'
-              name='hint_9'
-              value={hint_9}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.hint_9?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )}          
-          </Form.Group>
-
-          <Form.Group as={Col} xs={6} lg={4} controlId='ans_9'>
-            <Form.Label srOnly>Answer 9</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Answer 9'
-              name='ans_9'
-              value={ans_9}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.ans_9?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )}           
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
-          <Form.Group as={Col} xs={6} lg={4} controlId='hint_10'>
-            <Form.Label srOnly>Hint 10</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Hint 10'
-              name='hint_10'
-              value={hint_10}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.hint_10?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )}          
-          </Form.Group>
-
-          <Form.Group as={Col} xs={6} lg={4} controlId='ans_10'>
-            <Form.Label srOnly>Answer 10</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Answer 10'
-              name='ans_10'
-              value={ans_10}
-              //   className={styles.Input}
-              onChange={handleChange}
-            />
-            {errors.ans_10?.map((message, idx) =>
-              <Alert variant="warning" key={idx}>{message}</Alert>
-            )} 
-          </Form.Group>
-        </Form.Row>
+          </Col>
+        </Row>
 
         <Button
         variant='primary'
