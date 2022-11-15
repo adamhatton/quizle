@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { axiosReq } from '../../api/axiosDefaults';
+import Asset from '../../components/Asset';
 import Quiz from './Quiz';
 
 
@@ -9,6 +10,7 @@ function QuizPage() {
 
   const [quizInfo, setQuizInfo] = useState({});
   const [quizAnswers, setQuizAnswers] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -42,7 +44,8 @@ function QuizPage() {
               { id: 8, hint: data.hint_8, value: data.ans_8, guessed: false },
               { id: 9, hint: data.hint_9, value: data.ans_9, guessed: false },
               { id: 10, hint: data.hint_10, value: data.ans_10, guessed: false },
-            ])
+            ]);
+            setHasLoaded(true);
         } catch(err){
             console.log(err);
         }
@@ -52,12 +55,18 @@ function QuizPage() {
   }, [id]);
 
   return (
+    <>
+    { hasLoaded ? (
       <Quiz
         {...quizInfo}
         setQuizInfo={setQuizInfo}
         quizAnswers={quizAnswers}
         setQuizAnswers={setQuizAnswers}
       />
+    ) : (
+      <Asset spinner />
+    )}
+    </>
   )
 }
 
