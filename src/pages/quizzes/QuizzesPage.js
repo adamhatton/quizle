@@ -1,16 +1,39 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import { axiosReq } from '../../api/axiosDefaults';
 
-const QuizzesPage = () => {
+const QuizzesPage = ({ filter='' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   
+  useEffect(() => {
+    const fetchQuizzes = async () => {
+      try {
+        const { data } = await axiosReq.get(`/quizzes/?${filter}`);
+        setQuizzes(data);
+        setHasLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    setHasLoaded(false);
+    const timer = setTimeout(() => {
+      fetchQuizzes();
+    }, 1000);
+  
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [filter, pathname]);
+
+
   return (
     <>
       <Row>
