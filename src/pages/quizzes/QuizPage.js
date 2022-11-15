@@ -52,14 +52,12 @@ function QuizPage() {
   }, [id]);
 
   return (
-    <div>
       <Quiz
         {...quizInfo}
         setQuizInfo={setQuizInfo}
         quizAnswers={quizAnswers}
         setQuizAnswers={setQuizAnswers}
       />
-    </div>
   )
 }
 
