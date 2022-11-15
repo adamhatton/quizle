@@ -10,7 +10,25 @@ import Table from 'react-bootstrap/Table';
 
 const Quiz = (props) => {
 
-
+  const {
+    id,
+    owner,
+    title,
+    description,
+    category,
+    time_limit_seconds,
+    created_on,
+    updated_on,
+    is_owner,
+    profile_id,
+    profile_image,
+    like_id,
+    score_id,
+    setQuizInfo,
+    quizHints,
+    quizAnswers,
+    setQuizAnswers,
+  } = props;
 
   const handleGuess = () => (
     props.setQuizAnswers (props.quizAnswers.map((answer, idx) => {
@@ -21,17 +39,17 @@ const Quiz = (props) => {
   return (
     <Row>
       <Col>
-        <h1>{props.quizInfo.title}</h1>
-        <p>{props.quizInfo.description}</p>
+        <h1>{title}</h1>
+        <p>{description}</p>
         <Row className='align-items-center justify-content-center'>
           <Col xs="auto">
             <Media className='align-items-center'>
-              <Link to={`profiles/${props.quizInfo.profile_id}`}>
-                <Avatar src={props.quizInfo.profile_image} height={80} />
+              <Link to={`profiles/${profile_id}`}>
+                <Avatar src={profile_image} height={80} />
               </Link>
               <Media.Body>
                 <h2 className={styles.NoMargins}>Created by</h2>
-                <p className={styles.NoMargins}>{props.quizInfo.owner}</p>
+                <p className={styles.NoMargins}>{owner}</p>
               </Media.Body>
             </Media>
           </Col>
@@ -66,19 +84,15 @@ const Quiz = (props) => {
             <Table striped bordered hover>
                 <thead>
                   <tr>
-                    <th className={styles.TableCol}>Hints</th>
+                    <th>Hints</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>{props.quizHints[6]}</td>
-                  </tr>
-                  <tr>
-                    <td>Thornton</td>
-                  </tr>
-                  <tr>
-                    <td>Larry</td>
-                  </tr>
+                  { quizHints.map((hint, idx) => 
+                    <tr key={idx}>
+                      <td>{hint}</td>
+                    </tr>
+                  )}
                 </tbody>
             </Table>
           </Col>
@@ -86,19 +100,15 @@ const Quiz = (props) => {
             <Table striped bordered hover>
                 <thead>
                   <tr>
-                    <th className={styles.TableCol}>Answers</th>
+                    <th>Answers</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>{props.quizAnswers[0].guessed ? 'true' : 'false'}</td>
-                  </tr>
-                  <tr>
-                    <td>{props.quizAnswers[1].guessed ? 'true' : 'false'}</td>
-                  </tr>
-                  <tr>
-                    <td>{props.quizAnswers[2].guessed ? 'true' : 'false'}</td>
-                  </tr>
+                  { quizAnswers.map(answer => 
+                    <tr key={answer.id}>
+                      <td>{answer.value}</td>
+                    </tr>
+                  )}
                 </tbody>
             </Table>
           </Col>

@@ -54,16 +54,16 @@ function QuizPage() {
               data.hint_10,
             ]);
             setQuizAnswers([
-              { ans_1: data.ans_1, guessed: false },
-              { ans_2: data.ans_2, guessed: false },
-              { ans_3: data.ans_3, guessed: false },
-              { ans_4: data.ans_4, guessed: false },
-              { ans_5: data.ans_5, guessed: false },
-              { ans_6: data.ans_6, guessed: false },
-              { ans_7: data.ans_7, guessed: false },
-              { ans_8: data.ans_8, guessed: false },
-              { ans_9: data.ans_9, guessed: false },
-              { ans_10: data.ans_10, guessed: false },
+              { id: 1, value: data.ans_1, guessed: false },
+              { id: 2, value: data.ans_2, guessed: false },
+              { id: 3, value: data.ans_3, guessed: false },
+              { id: 4, value: data.ans_4, guessed: false },
+              { id: 5, value: data.ans_5, guessed: false },
+              { id: 6, value: data.ans_6, guessed: false },
+              { id: 7, value: data.ans_7, guessed: false },
+              { id: 8, value: data.ans_8, guessed: false },
+              { id: 9, value: data.ans_9, guessed: false },
+              { id: 10, value: data.ans_10, guessed: false },
             ])
         } catch(err){
             console.log(err);
@@ -76,10 +76,9 @@ function QuizPage() {
   return (
     <div>
       <Quiz
-        quizInfo={quizInfo}
+        {...quizInfo}
         setQuizInfo={setQuizInfo}
         quizHints={quizHints}
-        setQuizHints={setQuizHints}
         quizAnswers={quizAnswers}
         setQuizAnswers={setQuizAnswers}
       />
