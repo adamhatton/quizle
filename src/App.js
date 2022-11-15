@@ -7,6 +7,7 @@ import './api/axiosDefaults';
 import SignInForm from './pages/auth/SignInForm';
 import QuizCreateForm from './pages/quizzes/QuizCreateForm';
 import QuizPage from './pages/quizzes/QuizPage';
+import QuizzesPage from './pages/quizzes/QuizzesPage';
 
 function App() {
 
@@ -15,7 +16,12 @@ function App() {
       <NavBar></NavBar>
       <Container className={styles.Main} >
         <Switch>
-          <Route exact path='/' render={() => <h1>Quizzes</h1>} />
+          <Route exact path='/' render={() => <QuizzesPage />} />
+          <Route exact path='/sport' render={() => <QuizzesPage filter={'category=sport&'}  />} />
+          <Route exact path='/music' render={() => <QuizzesPage filter={'category=music&'}  />} />
+          <Route exact path='/entertainment' render={() => <QuizzesPage filter={'category=entertainment&'}  />} />
+          <Route exact path='/general' render={() => <QuizzesPage filter={'category=general&'} />} />
+          <Route exact path='/popular' render={() => <QuizzesPage />} />
           <Route exact path='/quizzes/create' render={() => <QuizCreateForm />} />
           <Route exact path='/quizzes/:id' render={() => <QuizPage />} />
           <Route exact path='/profile' render={() => <h1>Profile</h1>} />
