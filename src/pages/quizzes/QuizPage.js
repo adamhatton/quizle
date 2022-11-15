@@ -8,18 +8,7 @@ function QuizPage() {
   const { id } = useParams();
 
   const [quizInfo, setQuizInfo] = useState({});
-  const [quizAnswers, setQuizAnswers] = useState([
-    { ans_1: '' },
-    { ans_2: '' },
-    { ans_3: '' },
-    { ans_4: '' },
-    { ans_5: '' },
-    { ans_6: '' },
-    { ans_7: '' },
-    { ans_8: '' },
-    { ans_9: '' },
-    { ans_10: '' },
-  ]);
+  const [quizAnswers, setQuizAnswers] = useState([]);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -39,6 +28,8 @@ function QuizPage() {
               profile_image: data.profile_image,
               like_id: data.like_id,
               score_id: data.score_id,
+              likes_count: data.likes_count,
+              completed_count: data.completed_count,
             });
             setQuizAnswers([
               { id: 1, hint: data.hint_1, value: data.ans_1, guessed: false },

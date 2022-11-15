@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import styles from '../../styles/Quiz.module.css'
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 const Quiz = (props) => {
 
@@ -24,6 +25,8 @@ const Quiz = (props) => {
     profile_image,
     like_id,
     score_id,
+    likes_count,
+    completed_count,
     setQuizInfo,
     quizAnswers,
     setQuizAnswers,
@@ -96,6 +99,7 @@ const Quiz = (props) => {
                   )}
                 </tbody>
             </Table>
+            <Button>Start!</Button>
           </Col>
         </Row>
       </Col>
