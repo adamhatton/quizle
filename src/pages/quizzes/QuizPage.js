@@ -8,7 +8,6 @@ function QuizPage() {
   const { id } = useParams();
 
   const [quizInfo, setQuizInfo] = useState({});
-  const [quizHints, setQuizHints] = useState([]);
   const [quizAnswers, setQuizAnswers] = useState([
     { ans_1: '' },
     { ans_2: '' },
@@ -41,29 +40,17 @@ function QuizPage() {
               like_id: data.like_id,
               score_id: data.score_id,
             });
-            setQuizHints([
-              data.hint_1,
-              data.hint_2,
-              data.hint_3,
-              data.hint_4,
-              data.hint_5,
-              data.hint_6,
-              data.hint_7,
-              data.hint_8,
-              data.hint_9,
-              data.hint_10,
-            ]);
             setQuizAnswers([
-              { id: 1, value: data.ans_1, guessed: false },
-              { id: 2, value: data.ans_2, guessed: false },
-              { id: 3, value: data.ans_3, guessed: false },
-              { id: 4, value: data.ans_4, guessed: false },
-              { id: 5, value: data.ans_5, guessed: false },
-              { id: 6, value: data.ans_6, guessed: false },
-              { id: 7, value: data.ans_7, guessed: false },
-              { id: 8, value: data.ans_8, guessed: false },
-              { id: 9, value: data.ans_9, guessed: false },
-              { id: 10, value: data.ans_10, guessed: false },
+              { id: 1, hint: data.hint_1, value: data.ans_1, guessed: false },
+              { id: 2, hint: data.hint_2, value: data.ans_2, guessed: false },
+              { id: 3, hint: data.hint_3, value: data.ans_3, guessed: false },
+              { id: 4, hint: data.hint_4, value: data.ans_4, guessed: false },
+              { id: 5, hint: data.hint_5, value: data.ans_5, guessed: false },
+              { id: 6, hint: data.hint_6, value: data.ans_6, guessed: false },
+              { id: 7, hint: data.hint_7, value: data.ans_7, guessed: false },
+              { id: 8, hint: data.hint_8, value: data.ans_8, guessed: false },
+              { id: 9, hint: data.hint_9, value: data.ans_9, guessed: false },
+              { id: 10, hint: data.hint_10, value: data.ans_10, guessed: false },
             ])
         } catch(err){
             console.log(err);
@@ -78,7 +65,6 @@ function QuizPage() {
       <Quiz
         {...quizInfo}
         setQuizInfo={setQuizInfo}
-        quizHints={quizHints}
         quizAnswers={quizAnswers}
         setQuizAnswers={setQuizAnswers}
       />

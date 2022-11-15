@@ -7,3 +7,7 @@
 .NoMargins {
     margin: 0;
 }
+
+.TableCol {
+    width: 50%;
+}

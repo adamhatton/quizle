@@ -25,7 +25,6 @@ const Quiz = (props) => {
     like_id,
     score_id,
     setQuizInfo,
-    quizHints,
     quizAnswers,
     setQuizAnswers,
   } = props;
@@ -80,33 +79,19 @@ const Quiz = (props) => {
           </Col>
         </Row>
         <Row>
-          <Col xs={6} className='pr-0'>
+          <Col>
             <Table striped bordered hover>
                 <thead>
                   <tr>
-                    <th>Hints</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  { quizHints.map((hint, idx) => 
-                    <tr key={idx}>
-                      <td>{hint}</td>
-                    </tr>
-                  )}
-                </tbody>
-            </Table>
-          </Col>
-          <Col xs={6} className='pl-0'>
-            <Table striped bordered hover>
-                <thead>
-                  <tr>
+                    <th className={styles.TableCol}>Hints</th>
                     <th>Answers</th>
                   </tr>
                 </thead>
                 <tbody>
-                  { quizAnswers.map(answer => 
+                  { quizAnswers.map((answer) => 
                     <tr key={answer.id}>
-                      <td>{answer.value}</td>
+                      <td className='text-break'>{answer.hint}</td>
+                      <td className='text-break'>{answer.guessed ? answer.value : '-'}</td>
                     </tr>
                   )}
                 </tbody>
