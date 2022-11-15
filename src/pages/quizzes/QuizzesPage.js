@@ -6,6 +6,11 @@ import { useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { axiosReq } from '../../api/axiosDefaults';
+import Entertainment from "../../assets/entertainment.png";
+import General from "../../assets/general.png";
+import Music from "../../assets/music.png";
+import Sport from "../../assets/sport.png";
+import QuizTile from './QuizTile';
 
 const QuizzesPage = ({ filter='' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
@@ -67,8 +72,19 @@ const QuizzesPage = ({ filter='' }) => {
           </ButtonGroup>
         </Col>
       </Row>
-      <Row>
-        <p>Map Quiz Tile</p>
+      <Row className='mt-5'>
+        <Col xs={12} md={6}>
+            <QuizTile src={Sport} message='A simple icon of a football pitch' />
+        </Col>
+        <Col xs={12} md={6}>
+            <QuizTile src={Music} message='A simple icon of a pair of headphones' />
+        </Col>
+        <Col xs={12} md={6}>
+            <QuizTile src={Entertainment} message="A simple icon of a director's clapperboard" />
+        </Col>
+        <Col xs={12} md={6}>
+            <QuizTile src={General} message='A simple icon of a question mark' />
+        </Col>
       </Row>
     </>
   )
