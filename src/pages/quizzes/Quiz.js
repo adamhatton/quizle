@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Media from 'react-bootstrap/Media';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -10,72 +10,28 @@ import Table from 'react-bootstrap/Table';
 
 const Quiz = (props) => {
 
-  const {
-    id,
-    owner,
-    title,
-    description,
-    category,
-    time_limit_seconds,
-    created_on,
-    updated_on,
-    ans_1,
-    ans_2,
-    ans_3,
-    ans_4,
-    ans_5,
-    ans_6,
-    ans_7,
-    ans_8,
-    ans_9,
-    ans_10,
-    is_owner,
-    profile_id,
-    profile_image,
-    like_id,
-    score_id,
-  } = props;
 
-  const hints = [
-    props.hint_1,
-    props.hint_2,
-    props.hint_3,
-    props.hint_4,
-    props.hint_5,
-    props.hint_6,
-    props.hint_7,
-    props.hint_8,
-    props.hint_9,
-    props.hint_10,
-  ]
 
-  const [answers, setAnswers] = useState({
-    ans_1: ans_1,
-    ans_2: ans_2,
-    ans_3: ans_3,
-    ans_4: ans_4,
-    ans_5: ans_5,
-    ans_6: ans_6,
-    ans_7: ans_7,
-    ans_8: ans_8,
-    ans_9: ans_9,
-    ans_10: ans_10,
-  })
+  const handleGuess = () => (
+    props.setQuizAnswers (props.quizAnswers.map((answer, idx) => {
+      return idx % 2 === 0 ? answer : {...answer, guessed: true}
+    }))
+  );
 
   return (
     <Row>
       <Col>
-        <h1>{title}</h1>
-        <p>{description}</p>
+        <h1>{props.quizInfo.title}</h1>
+        <p>{props.quizInfo.description}</p>
         <Row className='align-items-center justify-content-center'>
           <Col xs="auto">
             <Media className='align-items-center'>
-              <Link to={`profiles/${profile_id}`}>
-                <Avatar src={profile_image} height={80} />
+              <Link to={`profiles/${props.quizInfo.profile_id}`}>
+                <Avatar src={props.quizInfo.profile_image} height={80} />
               </Link>
               <Media.Body>
                 <h2 className={styles.NoMargins}>Created by</h2>
-                <p className={styles.NoMargins}>{owner}</p>
+                <p className={styles.NoMargins}>{props.quizInfo.owner}</p>
               </Media.Body>
             </Media>
           </Col>
@@ -97,7 +53,7 @@ const Quiz = (props) => {
               name='title'
               //   value={title}
               //   className={styles.Input}
-              //   onChange={handleChange}
+                onChange={handleGuess}
             />
             </Form.Group>
           </Col>
@@ -115,7 +71,7 @@ const Quiz = (props) => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{hints[0]}</td>
+                    <td>{props.quizHints[6]}</td>
                   </tr>
                   <tr>
                     <td>Thornton</td>
@@ -135,13 +91,13 @@ const Quiz = (props) => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{answers.ans_1}</td>
+                    <td>{props.quizAnswers[0].guessed ? 'true' : 'false'}</td>
                   </tr>
                   <tr>
-                    <td>@fat</td>
+                    <td>{props.quizAnswers[1].guessed ? 'true' : 'false'}</td>
                   </tr>
                   <tr>
-                    <td>@twitter</td>
+                    <td>{props.quizAnswers[2].guessed ? 'true' : 'false'}</td>
                   </tr>
                 </tbody>
             </Table>
