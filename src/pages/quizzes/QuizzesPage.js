@@ -14,6 +14,7 @@ import QuizTile from './QuizTile';
 import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreData } from '../../utils/Utils';
 
 const QuizzesPage = ({ filter='', page='All' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
@@ -126,6 +127,8 @@ const QuizzesPage = ({ filter='', page='All' }) => {
                 dataLength={quizzes.results.length}
                 loader={<Asset spinner />}
                 hasMore={!!quizzes.next}
+                next={() => fetchMoreData(quizzes, setQuizzes)}
+                className={'d-flex flex-wrap'}
               />
                 
               ) : (
