@@ -13,6 +13,7 @@ import Sport from "../../assets/sport.png";
 import QuizTile from './QuizTile';
 import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const QuizzesPage = ({ filter='', page='All' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
@@ -98,7 +99,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
       </Row>
       <Row>
         <Col>
-          <ButtonGroup aria-label="Basic example">
+          <ButtonGroup aria-label="Quiz category selector">
             <Button variant="info">All</Button>
             <Button variant="info">Sport</Button>
             <Button variant="info">Music</Button>
@@ -112,15 +113,21 @@ const QuizzesPage = ({ filter='', page='All' }) => {
         { hasLoaded ? (
           <>
             {quizzes.results.length ? (
-                quizzes.results.map(quiz => {
+              <InfiniteScroll 
+                children={quizzes.results.map(quiz => {
                   const imageSource = setImageSource(quiz.category);
                   const imageAlt = setImageAlt(quiz.category);
                   return (
                     <Col key={quiz.id} xs={12} md={6}>
                       <QuizTile {...quiz} src={imageSource} message={imageAlt} />
-                  </Col>
+                    </Col>
                   )
-                })
+                })}
+                dataLength={quizzes.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!quizzes.next}
+              />
+                
               ) : (
               <Container>
                 <Asset question message='No results found' />
