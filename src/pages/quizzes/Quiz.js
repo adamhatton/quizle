@@ -69,11 +69,12 @@ const Quiz = (props) => {
           <Row>
             <Col className='d-flex'>
               <h1>{title}</h1>
+              {is_owner &&
               <MoreDropdown
                 item='Quiz'
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
-              />
+              />}
             </Col>
           </Row>        
           <p>{description}</p>

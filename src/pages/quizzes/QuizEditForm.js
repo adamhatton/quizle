@@ -207,8 +207,8 @@ function QuizEditForm() {
     formData.append('ans_10', ans_10);
 
     try {
-        const {data} = await axiosReq.post('/quizzes/', formData);
-        history.push(`/quizzes/${data.id}`);
+        await axiosReq.put(`/quizzes/${id}`, formData);
+        history.push(`/quizzes/${id}`);
     } catch(err){
         if (err.response?.status !==401){
             setErrors(err.response?.data);
