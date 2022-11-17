@@ -17,11 +17,11 @@ function App() {
       <Container className={styles.Main} >
         <Switch>
           <Route exact path='/' render={() => <QuizzesPage />} />
-          <Route exact path='/sport' render={() => <QuizzesPage filter={'category=sport&'} page={'Sport'}  />} />
-          <Route exact path='/music' render={() => <QuizzesPage filter={'category=music&'} page={'Music'}  />} />
-          <Route exact path='/entertainment' render={() => <QuizzesPage filter={'category=entertainment&'} page={'Entertainment'}  />} />
-          <Route exact path='/general' render={() => <QuizzesPage filter={'category=general&'} page={'General Knowledge'} />} />
-          <Route exact path='/popular' render={() => <QuizzesPage page={'Most Popular'} />} />
+          <Route exact path='/quizzes/sport' render={() => <QuizzesPage filter={'category=sport&'} page={'Sport'}  />} />
+          <Route exact path='/quizzes/music' render={() => <QuizzesPage filter={'category=music&'} page={'Music'}  />} />
+          <Route exact path='/quizzes/entertainment' render={() => <QuizzesPage filter={'category=entertainment&'} page={'Entertainment'}  />} />
+          <Route exact path='/quizzes/general' render={() => <QuizzesPage filter={'category=general&'} page={'General Knowledge'} />} />
+          <Route exact path='/quizzes/popular' render={() => <QuizzesPage page={'Most Popular'} />} />
           <Route exact path='/quizzes/create' render={() => <QuizCreateForm />} />
           <Route exact path='/quizzes/:id' render={() => <QuizPage />} />
           <Route exact path='/profile' render={() => <h1>Profile</h1>} />

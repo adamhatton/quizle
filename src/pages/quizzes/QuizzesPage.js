@@ -2,24 +2,25 @@ import React, { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { axiosReq } from '../../api/axiosDefaults';
-import Entertainment from "../../assets/entertainment.png";
-import General from "../../assets/general.png";
-import Music from "../../assets/music.png";
-import Sport from "../../assets/sport.png";
+import Entertainment from '../../assets/entertainment.png';
+import General from '../../assets/general.png';
+import Music from '../../assets/music.png';
+import Sport from '../../assets/sport.png';
 import QuizTile from './QuizTile';
 import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../../utils/Utils';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
 const QuizzesPage = ({ filter='', page='All' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const { pathname } = useLocation();
   
   useEffect(() => {
@@ -73,6 +74,60 @@ const QuizzesPage = ({ filter='', page='All' }) => {
     }
   }
 
+  const mobileButtonGroup = (
+    <>
+      <ButtonToolbar aria-label='Toolbar with quiz category selectors' className='justify-content-center'>
+        <ButtonGroup size='lg' className='mr-2' aria-label='First group'>
+          <Link to={'/'}>
+            <Button variant='info'>All</Button>
+          </Link>
+          <Link to={'/quizzes/sport'}>
+            <Button variant='info'>Sport</Button>
+          </Link>
+          <Link to={'/quizzes/entertainment'}>
+            <Button variant='info'>Entertainment</Button>
+          </Link>
+        </ButtonGroup>
+        <ButtonGroup size='sm' className='mr-2' aria-label='Second group'>
+          <Link to={'/quizzes/music'}>
+            <Button variant='info'>Music</Button>
+          </Link>
+          <Link to={'/quizzes/general'}>
+            <Button variant='info'>General</Button>
+          </Link>
+          <Link to={'/quizzes/popular'}>
+            <Button variant='info'>Popular</Button>
+          </Link>
+        </ButtonGroup>
+      </ButtonToolbar>
+    </>
+  )
+
+  const desktopButtonGroup = (
+    <>
+      <ButtonGroup aria-label='Quiz category selector'>
+        <Link to={'/'}>
+          <Button variant='info'>All</Button>
+        </Link>
+        <Link to={'/quizzes/sport'}>
+          <Button variant='info'>Sport</Button>
+        </Link>
+        <Link to={'/quizzes/music'}>
+          <Button variant='info'>Music</Button>
+        </Link>
+        <Link to={'/quizzes/entertainment'}>
+          <Button variant='info'>Entertainment</Button>
+        </Link>
+        <Link to={'/quizzes/general'}>
+          <Button variant='info'>General Knowledge</Button>
+        </Link>
+        <Link to={'/quizzes/popular'}>
+          <Button variant='info'>Most Popular</Button>
+        </Link>
+      </ButtonGroup>
+    </>
+  )
+
   return (
     <>
       <Row>
@@ -91,23 +146,17 @@ const QuizzesPage = ({ filter='', page='All' }) => {
             <Form.Control
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                type="text"
-                className="mr-sm-2"
-                placeholder="Search quizzes"
+                type='text'
+                className='mr-sm-2'
+                placeholder='Search quizzes'
             />
           </Form>
         </Col>
       </Row>
       <Row>
         <Col>
-          <ButtonGroup aria-label="Quiz category selector">
-            <Button variant="info">All</Button>
-            <Button variant="info">Sport</Button>
-            <Button variant="info">Music</Button>
-            <Button variant="info">Entertainment</Button>
-            <Button variant="info">General Knowledge</Button>
-            <Button variant="info">Most Popular</Button>
-          </ButtonGroup>
+          {mobileButtonGroup}
+          {/* {desktopButtonGroup} */}
         </Col>
       </Row>
       <Row className='mt-5'>
@@ -128,7 +177,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
                 loader={<Asset spinner />}
                 hasMore={!!quizzes.next}
                 next={() => fetchMoreData(quizzes, setQuizzes)}
-                className={'d-flex flex-wrap'}
+                className='d-flex flex-wrap'
               />
                 
               ) : (
