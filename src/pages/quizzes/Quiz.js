@@ -8,6 +8,7 @@ import styles from '../../styles/Quiz.module.css'
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import MoreDropdown from '../../components/MoreDropdown';
 
 const Quiz = (props) => {
 
@@ -49,7 +50,12 @@ const Quiz = (props) => {
     <>
       <Row>
         <Col>
-          <h1>{title}</h1>
+          <Row>
+            <Col className='d-flex'>
+              <h1>{title}</h1>
+              <MoreDropdown item='Quiz' />
+            </Col>
+          </Row>        
           <p>{description}</p>
         </Col>
       </Row>

@@ -76,7 +76,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
 
   const mobileButtonGroup = (
     <>
-      <ButtonToolbar aria-label='Toolbar with quiz category selectors' className='justify-content-center'>
+      <ButtonToolbar aria-label='Toolbar with quiz category selectors' className='d-md-none justify-content-center'>
         <ButtonGroup size='lg' className='mr-2' aria-label='First group'>
           <Link to={'/'}>
             <Button variant='info'>All</Button>
@@ -105,7 +105,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
 
   const desktopButtonGroup = (
     <>
-      <ButtonGroup aria-label='Quiz category selector'>
+      <ButtonGroup aria-label='Quiz category selector' className='d-md-block d-none'>
         <Link to={'/'}>
           <Button variant='info'>All</Button>
         </Link>
@@ -156,7 +156,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
       <Row>
         <Col>
           {mobileButtonGroup}
-          {/* {desktopButtonGroup} */}
+          {desktopButtonGroup}
         </Col>
       </Row>
       <Row className='mt-5'>
