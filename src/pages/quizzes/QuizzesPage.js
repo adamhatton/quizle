@@ -17,12 +17,13 @@ import Asset from '../../components/Asset';
 const QuizzesPage = ({ filter='', page='All' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [query, setQuery] = useState("");
   const { pathname } = useLocation();
   
   useEffect(() => {
     const fetchQuizzes = async () => {
       try {
-        const { data } = await axiosReq.get(`/quizzes/?${filter}`);
+        const { data } = await axiosReq.get(`/quizzes/?${filter}search=${query}`);
         setQuizzes(data);
         setHasLoaded(true);
       } catch (err) {
@@ -38,7 +39,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, pathname]);
+  }, [filter, pathname, query]);
 
   const setImageSource = (quizCategory) => {
     switch (quizCategory) {
@@ -86,8 +87,8 @@ const QuizzesPage = ({ filter='', page='All' }) => {
             onSubmit={(event) => event.preventDefault()}
           >
             <Form.Control
-                // value={query}
-                // onChange={(event) => setQuery(event.target.value)}
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
                 type="text"
                 className="mr-sm-2"
                 placeholder="Search quizzes"
