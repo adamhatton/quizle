@@ -11,6 +11,8 @@ import General from "../../assets/general.png";
 import Music from "../../assets/music.png";
 import Sport from "../../assets/sport.png";
 import QuizTile from './QuizTile';
+import Container from 'react-bootstrap/Container';
+import Asset from '../../components/Asset';
 
 const QuizzesPage = ({ filter='' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
@@ -38,6 +40,35 @@ const QuizzesPage = ({ filter='' }) => {
     };
   }, [filter, pathname]);
 
+  const setImageSource = (quizCategory) => {
+    switch (quizCategory) {
+      case 'sport': 
+        return Sport
+      case 'music':
+        return Music
+      case 'entertainment':
+        return Entertainment
+      case 'general':
+        return General
+      default:
+        return General
+    }
+  }
+
+  const setImageAlt = (quizCategory) => {
+    switch (quizCategory) {
+      case 'sport': 
+        return 'A simple icon of a football pitch'
+      case 'music':
+        return 'A simple icon of a pair of headphones'
+      case 'entertainment':
+        return "A simple icon of a director's clapperboard"
+      case 'general':
+        return 'A simple icon of a question mark'
+      default:
+        return 'A simple icon of a question mark'
+    }
+  }
 
   return (
     <>
@@ -73,18 +104,30 @@ const QuizzesPage = ({ filter='' }) => {
         </Col>
       </Row>
       <Row className='mt-5'>
-        <Col xs={12} md={6}>
-            <QuizTile src={Sport} message='A simple icon of a football pitch' />
-        </Col>
-        <Col xs={12} md={6}>
-            <QuizTile src={Music} message='A simple icon of a pair of headphones' />
-        </Col>
-        <Col xs={12} md={6}>
-            <QuizTile src={Entertainment} message="A simple icon of a director's clapperboard" />
-        </Col>
-        <Col xs={12} md={6}>
-            <QuizTile src={General} message='A simple icon of a question mark' />
-        </Col>
+        { hasLoaded ? (
+          <>
+            {quizzes.results.length ? (
+                quizzes.results.map(quiz => {
+                  const imageSource = setImageSource(quiz.category);
+                  const imageAlt = setImageAlt(quiz.category);
+                  return (
+                    <Col key={quiz.id} xs={12} md={6}>
+                      <QuizTile {...quiz} src={imageSource} message={imageAlt} />
+                  </Col>
+                  )
+                })
+              ) : (
+              <Container>
+                <Asset question message='No results found' />
+              </Container>
+              )
+            }
+          </>
+          ) : (
+            <Container>
+              <Asset spinner></Asset>
+            </Container>
+          )}
       </Row>
     </>
   )
