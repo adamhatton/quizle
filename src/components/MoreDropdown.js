@@ -13,19 +13,21 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     />
   ));
 
-function MoreDropdown({item}) {
+function MoreDropdown({item, handleEdit, handleDelete}) {
   return (
     <Dropdown className='ml-auto pt-1' drop='left'>
         <Dropdown.Toggle as={ThreeDots} />
 
         <Dropdown.Menu className='text-right'>
-            <Dropdown.Item 
+            <Dropdown.Item
+              onClick={handleEdit} 
               aria-label="edit"
             >
               Edit {item}
               <i className='fas fa-marker'></i>
             </Dropdown.Item>
             <Dropdown.Item
+              onClick={handleDelete}
               aria-label="delete"
             >
               Delete {item}

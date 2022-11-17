@@ -3,12 +3,13 @@ import Media from 'react-bootstrap/Media';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Avatar from '../../components/Avatar';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styles from '../../styles/Quiz.module.css'
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import MoreDropdown from '../../components/MoreDropdown';
+import { axiosRes } from '../../api/axiosDefaults';
 
 const Quiz = (props) => {
 
@@ -33,6 +34,21 @@ const Quiz = (props) => {
     setQuizAnswers,
   } = props;
 
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/quizzes/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/quizzes/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleGuess = (event) => {
       const formattedGuess = event.target.value.trim().toLowerCase();
       setQuizAnswers (quizAnswers.map(answer => {
@@ -53,7 +69,11 @@ const Quiz = (props) => {
           <Row>
             <Col className='d-flex'>
               <h1>{title}</h1>
-              <MoreDropdown item='Quiz' />
+              <MoreDropdown
+                item='Quiz'
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
             </Col>
           </Row>        
           <p>{description}</p>
