@@ -32,11 +32,18 @@ const Quiz = (props) => {
     setQuizAnswers,
   } = props;
 
-  const handleGuess = () => (
-    props.setQuizAnswers (props.quizAnswers.map((answer, idx) => {
-      return idx % 2 === 0 ? answer : {...answer, guessed: true}
+  const handleGuess = (event) => {
+      const formattedGuess = event.target.value.trim().toLowerCase();
+      setQuizAnswers (quizAnswers.map(answer => {
+      const formattedAnswer = answer.value.trim().toLowerCase();
+      if (formattedGuess === formattedAnswer && !answer.guessed) {
+        event.target.value = '';
+        return {...answer, guessed: true}
+      } else {
+        return {...answer}
+      } 
     }))
-  );
+  };
 
   return (
     <>
@@ -76,7 +83,7 @@ const Quiz = (props) => {
             name='title'
             //   value={title}
             //   className={styles.Input}
-              onChange={handleGuess}
+              onKeyUp={handleGuess}
           />
           </Form.Group>
         </Col>
