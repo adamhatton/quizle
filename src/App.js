@@ -8,6 +8,7 @@ import SignInForm from './pages/auth/SignInForm';
 import QuizCreateForm from './pages/quizzes/QuizCreateForm';
 import QuizPage from './pages/quizzes/QuizPage';
 import QuizzesPage from './pages/quizzes/QuizzesPage';
+import QuizEditForm from './pages/quizzes/QuizEditForm';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route exact path='/quizzes/popular' render={() => <QuizzesPage page={'Most Popular'} />} />
           <Route exact path='/quizzes/create' render={() => <QuizCreateForm />} />
           <Route exact path='/quizzes/:id' render={() => <QuizPage />} />
+          <Route exact path='/quizzes/:id/edit' render={() => <QuizEditForm />} />
           <Route exact path='/profile' render={() => <h1>Profile</h1>} />
           <Route exact path='/signin' render={() => <SignInForm />} />
           <Route exact path='/signup' render={() => <SignUpForm />} />

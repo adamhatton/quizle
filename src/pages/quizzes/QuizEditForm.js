@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
 
-function QuizCreateForm() {
+function QuizEditForm() {
   // Set state for quiz data
+  const [errors, setErrors] = useState({});
+
+  const history = useHistory();
+
+  const { id } = useParams();
+
   const [quizData, setQuizData] = useState({
     title: '',
     description: '',
@@ -92,9 +98,71 @@ function QuizCreateForm() {
     {name: 'ans_10', value: ans_10, placeholder: 'Answer 10'},
   ]
 
-  const [errors, setErrors] = useState({});
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/quizzes/${id}/`);
+        const {
+            title,
+            description,
+            category,
+            time_limit_seconds,
+            ans_1,
+            ans_2,
+            ans_3,
+            ans_4,
+            ans_5,
+            ans_6,
+            ans_7,
+            ans_8,
+            ans_9,
+            ans_10,
+            hint_1,
+            hint_2,
+            hint_3,
+            hint_4,
+            hint_5,
+            hint_6,
+            hint_7,
+            hint_8,
+            hint_9,
+            hint_10,
+            is_owner,
+        } = data;
 
-  const history = useHistory();
+        is_owner ? setQuizData({
+            title,
+            description,
+            category,
+            time_limit_seconds,
+            ans_1,
+            ans_2,
+            ans_3,
+            ans_4,
+            ans_5,
+            ans_6,
+            ans_7,
+            ans_8,
+            ans_9,
+            ans_10,
+            hint_1,
+            hint_2,
+            hint_3,
+            hint_4,
+            hint_5,
+            hint_6,
+            hint_7,
+            hint_8,
+            hint_9,
+            hint_10,
+        }) : history.push("/");
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleMount();
+  }, [history, id]);
 
   // handleChange function uses computed property so all inputs can call it
   const handleChange = (event) => {
@@ -319,4 +387,4 @@ function QuizCreateForm() {
   )
 }
 
-export default QuizCreateForm
+export default QuizEditForm
