@@ -14,7 +14,7 @@ import QuizTile from './QuizTile';
 import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
 
-const QuizzesPage = ({ filter='' }) => {
+const QuizzesPage = ({ filter='', page='All' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -74,8 +74,12 @@ const QuizzesPage = ({ filter='' }) => {
     <>
       <Row>
         <Col xs={12} lg={5}>
-            <h1>Category Title</h1>
-            <p>All the Quizles you can handle!</p>
+            <h1>{page} Quizles</h1>
+            {page === 'All' ? (
+              <p>All the Quizles you can handle!</p>
+            ) : (
+              <p>All the {page} Quizles you can handle!</p>
+            )}
         </Col>
         <Col xs={12} lg={7}>
           <Form
