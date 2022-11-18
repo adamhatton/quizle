@@ -11,7 +11,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
 import QuizTile from '../quizzes/QuizTile';
-import { fetchMoreData } from '../../utils/Utils';
+import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
 
 const ProfilePage = () => {
   const { id } = useParams();

@@ -6,15 +6,12 @@ import { Link, useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { axiosReq } from '../../api/axiosDefaults';
-import Entertainment from '../../assets/entertainment.png';
-import General from '../../assets/general.png';
-import Music from '../../assets/music.png';
-import Sport from '../../assets/sport.png';
+
 import QuizTile from './QuizTile';
 import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { fetchMoreData } from '../../utils/Utils';
+import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
 const QuizzesPage = ({ filter='', page='All' }) => {
@@ -44,35 +41,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
     };
   }, [filter, pathname, query]);
 
-  const setImageSource = (quizCategory) => {
-    switch (quizCategory) {
-      case 'sport': 
-        return Sport
-      case 'music':
-        return Music
-      case 'entertainment':
-        return Entertainment
-      case 'general':
-        return General
-      default:
-        return General
-    }
-  }
 
-  const setImageAlt = (quizCategory) => {
-    switch (quizCategory) {
-      case 'sport': 
-        return 'A simple icon of a football pitch'
-      case 'music':
-        return 'A simple icon of a pair of headphones'
-      case 'entertainment':
-        return "A simple icon of a director's clapperboard"
-      case 'general':
-        return 'A simple icon of a question mark'
-      default:
-        return 'A simple icon of a question mark'
-    }
-  }
 
   const mobileButtonGroup = (
     <>
