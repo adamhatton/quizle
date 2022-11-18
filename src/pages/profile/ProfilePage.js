@@ -7,6 +7,11 @@ import Button from 'react-bootstrap/Button';
 import Avatar from '../../components/Avatar';
 import { useParams } from 'react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Container from 'react-bootstrap/Container';
+import Asset from '../../components/Asset';
+import QuizTile from '../quizzes/QuizTile';
+import { fetchMoreData } from '../../utils/Utils';
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -40,6 +45,42 @@ const ProfilePage = () => {
     fetchData()
   }, [id]);
 
+  const completedQuizTiles = (
+    <>
+    { hasLoaded ? (
+      <>
+        {createdQuizzes.results.length ? (
+          <InfiniteScroll 
+            children={createdQuizzes.results.map(quiz => {
+              // const imageSource = setImageSource(quiz.category);
+              // const imageAlt = setImageAlt(quiz.category);
+              return (
+                <Col key={quiz.id} xs={12} md={6}>
+                  <QuizTile {...quiz} src={'imageSource'} message={'imageAlt'} />
+                </Col>
+              )
+            })}
+            dataLength={createdQuizzes.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!createdQuizzes.next}
+            next={() => fetchMoreData(createdQuizzes, setCreatedQuizzes)}
+            className='d-flex flex-wrap'
+          />
+            
+          ) : (
+          <Container>
+            <Asset question message='No results found' />
+          </Container>
+          )
+        }
+      </>
+      ) : (
+        <Container>
+          <Asset spinner></Asset>
+        </Container>
+      )}
+    </>
+  )
 
   return (
     <>
@@ -68,10 +109,13 @@ const ProfilePage = () => {
         </Col>
       </Row>
       <Row>
-        <ButtonGroup aria-label='Quizzes created and quizzes completed selector'>
-            <Button variant='info'>Created Quizzes</Button>
-            <Button variant='info'>Completed Quizzes</Button>
-        </ButtonGroup>
+        <Col>
+          <ButtonGroup aria-label='Quizzes created and quizzes completed selector'>
+              <Button variant='info'>Created Quizzes</Button>
+              <Button variant='info'>Completed Quizzes</Button>
+          </ButtonGroup>
+          {completedQuizTiles}
+        </Col>
       </Row>
     </>
   )
