@@ -27,7 +27,7 @@ function App() {
           <Route exact path='/quizzes/create' render={() => <QuizCreateForm />} />
           <Route exact path='/quizzes/:id' render={() => <QuizPage />} />
           <Route exact path='/quizzes/:id/edit' render={() => <QuizEditForm />} />
-          <Route exact path='/profile' render={() => <ProfilePage />} />
+          <Route exact path='/profiles/:id' render={() => <ProfilePage />} />
           <Route exact path='/signin' render={() => <SignInForm />} />
           <Route exact path='/signup' render={() => <SignUpForm />} />
           <Route exact path='/signout' render={() => <h1>Sign Out</h1>} />
