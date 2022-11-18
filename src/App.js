@@ -11,6 +11,7 @@ import QuizzesPage from './pages/quizzes/QuizzesPage';
 import QuizEditForm from './pages/quizzes/QuizEditForm';
 import ProfilePage from './pages/profile/ProfilePage';
 import ProfileEditForm from './pages/profile/ProfileEditForm';
+import UsernameForm from './pages/profile/UsernameForm';
 
 function App() {
 
@@ -30,6 +31,8 @@ function App() {
           <Route exact path='/quizzes/:id/edit' render={() => <QuizEditForm />} />
           <Route exact path='/profiles/:id' render={() => <ProfilePage />} />
           <Route exact path='/profiles/:id/edit' render={() => <ProfileEditForm />} />
+          <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />}
+          />
           <Route exact path='/signin' render={() => <SignInForm />} />
           <Route exact path='/signup' render={() => <SignUpForm />} />
           <Route exact path='/signout' render={() => <h1>Sign Out</h1>} />
