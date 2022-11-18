@@ -21,6 +21,7 @@ const ProfileEditForm = () => {
   const { id } = useParams();
   const history = useHistory();
   const imageFile = useRef();
+  const componentMounted = useRef(true);
 
   const [profileData, setProfileData] = useState({
     name: "",
@@ -37,7 +38,9 @@ const ProfileEditForm = () => {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
           const { name, bio, image } = data;
-          setProfileData({ name, bio, image });
+          if (componentMounted.current){
+            setProfileData({ name, bio, image });
+          }
         } catch (err) {
           console.log(err);
           history.push("/");
@@ -48,6 +51,10 @@ const ProfileEditForm = () => {
     };
 
     handleMount();
+
+    return () => {
+        componentMounted.current = false;
+    }
   }, [currentUser, history, id]);
 
   const handleChange = (event) => {
@@ -150,6 +157,7 @@ const ProfileEditForm = () => {
                 accept="image/*"
                 onChange={(e) => {
                   if (e.target.files.length) {
+                    URL.revokeObjectURL(image)
                     setProfileData({
                       ...profileData,
                       image: URL.createObjectURL(e.target.files[0]),
