@@ -10,6 +10,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { MoreDropdown } from '../../components/MoreDropdown';
 import { axiosRes } from '../../api/axiosDefaults';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 const Quiz = (props) => {
 
@@ -22,7 +23,6 @@ const Quiz = (props) => {
     time_limit_seconds,
     created_on,
     updated_on,
-    is_owner,
     profile_id,
     profile_image,
     like_id,
@@ -33,6 +33,9 @@ const Quiz = (props) => {
     quizAnswers,
     setQuizAnswers,
   } = props;
+
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === owner;
 
   const history = useHistory();
 

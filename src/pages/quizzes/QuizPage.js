@@ -25,7 +25,6 @@ function QuizPage() {
               time_limit_seconds: data.time_limit_seconds,
               created_on: data.created_on,
               updated_on: data.updated_on,
-              is_owner: data.is_owner,
               profile_id: data.profile_id,
               profile_image: data.profile_image,
               like_id: data.like_id,
