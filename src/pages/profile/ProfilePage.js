@@ -12,6 +12,7 @@ import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
 import QuizTile from '../quizzes/QuizTile';
 import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
+import { MoreDropdown, ProfileEditDropdown } from '../../components/MoreDropdown';
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const ProfilePage = () => {
   const [createdQuizzes, setCreatedQuizzes] = useState({results: []});
   const [completedQuizzes, setCompletedQuizzes] = useState({results: []});
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [quizView, setQuizView] = useState('created');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,18 +47,18 @@ const ProfilePage = () => {
     fetchData()
   }, [id]);
 
-  const completedQuizTiles = (
+  const createdQuizTiles = (
     <>
     { hasLoaded ? (
       <>
         {createdQuizzes.results.length ? (
           <InfiniteScroll 
             children={createdQuizzes.results.map(quiz => {
-              // const imageSource = setImageSource(quiz.category);
-              // const imageAlt = setImageAlt(quiz.category);
+              const imageSource = setImageSource(quiz.category);
+              const imageAlt = setImageAlt(quiz.category);
               return (
                 <Col key={quiz.id} xs={12} md={6}>
-                  <QuizTile {...quiz} src={'imageSource'} message={'imageAlt'} />
+                  <QuizTile {...quiz} src={imageSource} message={imageAlt} />
                 </Col>
               )
             })}
@@ -69,7 +71,44 @@ const ProfilePage = () => {
             
           ) : (
           <Container>
-            <Asset question message='No results found' />
+            <Asset question message='No quizzes created!' />
+          </Container>
+          )
+        }
+      </>
+      ) : (
+        <Container>
+          <Asset spinner></Asset>
+        </Container>
+      )}
+    </>
+  )
+
+  const completedQuizTiles = (
+    <>
+    { hasLoaded ? (
+      <>
+        {completedQuizzes.results.length ? (
+          <InfiniteScroll 
+            children={completedQuizzes.results.map(quiz => {
+              const imageSource = setImageSource(quiz.category);
+              const imageAlt = setImageAlt(quiz.category);
+              return (
+                <Col key={quiz.id} xs={12} md={6}>
+                  <QuizTile {...quiz} src={imageSource} message={imageAlt} />
+                </Col>
+              )
+            })}
+            dataLength={completedQuizzes.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!completedQuizzes.next}
+            next={() => fetchMoreData(completedQuizzes, setCompletedQuizzes)}
+            className='d-flex flex-wrap'
+          />
+            
+          ) : (
+          <Container>
+            <Asset question message='No quizzes completed!' />
           </Container>
           )
         }
@@ -92,7 +131,10 @@ const ProfilePage = () => {
                 <Row>
                   <Col className='d-flex'>
                     <h2>{profile.owner}</h2>
-                    <p>3 dots</p>
+                    {profile.is_owner &&
+                    <ProfileEditDropdown
+                      id={id}
+                    />}
                   </Col>
                 </Row>
                 <p>Name: {profile.name ? profile.name : 'No name provided'}</p>
@@ -111,10 +153,11 @@ const ProfilePage = () => {
       <Row>
         <Col>
           <ButtonGroup aria-label='Quizzes created and quizzes completed selector'>
-              <Button variant='info'>Created Quizzes</Button>
-              <Button variant='info'>Completed Quizzes</Button>
+              <Button variant='info' onClick={() => setQuizView('created')}>Created Quizzes</Button>
+              <Button variant='info' onClick={() => setQuizView('completed')}>Completed Quizzes</Button>
           </ButtonGroup>
-          {completedQuizTiles}
+          {(quizView === 'created') && createdQuizTiles}
+          {(quizView === 'completed') && completedQuizTiles}
         </Col>
       </Row>
     </>

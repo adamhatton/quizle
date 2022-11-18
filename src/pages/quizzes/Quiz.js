@@ -8,7 +8,7 @@ import styles from '../../styles/Quiz.module.css'
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import MoreDropdown from '../../components/MoreDropdown';
+import { MoreDropdown } from '../../components/MoreDropdown';
 import { axiosRes } from '../../api/axiosDefaults';
 
 const Quiz = (props) => {
