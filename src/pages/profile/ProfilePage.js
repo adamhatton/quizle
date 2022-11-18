@@ -123,11 +123,11 @@ const ProfilePage = () => {
 
   return (
     <>
-      <Row>
-        <Col>
-          <Media className='mt-5'>
+      <Row className='justify-content-center mt-4'>
+        <Col xs='auto'>
             <Avatar src={profile.image} height={240} />
-            <Media.Body>
+        </Col>
+        <Col xs='auto'>
                 <Row>
                   <Col className='d-flex'>
                     <h2>{profile.owner}</h2>
@@ -140,8 +140,6 @@ const ProfilePage = () => {
                 <p>Name: {profile.name ? profile.name : 'No name provided'}</p>
                 <p>Bio:</p>
                 <p>{profile.bio ? profile.bio : 'No bio provided'}</p>
-            </Media.Body>
-          </Media>
         </Col>
       </Row>
       <Row>
