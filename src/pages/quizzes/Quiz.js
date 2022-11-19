@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Media from 'react-bootstrap/Media';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 import { MoreDropdown } from '../../components/MoreDropdown';
 import { axiosRes } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import Timer from '../../components/Timer';
 
 const Quiz = (props) => {
 
@@ -33,6 +34,9 @@ const Quiz = (props) => {
     quizAnswers,
     setQuizAnswers,
   } = props;
+
+  const [quizActive, setQuizActive] = useState(false);
+  const [seconds, setSeconds] = useState(time_limit_seconds);
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -83,7 +87,7 @@ const Quiz = (props) => {
           <p className={styles.Description}>{description}</p>
         </Col>
       </Row>
-      <Row className='align-items-center justify-content-center py-3'>
+      <Row className='align-items-center justify-content-center px-3'>
           <Media className='align-items-center text-right'>
             <Media.Body>
               <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Created by</h2>
@@ -101,7 +105,7 @@ const Quiz = (props) => {
             </Media.Body>
           </Media>
       </Row>
-      <Row>
+      <Row className='mt-3'>
         <Col xs={8}>
           <Form.Group controlId='guess_input'>
           <Form.Label srOnly>Guess:</Form.Label>
@@ -116,7 +120,11 @@ const Quiz = (props) => {
           </Form.Group>
         </Col>
         <Col xs={4}>
-          <p>Timer</p>
+          <Timer
+            isActive={quizActive}
+            seconds={seconds}
+            setSeconds={setSeconds}
+          />
         </Col>
       </Row>
       <Row>

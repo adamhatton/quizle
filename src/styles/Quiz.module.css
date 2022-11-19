@@ -32,6 +32,13 @@
     flex-basis: 50%;
 }
 
+.Timer {
+    padding: 10px;
+    font-size: 1.5rem;
+    border: solid 1px black;
+    background-color: red;
+}
+
 @media screen and (max-width: 500px) {
 
     .QuizMedia {
