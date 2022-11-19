@@ -78,7 +78,7 @@ const NavBar = () => {
     <Navbar expanded={expanded} className={styles.NavBar} expand='md' fixed='top'>
       <Container>
         <NavLink to='/'>
-          <Navbar.Brand>Quizle</Navbar.Brand>
+          <Navbar.Brand className={styles.Logo}>Quizle</Navbar.Brand>
         </NavLink>
         <Navbar.Toggle
         ref={ref}

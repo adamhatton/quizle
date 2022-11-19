@@ -7,6 +7,7 @@
     min-height: 100vh;
     background-color: #0095ff2b;
     color: #292929;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .Main {
@@ -15,6 +16,7 @@
 
 a {
     color: #292929;
+    font-size: 1.2rem;
 }
 
 a:hover {

@@ -50,39 +50,29 @@ const UsernameForm = () => {
   };
 
   return (
-    <Row>
-      <Col className="py-2 mx-auto text-center" md={6}>
-        <Container>
-          <Form onSubmit={handleSubmit} className="my-2">
-            <Form.Group controlId='username'>
-              <Form.Label>Change username</Form.Label>
-              <Form.Control
-                placeholder='Username'
-                type='text'
-                value={username}
-                name='username'
-                onChange={(event) => setUsername(event.target.value)}
-              />
-            </Form.Group>
-            {errors?.username?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
-            <Button
-              onClick={() => history.goBack()}
-            >
-              cancel
-            </Button>
-            <Button
-              type="submit"
-            >
-              save
-            </Button>
-          </Form>
-        </Container>
-      </Col>
-    </Row>
+    <Form onSubmit={handleSubmit} className="my-2">
+      <Form.Group controlId='username'>
+        <Form.Label>Change username</Form.Label>
+        <Form.Control
+        placeholder='Username'
+        type='text'
+        value={username}
+        name='username'
+        onChange={(event) => setUsername(event.target.value)}
+      />
+      </Form.Group>
+        {errors?.username?.map((message, idx) => (
+          <Alert key={idx} variant="warning">
+            {message}
+          </Alert>
+        ))}
+      <Button onClick={() => history.goBack()}>
+        Cancel
+      </Button>
+      <Button type="submit">
+        save
+      </Button>
+    </Form>
   );
 };
 
