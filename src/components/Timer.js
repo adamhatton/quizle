@@ -1,18 +1,23 @@
 import React, { useEffect } from 'react'
 
-const Timer = ({isActive, seconds, setSeconds }) => {
+const Timer = ({isActive, seconds, setSeconds, stop }) => {
   
+  // useEffect is a modified version of the timer created by James Dietrich here:
+  // https://upmostly.com/tutorials/build-a-react-timer-component-using-hooks
   useEffect(() => {
     let interval = null;
-      if (isActive) {
+      if (isActive && !stop) {
         interval = setInterval(() => {
           setSeconds(seconds => seconds - 1);
         }, 1000);
-      } else if (!isActive && seconds !== 0) {
-        clearInterval(interval);
       }
-    return () => clearInterval(interval);
-    }, [isActive]);
+      if (stop) {
+        setSeconds(0);
+      }
+    return () => {
+        clearInterval(interval);
+    }
+    }, [isActive, stop]);
   
   return (
     <div>

@@ -36,6 +36,7 @@ const Quiz = (props) => {
   } = props;
 
   const [quizActive, setQuizActive] = useState(false);
+  const [giveUp, setGiveUp] = useState(false);
   const [seconds, setSeconds] = useState(time_limit_seconds);
 
   const currentUser = useCurrentUser();
@@ -120,11 +121,17 @@ const Quiz = (props) => {
           </Form.Group>
         </Col>
         <Col xs={4}>
-          <Timer
-            isActive={quizActive}
-            seconds={seconds}
-            setSeconds={setSeconds}
-          />
+          { seconds > 0 ? (
+            <Timer
+              isActive={quizActive}
+              seconds={seconds}
+              setSeconds={setSeconds}
+              stop={giveUp}
+            />
+          ) : (
+            "Time's up!"
+          )}
+
         </Col>
       </Row>
       <Row>
@@ -145,7 +152,8 @@ const Quiz = (props) => {
                 )}
               </tbody>
           </Table>
-          <Button>Start!</Button>
+          <Button onClick={() => setQuizActive(true)}>Start!</Button>
+          <Button onClick={() => setGiveUp(true)}>Give Up?</Button>
         </Col>
       </Row>
     </>
