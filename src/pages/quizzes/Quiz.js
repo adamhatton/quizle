@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Avatar from '../../components/Avatar';
 import { Link, useHistory } from 'react-router-dom';
 import styles from '../../styles/Quiz.module.css'
+import btnStyles from '../../styles/Button.module.css'
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
@@ -219,11 +220,35 @@ const Quiz = (props) => {
           ) : (
             "Time's up!"
           )}
-
+        </Col>
+        <Col xs={12} className='text-center mt-3'>
+          {!quizActive && !giveUp && !completed && 
+            <Button
+              onClick={() => setQuizActive(true)}
+              className={btnStyles.Btn}
+            >
+                Start!
+            </Button>
+          }
+          {quizActive && (seconds > 0) && !completed &&
+            <Button
+              onClick={handleGiveUp}
+              className={btnStyles.Btn}
+            >
+              Give Up?
+            </Button>}
+          {!quizActive && (seconds < time_limit_seconds) &&
+            <Button
+              onClick={handleReset}
+              className={btnStyles.Btn}
+            >
+              Reset
+            </Button>
+          }
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col xs={12}>
           <Table striped bordered hover className={styles.Table}>
               <thead>
                 <tr>
@@ -240,9 +265,7 @@ const Quiz = (props) => {
                 )}
               </tbody>
           </Table>
-          {!quizActive && !giveUp && !completed && <Button onClick={() => setQuizActive(true)}>Start!</Button>}
-          {quizActive && (seconds > 0) && !completed && <Button onClick={handleGiveUp}>Give Up?</Button>}
-          {!quizActive && (seconds < time_limit_seconds) && <Button onClick={handleReset}>Reset</Button>}
+
         </Col>
       </Row>
     </>

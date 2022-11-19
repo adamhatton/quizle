@@ -17,3 +17,23 @@
     border-color: #378aa3;
     box-shadow: none;
 }
+
+.Btn {
+    border-radius: 0;
+    background-color: #0048ff;
+    border-color: #0048ff;
+    margin: 5px 1px 0 0;
+    min-width: 75px;
+    font-size: 1.2rem;
+}
+
+.Btn:hover {
+    background-color: #3361d4;
+    border-color: #3361d4;
+}
+
+.Btn:focus {
+    background-color: #3361d4;
+    border-color: #3361d4;
+    box-shadow: none;
+}
