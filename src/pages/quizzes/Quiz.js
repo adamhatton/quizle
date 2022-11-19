@@ -53,11 +53,9 @@ const Quiz = (props) => {
 
   useEffect(() => {
       const handleCompleted = () => {
-      console.log('handleCompleted called')
       const guessedAnswers = quizAnswers.reduce((acc, cur) => {
         return cur.guessed === true ? acc + 1 : acc
       }, 0);
-      console.log('guessedAnswers is', guessedAnswers)
       const allGuessed = guessedAnswers === 10 ? true : false;
       if (allGuessed && !giveUp) {
         setCompleted(true);
@@ -69,13 +67,11 @@ const Quiz = (props) => {
 
     const handleCreateScore = async (score) => {
       if (!score_id) {
-        console.log('no score ID, post request made')
         try {
             const {data} = await axiosReq.post('/scores/', {
               quiz: id,
               completed_time: score,
             });
-            console.log(data)
             setQuizInfo((prevQuiz) => ({
               ...prevQuiz,
               score_time: data.completed_time,
@@ -85,7 +81,6 @@ const Quiz = (props) => {
           console.log(err)
         }
       } else if (score < score_time) {
-        console.log('score exists, put request made')
           try {
             const {data} = await axiosReq.put(`/scores/${score_id}`, {
               quiz: id,

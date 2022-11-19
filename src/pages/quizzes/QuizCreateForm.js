@@ -102,10 +102,6 @@ function QuizCreateForm() {
       ...quizData,
       [event.target.name]: event.target.value,
     });
-    console.log(hint_1, ans_1);
-    console.log(hintsArray[0].value, answersArray[0].value)
-    console.log(hint_1 === hintsArray[0].value)
-    console.log(ans_1 === answersArray[0].value)
   };
 
   // Submit quiz form data
