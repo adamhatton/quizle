@@ -49,6 +49,22 @@
     width: 50%;
 }
 
+.Like {
+    font-size: 2.5rem;
+}
+
+.LikeOutline {
+    color: rgb(150, 148, 148);
+}
+
+.LikeOutline:hover {
+    color: #ff5900;
+}
+
+.LikeFill {
+    color: #0048ff;
+}
+
 @media screen and (max-width: 530px) {
 
     .QuizMedia {

@@ -13,6 +13,8 @@ import { MoreDropdown } from '../../components/MoreDropdown';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Timer from '../../components/Timer';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const Quiz = (props) => {
 
@@ -123,8 +125,6 @@ const Quiz = (props) => {
       }))
     }
   };
-
-
 
   const handleGiveUp = () => {
     setGiveUp(true);
@@ -265,7 +265,32 @@ const Quiz = (props) => {
                 )}
               </tbody>
           </Table>
-
+        </Col>
+        <Col className={'text-center mt-2'}>
+          {is_owner ? (
+            <OverlayTrigger
+              placement='top'
+              overlay={<Tooltip>You can't like your own quiz!</Tooltip>}
+            >
+              <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeOutline}`} />
+            </OverlayTrigger>
+          ) : like_id ? (
+            <span onClick={() => {}}>
+              <i className={`fas fa-thumbs-up ${styles.Like}`} />
+            </span>
+          ) : currentUser ? (
+            <span onClick={() => {}}>
+              <i className={`far fa-thumbs-up ${styles.Like}`} />
+            </span>
+          ) : (
+            <OverlayTrigger
+              placement='top'
+              overlay={<Tooltip>Log in to like posts!</Tooltip>}
+            >
+              <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeOutline}`} />
+            </OverlayTrigger>
+          )}
+          {likes_count}
         </Col>
       </Row>
     </>
