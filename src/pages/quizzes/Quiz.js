@@ -85,7 +85,7 @@ const Quiz = (props) => {
             });
             setQuizInfo((prevQuiz) => ({
               ...prevQuiz,
-              completed_time: data.completed_time
+              score_time: data.completed_time
             }))
           } catch(err){
           console.log(err)
@@ -119,7 +119,6 @@ const Quiz = (props) => {
           return {...answer}
         } 
       }))
-    // handleCompleted();
   };
 
 
