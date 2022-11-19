@@ -113,6 +113,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
             )}
         </Col>
         <Col xs={12} lg={6}>
+          <i className={`${pageStyles.Search} fas fa-search`}></i>
           <Form
             className='mb-3'
             onSubmit={(event) => event.preventDefault()}
@@ -125,6 +126,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
                 placeholder='Search quizzes'
                 name='search'
             />
+
             <Form.Label htmlFor='search' srOnly >Search bar</Form.Label>
           </Form>
         </Col>

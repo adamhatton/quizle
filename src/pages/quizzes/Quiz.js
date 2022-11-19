@@ -180,8 +180,15 @@ const Quiz = (props) => {
             <Media.Body>
               <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>High Score</h2>
               <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
-                {Math.floor(score_time / 60)}:
-                {(score_time % 60) < 10 ? `0${score_time % 60}` : (score_time % 60)}
+                {score_id ? (
+                  <>
+                    {Math.floor(score_time / 60)}:
+                    {(score_time % 60) < 10 ? `0${score_time % 60}` : (score_time % 60)}
+                  </>
+                ) : (
+                  'Quizle not completed!'
+                )}
+
               </p>
             </Media.Body>
           </Media>

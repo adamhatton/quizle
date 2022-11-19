@@ -6,6 +6,7 @@
     box-shadow: 0px 0px 5px 0px;
     background-color: #fff;
     position: relative;
+    margin-top: 40px;
 }
 
 .QuizTitle {
@@ -35,11 +36,21 @@
     margin-bottom: 5px;
 }
 
+/* -----------------------------------Media queries for smaller screens */
 @media screen and (max-width: 400px) {
 
     .Image {
         height: 96px;
         width: 96px;
+    }
+
+}
+
+/* -----------------------------------Media queries for medium screens and below */
+@media screen and (max-width: 768px) {
+
+    .QuizTile {
+        margin-top: 15px;
     }
 
 }

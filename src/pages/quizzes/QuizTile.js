@@ -7,7 +7,7 @@ const QuizTile = ({ src, message, title, owner, likes_count, category, id }) => 
 
   return (
     <Link to={`/quizzes/${id}`}>
-      <Media className={`${tileStyles.QuizTile} mt-5 align-items-center text-center`}>
+      <Media className={`${tileStyles.QuizTile} align-items-center text-center`}>
         <img
             width={128}
             height={128}
