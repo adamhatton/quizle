@@ -1,0 +1,19 @@
+.BtnBarBtn {
+    border-radius: 0;
+    background-color: #145F76;
+    border-color: #145F76;
+    margin: 5px 1px 0 0;
+
+    min-width: 75px;
+}
+
+.BtnBarBtn:hover {
+    background-color: #378aa3;
+    border-color: #378aa3;
+}
+
+.BtnBarBtn:focus {
+    background-color: #378aa3;
+    border-color: #378aa3;
+    box-shadow: none;
+}

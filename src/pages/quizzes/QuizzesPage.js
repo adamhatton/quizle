@@ -14,6 +14,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
+import styles from '../../styles/QuizzesPage.module.css'
+import btnStyles from '../../styles/Button.module.css'
+
 const QuizzesPage = ({ filter='', page='All' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -46,26 +49,26 @@ const QuizzesPage = ({ filter='', page='All' }) => {
   const mobileButtonGroup = (
     <>
       <ButtonToolbar aria-label='Toolbar with quiz category selectors' className='d-md-none justify-content-center'>
-        <ButtonGroup size='lg' className='mr-2' aria-label='First group'>
+        <ButtonGroup size='lg' className='mr-2 mt-3' aria-label='First group'>
           <Link to={'/'}>
-            <Button variant='info'>All</Button>
+            <Button className={btnStyles.BtnBarBtn}>All</Button>
           </Link>
           <Link to={'/quizzes/sport'}>
-            <Button variant='info'>Sport</Button>
+            <Button className={btnStyles.BtnBarBtn}>Sport</Button>
           </Link>
           <Link to={'/quizzes/entertainment'}>
-            <Button variant='info'>Entertainment</Button>
+            <Button className={btnStyles.BtnBarBtn}>Entertainment</Button>
           </Link>
         </ButtonGroup>
         <ButtonGroup size='sm' className='mr-2' aria-label='Second group'>
           <Link to={'/quizzes/music'}>
-            <Button variant='info'>Music</Button>
+            <Button className={btnStyles.BtnBarBtn}>Music</Button>
           </Link>
           <Link to={'/quizzes/general'}>
-            <Button variant='info'>General</Button>
+            <Button className={btnStyles.BtnBarBtn}>General</Button>
           </Link>
           <Link to={'/quizzes/popular'}>
-            <Button variant='info'>Popular</Button>
+            <Button className={btnStyles.BtnBarBtn}>Popular</Button>
           </Link>
         </ButtonGroup>
       </ButtonToolbar>
@@ -74,24 +77,24 @@ const QuizzesPage = ({ filter='', page='All' }) => {
 
   const desktopButtonGroup = (
     <>
-      <ButtonGroup aria-label='Quiz category selector' className='d-md-block d-none'>
+      <ButtonGroup aria-label='Quiz category selector' className='d-md-block d-none mt-3'>
         <Link to={'/'}>
-          <Button variant='info'>All</Button>
+          <Button className={btnStyles.BtnBarBtn}>All</Button>
         </Link>
         <Link to={'/quizzes/sport'}>
-          <Button variant='info'>Sport</Button>
+          <Button className={btnStyles.BtnBarBtn}>Sport</Button>
         </Link>
         <Link to={'/quizzes/music'}>
-          <Button variant='info'>Music</Button>
+          <Button className={btnStyles.BtnBarBtn}>Music</Button>
         </Link>
         <Link to={'/quizzes/entertainment'}>
-          <Button variant='info'>Entertainment</Button>
+          <Button className={btnStyles.BtnBarBtn}>Entertainment</Button>
         </Link>
         <Link to={'/quizzes/general'}>
-          <Button variant='info'>General Knowledge</Button>
+          <Button className={btnStyles.BtnBarBtn}>General Knowledge</Button>
         </Link>
         <Link to={'/quizzes/popular'}>
-          <Button variant='info'>Most Popular</Button>
+          <Button className={btnStyles.BtnBarBtn}>Most Popular</Button>
         </Link>
       </ButtonGroup>
     </>
@@ -99,8 +102,8 @@ const QuizzesPage = ({ filter='', page='All' }) => {
 
   return (
     <>
-      <Row>
-        <Col xs={12} lg={5}>
+      <Row className={`mt-4 align-items-center ${styles.BorderBottom}`}>
+        <Col xs={12} lg={6} className='pl-4'>
             <h1>{page} Quizles</h1>
             {page === 'All' ? (
               <p>All the Quizles you can handle!</p>
@@ -108,7 +111,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
               <p>All the {page} Quizles you can handle!</p>
             )}
         </Col>
-        <Col xs={12} lg={7}>
+        <Col xs={12} lg={6}>
           <Form
             onSubmit={(event) => event.preventDefault()}
           >
@@ -118,12 +121,14 @@ const QuizzesPage = ({ filter='', page='All' }) => {
                 type='text'
                 className='mr-sm-2'
                 placeholder='Search quizzes'
+                name='search'
             />
+            <Form.Label htmlFor='search' srOnly >Search bar</Form.Label>
           </Form>
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col className='text-center'>
           {mobileButtonGroup}
           {desktopButtonGroup}
         </Col>
