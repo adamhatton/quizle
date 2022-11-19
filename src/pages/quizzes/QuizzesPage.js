@@ -16,6 +16,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
 import styles from '../../App.module.css'
 import btnStyles from '../../styles/Button.module.css'
+import pageStyles from '../../styles/QuizzesPage.module.css'
 
 const QuizzesPage = ({ filter='', page='All' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
@@ -134,7 +135,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
           {desktopButtonGroup}
         </Col>
       </Row>
-      <Row className='mt-3'>
+      <Row className={`${pageStyles.MinHeight} mt-3`}>
         { hasLoaded ? (
           <>
             {quizzes.results.length ? (
@@ -152,7 +153,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
                 loader={<Asset spinner />}
                 hasMore={!!quizzes.next}
                 next={() => fetchMoreData(quizzes, setQuizzes)}
-                className='d-flex flex-wrap pb-3'
+                className={`d-flex flex-wrap pb-3 ${styles.InfiniteScroll}`}
               />
                 
               ) : (
