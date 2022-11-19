@@ -71,11 +71,22 @@ const Quiz = (props) => {
     }))
   };
 
-  const handleReset = (event) => {
+  const handleGiveUp = () => {
+    setGiveUp(true);
+    setQuizActive(false);
+    setQuizAnswers(quizAnswers.map(answer => {
+      return {...answer, guessed: true}
+    }))
+  }
+
+  const handleReset = () => {
     setQuizActive(false);
     setGiveUp(false);
     setCompleted(false);
     setSeconds(time_limit_seconds);
+    setQuizAnswers(quizAnswers.map(answer => {
+      return {...answer, guessed: false}
+    }))
   }
 
   return (
@@ -162,7 +173,7 @@ const Quiz = (props) => {
               </tbody>
           </Table>
           {!quizActive && !giveUp && !completed && <Button onClick={() => setQuizActive(true)}>Start!</Button>}
-          {quizActive && (seconds > 0) && !completed && <Button onClick={() => {setGiveUp(true); setQuizActive(false)}}>Give Up?</Button>}
+          {quizActive && (seconds > 0) && !completed && <Button onClick={handleGiveUp}>Give Up?</Button>}
           {!quizActive && (seconds < time_limit_seconds) && <Button onClick={handleReset}>Reset</Button>}
           <Button onClick={() => {setCompleted(true); setQuizActive(false)}}>Cheat?</Button>
 
