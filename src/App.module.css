@@ -42,3 +42,11 @@ i:hover {
 .BorderBottom {
     border-bottom: 1px solid gray;;
 }
+
+@media screen and (max-width: 576px) {
+
+    h1 {
+        font-size: 2rem;
+    }
+
+}

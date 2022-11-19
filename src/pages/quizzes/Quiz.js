@@ -68,10 +68,10 @@ const Quiz = (props) => {
   return (
     <>
       <Row>
-        <Col>
+        <Col className='text-center'>
           <Row>
-            <Col className='d-flex'>
-              <h1>{title}</h1>
+            <Col className='text-center mt-3'>
+              <h1 className={styles.Heading1}>{title}</h1>
               {is_owner &&
               <MoreDropdown
                 item='Quiz'
@@ -80,28 +80,26 @@ const Quiz = (props) => {
               />}
             </Col>
           </Row>        
-          <p>{description}</p>
+          <p className={styles.Description}>{description}</p>
         </Col>
       </Row>
-      <Row className='align-items-center justify-content-center'>
-        <Col xs="auto">
-          <Media className='align-items-center'>
-            <Link to={`profiles/${profile_id}`}>
-              <Avatar src={profile_image} height={80} />
-            </Link>
+      <Row className='align-items-center justify-content-center py-3'>
+          <Media className='align-items-center text-right'>
             <Media.Body>
-              <h2 className={styles.NoMargins}>Created by</h2>
-              <p className={styles.NoMargins}>{owner}</p>
+              <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Created by</h2>
+              <p className={`${styles.NoMargins} ${styles.BiggerText}`}>{owner}</p>
+            </Media.Body>
+            <Link to={`/profiles/${profile_id}`}>
+              <Avatar src={profile_image} height={64} />
+            </Link>
+          </Media>
+          <Media className='align-items-center'>
+            <i className={`${styles.NotCompleted} far fa-times-circle`}></i>
+            <Media.Body>
+              <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>High Score</h2>
+              <p className={`${styles.NoMargins} ${styles.BiggerText}`}>Not completed yet!</p>
             </Media.Body>
           </Media>
-        </Col>
-        <Col xs="auto">
-          <i className={`${styles.NotCompleted} far fa-times-circle`}></i>
-        </Col>
-        <Col xs="auto">
-          <h2 className={styles.NoMargins}>High Score</h2>
-          <p className={styles.NoMargins}>You haven't completed this quiz yet!</p>
-        </Col>
       </Row>
       <Row>
         <Col xs={8}>
