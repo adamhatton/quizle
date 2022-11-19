@@ -69,19 +69,23 @@ const Quiz = (props) => {
 
     const handleCreateScore = async (score) => {
       if (!score_id) {
+        console.log('no score ID, post request made')
         try {
             const {data} = await axiosReq.post('/scores/', {
               quiz: id,
               completed_time: score,
             });
+            console.log(data)
             setQuizInfo((prevQuiz) => ({
               ...prevQuiz,
-              score_time: data.completed_time
+              score_time: data.completed_time,
+              score_id: data.id
             }))
         } catch(err){
           console.log(err)
         }
       } else if (score < score_time) {
+        console.log('score exists, put request made')
           try {
             const {data} = await axiosReq.put(`/scores/${score_id}`, {
               quiz: id,
@@ -245,7 +249,7 @@ const Quiz = (props) => {
               completed={completed}
             />
           ) : (
-            "Time's up!"
+            <p className={styles.TimeText}>Time's up!</p>
           )}
         </Col>
         <Col xs={12} className='text-center mt-3'>

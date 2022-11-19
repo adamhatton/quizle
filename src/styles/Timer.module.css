@@ -8,6 +8,7 @@
     background-color: #fff;
     text-align: center;
     cursor: default;
+    min-height: 46px;
 }
 
 @media screen and (min-width: 530px) {

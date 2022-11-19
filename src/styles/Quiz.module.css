@@ -65,6 +65,12 @@
     color: #0048ff;
 }
 
+.TimeText {
+    min-height: 46px;
+    line-height: 46px;
+    margin: 0;
+}
+
 @media screen and (max-width: 530px) {
 
     .QuizMedia {
