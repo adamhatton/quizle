@@ -15,6 +15,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Timer from '../../components/Timer';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { Container } from 'react-bootstrap';
 
 const Quiz = (props) => {
 
@@ -144,6 +145,32 @@ const Quiz = (props) => {
     }))
   }
 
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", { quiz: id });
+      setQuizInfo((prevQuiz) => ({
+        ...prevQuiz,
+        likes_count: prevQuiz.likes_count + 1,
+        like_id: data.id 
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}/`);
+      setQuizInfo((prevQuiz) => ({
+        ...prevQuiz,
+        likes_count: prevQuiz.likes_count - 1,
+        like_id: null 
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Row>
@@ -267,30 +294,32 @@ const Quiz = (props) => {
           </Table>
         </Col>
         <Col className={'text-center mt-2'}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement='top'
-              overlay={<Tooltip>You can't like your own quiz!</Tooltip>}
-            >
-              <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeOutline}`} />
-            </OverlayTrigger>
-          ) : like_id ? (
-            <span onClick={() => {}}>
-              <i className={`fas fa-thumbs-up ${styles.Like}`} />
-            </span>
-          ) : currentUser ? (
-            <span onClick={() => {}}>
-              <i className={`far fa-thumbs-up ${styles.Like}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement='top'
-              overlay={<Tooltip>Log in to like posts!</Tooltip>}
-            >
-              <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeOutline}`} />
-            </OverlayTrigger>
-          )}
-          {likes_count}
+          <Container className='d-flex flex-column'>
+            {is_owner ? (
+              <OverlayTrigger
+                placement='top'
+                overlay={<Tooltip>You can't like your own quiz!</Tooltip>}
+              >
+                <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeOutline}`} />
+              </OverlayTrigger>
+            ) : like_id ? (
+              <span onClick={handleUnlike}>
+                <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeFill}`} />
+              </span>
+            ) : currentUser ? (
+              <span onClick={handleLike}>
+                <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeOutline}`} />
+              </span>
+            ) : (
+              <OverlayTrigger
+                placement='top'
+                overlay={<Tooltip>Log in to like posts!</Tooltip>}
+              >
+                <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeOutline}`} />
+              </OverlayTrigger>
+            )}
+            {likes_count}
+          </Container>
         </Col>
       </Row>
     </>
