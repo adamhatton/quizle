@@ -37,6 +37,7 @@ const Quiz = (props) => {
 
   const [quizActive, setQuizActive] = useState(false);
   const [giveUp, setGiveUp] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [seconds, setSeconds] = useState(time_limit_seconds);
 
   const currentUser = useCurrentUser();
@@ -69,6 +70,13 @@ const Quiz = (props) => {
       } 
     }))
   };
+
+  const handleReset = (event) => {
+    setQuizActive(false);
+    setGiveUp(false);
+    setCompleted(false);
+    setSeconds(time_limit_seconds);
+  }
 
   return (
     <>
@@ -127,6 +135,7 @@ const Quiz = (props) => {
               seconds={seconds}
               setSeconds={setSeconds}
               stop={giveUp}
+              completed={completed}
             />
           ) : (
             "Time's up!"
@@ -152,8 +161,11 @@ const Quiz = (props) => {
                 )}
               </tbody>
           </Table>
-          <Button onClick={() => setQuizActive(true)}>Start!</Button>
-          <Button onClick={() => setGiveUp(true)}>Give Up?</Button>
+          {!quizActive && !giveUp && !completed && <Button onClick={() => setQuizActive(true)}>Start!</Button>}
+          {quizActive && (seconds > 0) && !completed && <Button onClick={() => {setGiveUp(true); setQuizActive(false)}}>Give Up?</Button>}
+          {!quizActive && (seconds < time_limit_seconds) && <Button onClick={handleReset}>Reset</Button>}
+          <Button onClick={() => {setCompleted(true); setQuizActive(false)}}>Cheat?</Button>
+
         </Col>
       </Row>
     </>
