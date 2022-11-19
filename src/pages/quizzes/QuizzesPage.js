@@ -14,7 +14,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
-import styles from '../../styles/QuizzesPage.module.css'
+import styles from '../../App.module.css'
 import btnStyles from '../../styles/Button.module.css'
 
 const QuizzesPage = ({ filter='', page='All' }) => {
@@ -102,8 +102,8 @@ const QuizzesPage = ({ filter='', page='All' }) => {
 
   return (
     <>
-      <Row className={`mt-4 align-items-center ${styles.BorderBottom}`}>
-        <Col xs={12} lg={6} className='pl-4'>
+      <Row className={`mt-3 align-items-center ${styles.BorderBottom}`}>
+        <Col xs={12} lg={6} className='pl-4 text-center'>
             <h1>{page} Quizles</h1>
             {page === 'All' ? (
               <p>All the Quizles you can handle!</p>
@@ -113,6 +113,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
         </Col>
         <Col xs={12} lg={6}>
           <Form
+            className='mb-3'
             onSubmit={(event) => event.preventDefault()}
           >
             <Form.Control
@@ -133,7 +134,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
           {desktopButtonGroup}
         </Col>
       </Row>
-      <Row className='mt-5'>
+      <Row className='mt-3'>
         { hasLoaded ? (
           <>
             {quizzes.results.length ? (
@@ -151,7 +152,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
                 loader={<Asset spinner />}
                 hasMore={!!quizzes.next}
                 next={() => fetchMoreData(quizzes, setQuizzes)}
-                className='d-flex flex-wrap'
+                className='d-flex flex-wrap pb-3'
               />
                 
               ) : (

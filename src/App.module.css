@@ -38,3 +38,7 @@ i {
 i:hover {
     cursor: pointer;
 }
+
+.BorderBottom {
+    border-bottom: 1px solid gray;;
+}
