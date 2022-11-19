@@ -17,7 +17,7 @@ const Timer = ({isActive, seconds, setSeconds, stop, completed=false }) => {
     return () => {
         clearInterval(interval);
     }
-    }, [isActive, stop, completed]);
+    }, [isActive, stop, completed, setSeconds]);
   
   return (
     <div>

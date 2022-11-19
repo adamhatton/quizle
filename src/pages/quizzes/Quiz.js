@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { MoreDropdown } from '../../components/MoreDropdown';
-import { axiosRes } from '../../api/axiosDefaults';
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Timer from '../../components/Timer';
 
@@ -28,6 +28,7 @@ const Quiz = (props) => {
     profile_image,
     like_id,
     score_id,
+    score_time,
     likes_count,
     completed_count,
     setQuizInfo,
@@ -45,20 +46,54 @@ const Quiz = (props) => {
 
   const history = useHistory();
 
+
   useEffect(() => {
-    const handleCompleted = () => {
+      const handleCompleted = () => {
+      console.log('handleCompleted called')
       const guessedAnswers = quizAnswers.reduce((acc, cur) => {
         return cur.guessed === true ? acc + 1 : acc
       }, 0);
+      console.log('guessedAnswers is', guessedAnswers)
       const allGuessed = guessedAnswers === 10 ? true : false;
-      if (allGuessed) {
+      if (allGuessed && !giveUp) {
         setCompleted(true);
         setQuizActive(false);
+        const score = time_limit_seconds - seconds;
+        handleCreateScore(score);
       }
     }
 
+    const handleCreateScore = async (score) => {
+      if (!score_id) {
+        try {
+            const {data} = await axiosReq.post('/scores/', {
+              quiz: id,
+              completed_time: score,
+            });
+            setQuizInfo((prevQuiz) => ({
+              ...prevQuiz,
+              completed_time: data.completed_time
+            }))
+        } catch(err){
+          console.log(err)
+        }
+      } else if (score < score_time) {
+          try {
+            const {data} = await axiosReq.put(`/scores/${score_id}`, {
+              quiz: id,
+              completed_time: score,
+            });
+            setQuizInfo((prevQuiz) => ({
+              ...prevQuiz,
+              completed_time: data.completed_time
+            }))
+          } catch(err){
+          console.log(err)
+          }
+      }
+    }
     handleCompleted();
-  }, [quizAnswers])
+}, [quizAnswers, id, giveUp, score_id, score_time, seconds, time_limit_seconds, setQuizInfo])
 
   const handleEdit = () => {
     history.push(`/quizzes/${id}/edit`);
@@ -75,16 +110,19 @@ const Quiz = (props) => {
 
   const handleGuess = (event) => {
       const formattedGuess = event.target.value.trim().toLowerCase();
-      setQuizAnswers (quizAnswers.map(answer => {
-      const formattedAnswer = answer.value.trim().toLowerCase();
-      if (formattedGuess === formattedAnswer && !answer.guessed) {
-        event.target.value = '';
-        return {...answer, guessed: true}
-      } else {
-        return {...answer}
-      } 
-    }))
+      setQuizAnswers(quizAnswers.map(answer => {
+        const formattedAnswer = answer.value.trim().toLowerCase();
+        if (formattedGuess === formattedAnswer && !answer.guessed) {
+          event.target.value = '';
+          return {...answer, guessed: true}
+        } else {
+          return {...answer}
+        } 
+      }))
+    // handleCompleted();
   };
+
+
 
   const handleGiveUp = () => {
     setGiveUp(true);
@@ -123,7 +161,7 @@ const Quiz = (props) => {
         </Col>
       </Row>
       <Row className='align-items-center justify-content-center px-3'>
-          <Media className='align-items-center text-right'>
+          <Media className={`align-items-center text-right ${styles.QuizMedia}`}>
             <Media.Body>
               <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Created by</h2>
               <p className={`${styles.NoMargins} ${styles.BiggerText}`}>{owner}</p>
@@ -132,11 +170,11 @@ const Quiz = (props) => {
               <Avatar src={profile_image} height={64} />
             </Link>
           </Media>
-          <Media className='align-items-center'>
+          <Media className={`align-items-center ${styles.QuizMedia}`}>
             <i className={`${styles.NotCompleted} far fa-times-circle`}></i>
             <Media.Body>
               <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>High Score</h2>
-              <p className={`${styles.NoMargins} ${styles.BiggerText}`}>Not completed yet!</p>
+              <p className={`${styles.NoMargins} ${styles.BiggerText}`}>{score_time}</p>
             </Media.Body>
           </Media>
       </Row>

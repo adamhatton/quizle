@@ -39,10 +39,10 @@
     background-color: red;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 530px) {
 
     .QuizMedia {
-        flex-basis: 100%;
+        flex-basis: auto;
     }
 
 }

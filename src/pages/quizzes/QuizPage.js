@@ -29,6 +29,7 @@ function QuizPage() {
               profile_image: data.profile_image,
               like_id: data.like_id,
               score_id: data.score_id,
+              score_time: data.score_time,
               likes_count: data.likes_count,
               completed_count: data.completed_count,
             });
