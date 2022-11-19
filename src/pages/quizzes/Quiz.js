@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Media from 'react-bootstrap/Media';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -44,6 +44,21 @@ const Quiz = (props) => {
   const is_owner = currentUser?.username === owner;
 
   const history = useHistory();
+
+  useEffect(() => {
+    const handleCompleted = () => {
+      const guessedAnswers = quizAnswers.reduce((acc, cur) => {
+        return cur.guessed === true ? acc + 1 : acc
+      }, 0);
+      const allGuessed = guessedAnswers === 10 ? true : false;
+      if (allGuessed) {
+        setCompleted(true);
+        setQuizActive(false);
+      }
+    }
+
+    handleCompleted();
+  }, [quizAnswers])
 
   const handleEdit = () => {
     history.push(`/quizzes/${id}/edit`);
@@ -135,7 +150,8 @@ const Quiz = (props) => {
             name='title'
             //   value={title}
             //   className={styles.Input}
-              onKeyUp={handleGuess}
+            onKeyUp={handleGuess}
+            disabled={!quizActive}
           />
           </Form.Group>
         </Col>
@@ -175,8 +191,6 @@ const Quiz = (props) => {
           {!quizActive && !giveUp && !completed && <Button onClick={() => setQuizActive(true)}>Start!</Button>}
           {quizActive && (seconds > 0) && !completed && <Button onClick={handleGiveUp}>Give Up?</Button>}
           {!quizActive && (seconds < time_limit_seconds) && <Button onClick={handleReset}>Reset</Button>}
-          <Button onClick={() => {setCompleted(true); setQuizActive(false)}}>Cheat?</Button>
-
         </Col>
       </Row>
     </>
