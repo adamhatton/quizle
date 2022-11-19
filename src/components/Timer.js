@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
+import styles from '../styles/Timer.module.css'
 
 const Timer = ({isActive, seconds, setSeconds, stop, completed=false }) => {
   
@@ -20,7 +21,7 @@ const Timer = ({isActive, seconds, setSeconds, stop, completed=false }) => {
     }, [isActive, stop, completed, setSeconds]);
   
   return (
-    <div>
+    <div className={styles.Timer}>
       {Math.floor(seconds / 60)}: 
       { (seconds % 60) < 10 ? `0${seconds % 60}` : (seconds % 60)}
     </div>

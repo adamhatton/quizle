@@ -1,0 +1,18 @@
+.Timer {
+    padding: 5px 10px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    border: solid 2px #292929;
+    border-radius: 5px;
+    margin: auto;
+    background-color: #fff;
+    text-align: center;
+}
+
+@media screen and (min-width: 530px) {
+
+    .Timer {
+        min-width: 75px;
+    }
+
+}

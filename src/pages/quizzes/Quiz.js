@@ -72,7 +72,7 @@ const Quiz = (props) => {
             });
             setQuizInfo((prevQuiz) => ({
               ...prevQuiz,
-              completed_time: data.completed_time
+              score_time: data.completed_time
             }))
         } catch(err){
           console.log(err)
@@ -109,6 +109,7 @@ const Quiz = (props) => {
   };
 
   const handleGuess = (event) => {
+    if(quizActive){
       const formattedGuess = event.target.value.trim().toLowerCase();
       setQuizAnswers(quizAnswers.map(answer => {
         const formattedAnswer = answer.value.trim().toLowerCase();
@@ -119,6 +120,7 @@ const Quiz = (props) => {
           return {...answer}
         } 
       }))
+    }
   };
 
 
@@ -170,29 +172,35 @@ const Quiz = (props) => {
             </Link>
           </Media>
           <Media className={`align-items-center ${styles.QuizMedia}`}>
-            <i className={`${styles.NotCompleted} far fa-times-circle`}></i>
+            {score_id ? (
+              <i className={`${styles.Completed} far fa-check-circle`}></i>    
+            ) : (
+              <i className={`${styles.NotCompleted} far fa-times-circle`}></i>
+            )}
             <Media.Body>
               <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>High Score</h2>
-              <p className={`${styles.NoMargins} ${styles.BiggerText}`}>{score_time}</p>
+              <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
+                {Math.floor(score_time / 60)}:
+                {(score_time % 60) < 10 ? `0${score_time % 60}` : (score_time % 60)}
+              </p>
             </Media.Body>
           </Media>
       </Row>
-      <Row className='mt-3'>
-        <Col xs={8}>
-          <Form.Group controlId='guess_input'>
+      <Row className='my-4 align-items-center justify-content-center'>
+        <Col xs='auto' className='pr-2'>
+          <Form.Group controlId='guess_input' className='mb-0'>
           <Form.Label srOnly>Guess:</Form.Label>
           <Form.Control
             type='text'
             placeholder='Guess'
             name='title'
-            //   value={title}
-            //   className={styles.Input}
             onKeyUp={handleGuess}
             disabled={!quizActive}
+            className={styles.Guess}
           />
           </Form.Group>
         </Col>
-        <Col xs={4}>
+        <Col xs='auto' className='pl-2'>
           { seconds > 0 ? (
             <Timer
               isActive={quizActive}
@@ -209,11 +217,11 @@ const Quiz = (props) => {
       </Row>
       <Row>
         <Col>
-          <Table striped bordered hover>
+          <Table striped bordered hover className={styles.Table}>
               <thead>
                 <tr>
-                  <th className={styles.TableCol}>Hints</th>
-                  <th>Answers</th>
+                  <th className={styles.TableHead}>Hints</th>
+                  <th className={styles.TableHead}>Answers</th>
                 </tr>
               </thead>
               <tbody>
