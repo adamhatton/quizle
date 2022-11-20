@@ -130,19 +130,19 @@ const ProfilePage = () => {
   return (
     <>
       <Row className='justify-content-center align-items-center my-5'>
-        <Col xs='auto'>
+        <Col xs='auto' className='mt-3'>
             <Avatar src={profile.image} height={240} />
         </Col>
-        <Col xs='auto'>
-          <h2 className='text-break pr-4'>{profile.owner}</h2>
+        <Col xs='auto' className={`${styles.ProfileCol} mt-3`}>
+          <h2 className={`${styles.Username} text-break`}>{profile.owner}</h2>
           {profile.is_owner &&
             <ProfileEditDropdown
               id={id}
             />}
-          <p className='text-break'>Name: {profile.name}</p>
-          <p>Created quizzes: {profile.created_quizzes_count ? profile.created_quizzes_count : 0}</p>
-          <p>Completed quizzes: {profile.completed_quizzes_count ? profile.completed_quizzes_count : 0}</p>
-          <p>Bio:</p>
+          <p className='text-break'><strong>Name:</strong> {profile.name}</p>
+          <p><strong>Created quizzes:</strong> {profile.created_quizzes_count ? profile.created_quizzes_count : 0}</p>
+          <p><strong>Completed quizzes:</strong> {profile.completed_quizzes_count ? profile.completed_quizzes_count : 0}</p>
+          <p><strong>Bio:</strong></p>
           <p className={`${styles.Bio} text-break`}>{profile.bio}</p>
         </Col>
       </Row>
