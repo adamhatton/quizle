@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useRedirect } from '../../hooks/useRedirect';
 import styles from '../../styles/SignInUpForm.module.css'
+import { setTokenTimestamp } from '../../utils/Utils';
 
 /* State variables, handleChange(), handleSubmit() and error handling taken
  from Code Institute 'Moments' walkthrough project */
@@ -38,6 +39,7 @@ const SignInForm = () => {
     try {
         const {data} = await axios.post('/dj-rest-auth/login/', signInData);
         setCurrentUser(data.user);
+        setTokenTimestamp(data);
         history.goBack();
     } catch(err){
         setErrors(err.response?.data);

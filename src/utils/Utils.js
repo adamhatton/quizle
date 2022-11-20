@@ -1,3 +1,4 @@
+import jwtDecode from "jwt-decode";
 import { axiosReq } from "../api/axiosDefaults";
 import Entertainment from '../assets/entertainment.png';
 import General from '../assets/general.png';
@@ -51,4 +52,18 @@ export const fetchMoreData = async (resource, setResource) => {
       default:
         return 'A simple icon of a question mark'
     }
+  }
+
+  // Utility functions to ensure token refresh is only requested when necessary
+  export const setTokenTimestamp = (data) => {
+    const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp
+    localStorage.setItem('refreshTokenTimestamp', refreshTokenTimestamp)
+  }
+  
+  export const shouldRefreshToken = () => {
+    return !!localStorage.getItem('refreshTokenTimestamp')
+  }
+  
+  export const removeTokenTimestamp = () => {
+    localStorage.removeItem('refreshTokenTimestamp')
   }

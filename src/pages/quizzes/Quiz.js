@@ -220,7 +220,7 @@ const Quiz = (props) => {
                 <i className={`${styles.ScoreIcon} ${styles.NotCompleted} far fa-times-circle`}></i>
               )}
               <Media.Body>
-                <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>High Score</h2>
+                <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
                 <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
                   {score_id ? (
                     <>

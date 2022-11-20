@@ -8,6 +8,7 @@ import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContex
 import Avatar from './Avatar';
 import axios from 'axios';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
+import { removeTokenTimestamp } from '../utils/Utils';
 
 /* Navigation bar component, core structure taken from
  Code Institute 'Moments' Walkthrough*/
@@ -22,6 +23,7 @@ const NavBar = () => {
     try{
       await axios.post('dj-rest-auth/logout/');
       setCurrentUser(null);
+      removeTokenTimestamp();
     } catch (err) {
       console.log(err);
     }

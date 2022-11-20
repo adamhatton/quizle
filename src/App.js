@@ -17,8 +17,8 @@ import UserPasswordForm from './pages/profile/UserPasswordForm';
 function App() {
 
   return (
-    <div className={styles.App}>
-      <NavBar></NavBar>
+    <div className={styles.App} >
+      <NavBar />
       <Container className={styles.Main} >
         <Switch>
           <Route exact path='/' render={() => <QuizzesPage />} />
@@ -40,7 +40,6 @@ function App() {
         </Switch>
       </Container>
     </div>
-
   );
 }
 

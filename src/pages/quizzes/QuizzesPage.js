@@ -17,14 +17,17 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import styles from '../../App.module.css'
 import btnStyles from '../../styles/Button.module.css'
 import pageStyles from '../../styles/QuizzesPage.module.css'
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 /* Quizzes page fetches all quizzes to display and enables filtering */
 const QuizzesPage = ({ filter='', page='All' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [query, setQuery] = useState('');
   const { pathname } = useLocation();
   
+  const [query, setQuery] = useState('');
+  const currentUser = useCurrentUser();
+
   // Get all quizzes that match search criteria
   useEffect(() => {
     const fetchQuizzes = async () => {
@@ -35,7 +38,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
       } catch (err) {
         console.log(err);
       }
-    }
+    };
 
     setHasLoaded(false);
     // Send API request after 1s to prevent request on each keystroke
@@ -46,7 +49,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, pathname, query]);
+  }, [filter, pathname, query, currentUser]);
 
 
   // Button group JSX for smaller screens
