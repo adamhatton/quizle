@@ -15,6 +15,8 @@ import {
 } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
 
+/* Form for editing user's profile, core component taken from
+Code Institute 'Moments' with amendments made */
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
@@ -32,6 +34,7 @@ const ProfileEditForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  // On mount if user owns profile get the profile data else redirect to homepage
   useEffect(() => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
@@ -57,6 +60,7 @@ const ProfileEditForm = () => {
     }
   }, [currentUser, history, id]);
 
+  // handleChange function uses computed property so all inputs can call it
   const handleChange = (event) => {
     setProfileData({
       ...profileData,
@@ -64,6 +68,7 @@ const ProfileEditForm = () => {
     });
   };
 
+  // Submit edited profile information to the database
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -87,6 +92,7 @@ const ProfileEditForm = () => {
     }
   };
 
+  // JSX for the form fields
   const textFields = (
     <>
       <Form.Group controlId='name'>

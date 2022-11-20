@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
 
+/* Form for editing a quiz */
 function QuizEditForm() {
   // Set state for quiz data
   const [errors, setErrors] = useState({});
@@ -98,6 +99,7 @@ function QuizEditForm() {
     {name: 'ans_10', value: ans_10, placeholder: 'Answer 10'},
   ]
 
+  // On mount get the existing quiz information to pre-populate fields
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -212,6 +214,7 @@ function QuizEditForm() {
     }
   };
 
+  // JSX for instructions
   const instructions = (
     <>
       <h1>Quiz Creation</h1>

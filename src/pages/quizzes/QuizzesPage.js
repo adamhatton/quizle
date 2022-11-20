@@ -18,12 +18,14 @@ import styles from '../../App.module.css'
 import btnStyles from '../../styles/Button.module.css'
 import pageStyles from '../../styles/QuizzesPage.module.css'
 
+/* Quizzes page fetches all quizzes to display and enables filtering */
 const QuizzesPage = ({ filter='', page='All' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [query, setQuery] = useState('');
   const { pathname } = useLocation();
   
+  // Get all quizzes that match search criteria
   useEffect(() => {
     const fetchQuizzes = async () => {
       try {
@@ -36,6 +38,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
     }
 
     setHasLoaded(false);
+    // Send API request after 1s to prevent request on each keystroke
     const timer = setTimeout(() => {
       fetchQuizzes();
     }, 1000);
@@ -46,7 +49,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
   }, [filter, pathname, query]);
 
 
-
+  // Button group JSX for smaller screens
   const mobileButtonGroup = (
     <>
       <ButtonToolbar aria-label='Toolbar with quiz category selectors' className='d-md-none justify-content-center'>
@@ -76,6 +79,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
     </>
   )
 
+  // Button group JSX for larger screens
   const desktopButtonGroup = (
     <>
       <ButtonGroup aria-label='Quiz category selector' className='d-md-block d-none mt-3'>

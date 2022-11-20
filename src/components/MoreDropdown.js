@@ -3,6 +3,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useHistory } from 'react-router-dom';
 import styles from '../styles/MoreDropdown.module.css'
 
+/* All components here Taken from Code Institute 'Moments' walkthrough. */
+
+// Change the default dropdown to a 3 dots fontawesome icon. 
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     <i
       className="fas fa-ellipsis-v"
@@ -14,6 +17,7 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     />
   ));
 
+// Provide a dropdown menu with edit and delete options
 export const MoreDropdown = ({item, handleEdit, handleDelete}) => {
   return (
     <Dropdown className={`${styles.Absolute} ml-auto pt-1`} drop='left'>
@@ -39,6 +43,8 @@ export const MoreDropdown = ({item, handleEdit, handleDelete}) => {
   )
 }
 
+/* Provide a dropdown menu for profile component with edit profile, 
+username, and password options */
 export const ProfileEditDropdown = ({ id }) => {
   const history = useHistory();
   return (

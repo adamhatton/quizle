@@ -12,8 +12,10 @@ import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
 import QuizTile from '../quizzes/QuizTile';
 import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
-import { MoreDropdown, ProfileEditDropdown } from '../../components/MoreDropdown';
+import { ProfileEditDropdown } from '../../components/MoreDropdown';
 
+/* ProfilePage component shows user's profile info and fetches any quizzes 
+they have created or completed for display */
 const ProfilePage = () => {
   const { id } = useParams();
 
@@ -23,6 +25,7 @@ const ProfilePage = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [quizView, setQuizView] = useState('created');
 
+  // On mount fetch profile info, created quiz info, and completed quiz info
   useEffect(() => {
     const fetchData = async () => {
         try {
@@ -47,6 +50,7 @@ const ProfilePage = () => {
     fetchData()
   }, [id]);
 
+  // JSX for displaying QuizTiles for quizzes created by the user
   const createdQuizTiles = (
     <>
     { hasLoaded ? (
@@ -84,6 +88,7 @@ const ProfilePage = () => {
     </>
   )
 
+  // JSX for displaying QuizTiles for quizzes completed by the user
   const completedQuizTiles = (
     <>
     { hasLoaded ? (

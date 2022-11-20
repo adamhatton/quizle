@@ -36,7 +36,6 @@ function App() {
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />} />
           <Route exact path='/signin' render={() => <SignInForm />} />
           <Route exact path='/signup' render={() => <SignUpForm />} />
-          <Route exact path='/signout' render={() => <h1>Sign Out</h1>} />
           <Route render={() => <h1>Page not found!</h1>} />
         </Switch>
       </Container>

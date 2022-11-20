@@ -3,6 +3,7 @@ import Media from 'react-bootstrap/Media'
 import { Link } from 'react-router-dom'
 import tileStyles from '../../styles/QuizTile.module.css'
 
+/* Component for obtaining core quiz details and display in a tile format */
 const QuizTile = ({ src, message, title, owner, likes_count, category, id }) => {
 
   return (

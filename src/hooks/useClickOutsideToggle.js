@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+/* Collapse the referenced component when clicking on something else.
+Taken from Code Institute 'Moments' walkthrough project */
 const useClickOutsideToggle = () => {
     const ref = useRef(null);
 

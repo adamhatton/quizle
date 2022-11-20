@@ -4,7 +4,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import Asset from '../../components/Asset';
 import Quiz from './Quiz';
 
-
+/* Component to obtain quiz information and display it*/
 function QuizPage() {
   const { id } = useParams();
 
@@ -12,6 +12,7 @@ function QuizPage() {
   const [quizAnswers, setQuizAnswers] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
 
+  // On mount get quiz information and set Info and Answers state variables
   useEffect(() => {
     const handleMount = async () => {
         try {

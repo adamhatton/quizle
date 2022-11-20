@@ -9,13 +9,15 @@ import Avatar from './Avatar';
 import axios from 'axios';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 
-
+/* Navigation bar component, core structure taken from
+ Code Institute 'Moments' Walkthrough*/
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   
   const {expanded, setExpanded, ref} = useClickOutsideToggle();
 
+  // Sign user out and set currentUser to null
   const handleSignOut = async () => {
     try{
       await axios.post('dj-rest-auth/logout/');
@@ -25,6 +27,7 @@ const NavBar = () => {
     }
   };
 
+  // Links to be displayed when user is logged in
   const loggedInIcons = (
     <>
       <NavLink
@@ -36,7 +39,7 @@ const NavBar = () => {
           Create
       </NavLink>
       <NavLink
-        to='/signout'
+        to='/'
         className={styles.NavLink}
         onClick={handleSignOut}
       >
@@ -53,6 +56,7 @@ const NavBar = () => {
     </>
   )
 
+  // Links to be displayed when user is logged out
   const loggedOutIcons = (
     <>
       <NavLink

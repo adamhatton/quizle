@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useRedirect } from '../../hooks/useRedirect';
 
+/* Form for creating a new quiz */
 function QuizCreateForm() {
   useRedirect('loggedOut');
 
@@ -81,7 +82,7 @@ function QuizCreateForm() {
     {name: 'hint_10', value: hint_10, placeholder: 'Hint 10'},
   ]
 
-  // set up an array for use with outputting the hints input fields
+  // set up an array for use with outputting the answers input fields
   const answersArray = [
     {name: 'ans_1', value: ans_1, placeholder: 'Answer 1'},
     {name: 'ans_2', value: ans_2, placeholder: 'Answer 2'},
@@ -107,7 +108,7 @@ function QuizCreateForm() {
     });
   };
 
-  // Submit quiz form data
+  // Submit quiz form data to database
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -147,6 +148,7 @@ function QuizCreateForm() {
     }
   };
 
+  // JSX for instructions
   const instructions = (
     <>
       <h1>Quiz Creation</h1>

@@ -17,8 +17,8 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { Container } from 'react-bootstrap';
 
+/* Display quiz and enable a user to complete it */
 const Quiz = (props) => {
-
   const {
     id,
     owner,
@@ -50,8 +50,9 @@ const Quiz = (props) => {
 
   const history = useHistory();
 
-
+  // Check if user has completed quiz and, if yes, create a score
   useEffect(() => {
+      // Checks how many answers user has guessed
       const handleCompleted = () => {
       const guessedAnswers = quizAnswers.reduce((acc, cur) => {
         return cur.guessed === true ? acc + 1 : acc
@@ -65,7 +66,9 @@ const Quiz = (props) => {
       }
     }
 
+    // If user has guessed all answers, create a score for them
     const handleCreateScore = async (score) => {
+      // If user has not previously completed quiz, create a new score
       if (!score_id) {
         try {
             const {data} = await axiosReq.post('/scores/', {
@@ -80,7 +83,9 @@ const Quiz = (props) => {
         } catch(err){
           console.log(err)
         }
-      } else if (score < score_time) {
+      } 
+      // If user has previously completed quiz, update their score
+      else if (score < score_time) {
           try {
             const {data} = await axiosReq.put(`/scores/${score_id}`, {
               quiz: id,
@@ -98,10 +103,12 @@ const Quiz = (props) => {
     handleCompleted();
 }, [quizAnswers, id, giveUp, score_id, score_time, seconds, time_limit_seconds, setQuizInfo])
 
+  // If user own's quiz send them to the edit page
   const handleEdit = () => {
     history.push(`/quizzes/${id}/edit`);
   };
 
+  // If user own's quiz then allow them to delete it
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/quizzes/${id}/`);
@@ -111,6 +118,7 @@ const Quiz = (props) => {
     }
   };
 
+  // Check user's guess on every keystroke. Handled on client side
   const handleGuess = (event) => {
     if(quizActive){
       const formattedGuess = event.target.value.trim().toLowerCase();
@@ -126,6 +134,7 @@ const Quiz = (props) => {
     }
   };
 
+  // If user has pressed the Give Up button, reveal the answers
   const handleGiveUp = () => {
     setGiveUp(true);
     setQuizActive(false);
@@ -134,6 +143,7 @@ const Quiz = (props) => {
     }))
   }
 
+  // Reset the state variables
   const handleReset = () => {
     setQuizActive(false);
     setGiveUp(false);
@@ -144,6 +154,7 @@ const Quiz = (props) => {
     }))
   }
 
+  // Enable a user to like the quiz
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", { quiz: id });
@@ -157,6 +168,7 @@ const Quiz = (props) => {
     }
   };
 
+  // Enable a user to unlike the quiz
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/likes/${like_id}/`);
@@ -172,6 +184,7 @@ const Quiz = (props) => {
 
   return (
     <>
+      {/* Quiz title and description */}
       <Row>
         <Col className='text-center'>
           <Row>
@@ -188,6 +201,7 @@ const Quiz = (props) => {
           <p className={styles.Description}>{description}</p>
         </Col>
       </Row>
+      {/* Creator's profile Avatar and current user's high score information */}
       <Row className='align-items-center justify-content-center px-3'>
           <Media className={`align-items-center text-right ${styles.QuizMedia}`}>
             <Media.Body>
@@ -198,28 +212,40 @@ const Quiz = (props) => {
               <Avatar src={profile_image} height={64} />
             </Link>
           </Media>
-          <Media className={`align-items-center ${styles.QuizMedia}`}>
-            {score_id ? (
-              <i className={`${styles.Completed} far fa-check-circle`}></i>    
-            ) : (
-              <i className={`${styles.NotCompleted} far fa-times-circle`}></i>
-            )}
-            <Media.Body>
-              <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>High Score</h2>
-              <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
-                {score_id ? (
-                  <>
-                    {Math.floor(score_time / 60)}:
-                    {(score_time % 60) < 10 ? `0${score_time % 60}` : (score_time % 60)}
-                  </>
-                ) : (
-                  'Quizle not completed!'
-                )}
-
-              </p>
-            </Media.Body>
-          </Media>
+          {currentUser ? (
+            <Media className={`align-items-center ${styles.QuizMedia}`}>
+              {score_id ? (
+                <i className={`${styles.ScoreIcon} ${styles.Completed} far fa-check-circle`}></i>    
+              ) : (
+                <i className={`${styles.ScoreIcon} ${styles.NotCompleted} far fa-times-circle`}></i>
+              )}
+              <Media.Body>
+                <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>High Score</h2>
+                <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
+                  {score_id ? (
+                    <>
+                      {Math.floor(score_time / 60)}:
+                      {(score_time % 60) < 10 ? `0${score_time % 60}` : (score_time % 60)}
+                    </>
+                  ) : (
+                    'Quizle not completed!'
+                  )}
+                </p>
+              </Media.Body>
+            </Media>
+          ) : (
+            <Media className={`align-items-center ${styles.QuizMedia}`}>
+                <i className={`${styles.ScoreIcon} ${styles.LoggedOut} far fa-times-circle`}></i>
+              <Media.Body>
+                <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>High Score</h2>
+                <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
+                  Login for high scores!
+                </p>
+              </Media.Body>
+            </Media>
+          )}
       </Row>
+      {/* Guess input and timer */}
       <Row className='my-4 align-items-center justify-content-center'>
         <Col xs='auto' className='pr-2'>
           <Form.Group controlId='guess_input' className='mb-0'>
@@ -273,6 +299,7 @@ const Quiz = (props) => {
           }
         </Col>
       </Row>
+      {/* Hints and Answers table */}
       <Row>
         <Col xs={12}>
           <Table striped bordered hover className={styles.Table}>
@@ -292,6 +319,7 @@ const Quiz = (props) => {
               </tbody>
           </Table>
         </Col>
+        {/* Like button */}
         <Col className={'text-center mt-2'}>
           <Container className='d-flex flex-column'>
             {is_owner ? (

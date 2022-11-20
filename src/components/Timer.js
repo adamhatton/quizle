@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import styles from '../styles/Timer.module.css'
 
+/* Timer component takes gamestate and seconds input and counts down to 0 */
 const Timer = ({isActive, seconds, setSeconds, stop, completed=false }) => {
   
-  // useEffect is a modified version of the timer created by James Dietrich here:
-  // https://upmostly.com/tutorials/build-a-react-timer-component-using-hooks
+  /* useEffect is a modified version of the timer created by James Dietrich here:
+  https://upmostly.com/tutorials/build-a-react-timer-component-using-hooks */
   useEffect(() => {
     let interval = null;
       if (isActive) {

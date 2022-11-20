@@ -1,13 +1,18 @@
-.NotCompleted {
+.ScoreIcon {
     font-size: 4rem;
     cursor: auto;
-    color: red;
+}
+
+.NotCompleted {
+    color: #e91313;
 }
 
 .Completed {
-    font-size: 4rem;
-    cursor: auto;
     color: green;
+}
+
+.LoggedOut {
+    color: #969494;
 }
 
 .NoMargins {
@@ -54,7 +59,7 @@
 }
 
 .LikeOutline {
-    color: rgb(150, 148, 148);
+    color: #969494;
 }
 
 .LikeOutline:hover {
