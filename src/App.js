@@ -30,7 +30,7 @@ function App() {
           <Route exact path='/quizzes/create' render={() => <QuizCreateForm />} />
           <Route exact path='/quizzes/:id' render={() => <QuizPage />} />
           <Route exact path='/quizzes/:id/edit' render={() => <QuizEditForm />} />
-          <Route exact path='/profiles/:id' render={() => <ProfilePage />} />
+          <Route exact path='/profiles/:id' render={() => <ProfilePage mobile />} />
           <Route exact path='/profiles/:id/edit' render={() => <ProfileEditForm />} />
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />} />

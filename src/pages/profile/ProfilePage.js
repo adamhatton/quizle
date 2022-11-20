@@ -12,12 +12,13 @@ import Asset from '../../components/Asset';
 import QuizTile from '../quizzes/QuizTile';
 import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
 import { ProfileEditDropdown } from '../../components/MoreDropdown';
+import styles from '../../App.module.css'
 import btnStyles from '../../styles/Button.module.css'
-import styles from '../../styles/ProfilePage.module.css'
+import pageStyles from '../../styles/ProfilePage.module.css'
 
 /* ProfilePage component shows user's profile info and fetches any quizzes 
 they have created or completed for display */
-const ProfilePage = () => {
+const ProfilePage = ({mobile}) => {
   const { id } = useParams();
 
   const [profile, setProfile] = useState({});
@@ -62,7 +63,7 @@ const ProfilePage = () => {
               const imageSource = setImageSource(quiz.category);
               const imageAlt = setImageAlt(quiz.category);
               return (
-                <Col key={quiz.id} xs={12} md={6}>
+                <Col key={quiz.id} xs={12} md={6} className='pb-1'>
                   <QuizTile {...quiz} src={imageSource} message={imageAlt} />
                 </Col>
               )
@@ -100,7 +101,7 @@ const ProfilePage = () => {
               const imageSource = setImageSource(quiz.category);
               const imageAlt = setImageAlt(quiz.category);
               return (
-                <Col key={quiz.id} xs={12} md={6}>
+                <Col key={quiz.id} xs={12} md={6} className='pb-1'>
                   <QuizTile {...quiz} src={imageSource} message={imageAlt} />
                 </Col>
               )
@@ -129,12 +130,17 @@ const ProfilePage = () => {
 
   return (
     <>
-      <Row className='justify-content-center align-items-center my-5'>
-        <Col xs='auto' className='mt-3'>
-            <Avatar src={profile.image} height={240} />
+      <Row className='justify-content-center align-items-center my-3'>
+        {mobile && 
+          <Col xs='auto' className='mt-3 d-md-none'>
+              <Avatar src={profile.image} height={160} />
+          </Col>
+        }
+        <Col xs='auto' className='mt-3 d-md-block d-none'>
+          <Avatar src={profile.image} height={240} />
         </Col>
-        <Col xs='auto' className={`${styles.ProfileCol} mt-3`}>
-          <h2 className={`${styles.Username} text-break`}>{profile.owner}</h2>
+        <Col xs='auto' className={`${pageStyles.ProfileCol} mt-3`}>
+          <h2 className={`${pageStyles.Username} text-break`}>{profile.owner}</h2>
           {profile.is_owner &&
             <ProfileEditDropdown
               id={id}
@@ -143,7 +149,7 @@ const ProfilePage = () => {
           <p><strong>Created quizzes:</strong> {profile.created_quizzes_count ? profile.created_quizzes_count : 0}</p>
           <p><strong>Completed quizzes:</strong> {profile.completed_quizzes_count ? profile.completed_quizzes_count : 0}</p>
           <p><strong>Bio:</strong></p>
-          <p className={`${styles.Bio} text-break`}>{profile.bio}</p>
+          <p className={`${pageStyles.Bio} text-break`}>{profile.bio}</p>
         </Col>
       </Row>
       <Row>
