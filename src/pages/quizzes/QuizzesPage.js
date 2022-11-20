@@ -110,7 +110,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
 
   return (
     <>
-      <Row className={`mt-3 align-items-center ${styles.BorderBottom}`}>
+      <Row className={'mt-3 align-items-center'}>
         <Col xs={12} lg={6} className='pl-4 text-center'>
             <h1>{page} Quizles</h1>
             {page === 'All' ? (
@@ -137,6 +137,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
             <Form.Label htmlFor='search' srOnly >Search bar</Form.Label>
           </Form>
         </Col>
+        <hr className={pageStyles.Rule} />
       </Row>
       <Row>
         <Col className='text-center'>
@@ -166,14 +167,14 @@ const QuizzesPage = ({ filter='', page='All' }) => {
               />
                 
               ) : (
-              <Container>
-                <Asset question message='No results found' />
+              <Container className='text-center'>
+                <Asset question message='No quizles found!' />
               </Container>
               )
             }
           </>
           ) : (
-            <Container>
+            <Container className='text-center'>
               <Asset spinner></Asset>
             </Container>
           )}

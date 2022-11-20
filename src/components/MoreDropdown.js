@@ -20,10 +20,10 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
 // Provide a dropdown menu with edit and delete options
 export const MoreDropdown = ({item, handleEdit, handleDelete}) => {
   return (
-    <Dropdown className={`${styles.Absolute} ml-auto pt-1`} drop='left'>
+    <Dropdown className={`${styles.AbsoluteQuiz} ml-auto pt-1`} drop='left'>
         <Dropdown.Toggle as={ThreeDots} />
 
-        <Dropdown.Menu className='text-right'>
+        <Dropdown.Menu className='text-center'>
             <Dropdown.Item
               onClick={handleEdit} 
               aria-label="edit"
@@ -48,9 +48,9 @@ username, and password options */
 export const ProfileEditDropdown = ({ id }) => {
   const history = useHistory();
   return (
-    <Dropdown className={`ml-auto px-3`} drop="left">
+    <Dropdown className={`${styles.AbsoluteProfile}`} drop="left">
       <Dropdown.Toggle as={ThreeDots} />
-      <Dropdown.Menu className='text-right'>
+      <Dropdown.Menu className='text-center'>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit`)}
           aria-label="edit-profile"

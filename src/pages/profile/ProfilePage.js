@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Media from 'react-bootstrap/Media';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import Avatar from '../../components/Avatar';
@@ -13,6 +12,8 @@ import Asset from '../../components/Asset';
 import QuizTile from '../quizzes/QuizTile';
 import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
 import { ProfileEditDropdown } from '../../components/MoreDropdown';
+import btnStyles from '../../styles/Button.module.css'
+import styles from '../../styles/ProfilePage.module.css'
 
 /* ProfilePage component shows user's profile info and fetches any quizzes 
 they have created or completed for display */
@@ -74,14 +75,14 @@ const ProfilePage = () => {
           />
             
           ) : (
-          <Container>
+          <Container className='text-center'>
             <Asset question message='No quizzes created!' />
           </Container>
           )
         }
       </>
       ) : (
-        <Container>
+        <Container className='text-center'>
           <Asset spinner></Asset>
         </Container>
       )}
@@ -112,14 +113,14 @@ const ProfilePage = () => {
           />
             
           ) : (
-          <Container>
+          <Container className='text-center'>
             <Asset question message='No quizzes completed!' />
           </Container>
           )
         }
       </>
       ) : (
-        <Container>
+        <Container className='text-center'>
           <Asset spinner></Asset>
         </Container>
       )}
@@ -128,36 +129,39 @@ const ProfilePage = () => {
 
   return (
     <>
-      <Row className='justify-content-center mt-4'>
+      <Row className='justify-content-center align-items-center my-5'>
         <Col xs='auto'>
             <Avatar src={profile.image} height={240} />
         </Col>
         <Col xs='auto'>
-                <Row>
-                  <Col className='d-flex'>
-                    <h2>{profile.owner}</h2>
-                    {profile.is_owner &&
-                    <ProfileEditDropdown
-                      id={id}
-                    />}
-                  </Col>
-                </Row>
-                <p>Name: {profile.name ? profile.name : 'No name provided'}</p>
-                <p>Bio:</p>
-                <p>{profile.bio ? profile.bio : 'No bio provided'}</p>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <i className='far fa-check-circle'></i>
+          <h2 className='text-break pr-4'>{profile.owner}</h2>
+          {profile.is_owner &&
+            <ProfileEditDropdown
+              id={id}
+            />}
+          <p className='text-break'>Name: {profile.name}</p>
+          <p>Created quizzes: {profile.created_quizzes_count ? profile.created_quizzes_count : 0}</p>
           <p>Completed quizzes: {profile.completed_quizzes_count ? profile.completed_quizzes_count : 0}</p>
+          <p>Bio:</p>
+          <p className={`${styles.Bio} text-break`}>{profile.bio}</p>
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col className='text-center'>
           <ButtonGroup aria-label='Quizzes created and quizzes completed selector'>
-              <Button variant='info' onClick={() => setQuizView('created')}>Created Quizzes</Button>
-              <Button variant='info' onClick={() => setQuizView('completed')}>Completed Quizzes</Button>
+              <Button
+                className={btnStyles.BtnBarBtn}
+                onClick={() => setQuizView('created')}
+                autoFocus
+              >
+                Created Quizzes
+              </Button>
+              <Button
+                className={btnStyles.BtnBarBtn}
+                onClick={() => setQuizView('completed')}
+              >
+                Completed Quizzes
+              </Button>
           </ButtonGroup>
           {(quizView === 'created') && createdQuizTiles}
           {(quizView === 'completed') && completedQuizTiles}

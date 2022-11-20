@@ -7,3 +7,9 @@
     right: 0;
     padding-right: 30px;
 }
+
+.Rule {
+    width: 75%;
+    border-bottom-style: double;
+    margin: auto;
+}
