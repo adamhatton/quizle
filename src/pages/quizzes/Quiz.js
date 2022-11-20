@@ -303,7 +303,7 @@ const Quiz = (props) => {
       {/* Hints and Answers table */}
       <Row>
         <Col xs={12}>
-          <Table striped bordered hover className={styles.Table}>
+          <Table bordered className={styles.Table}>
               <thead>
                 <tr>
                   <th className={styles.TableHead}>Hints</th>
@@ -314,7 +314,11 @@ const Quiz = (props) => {
                 { quizAnswers.map((answer) => 
                   <tr key={answer.id}>
                     <td className='text-break'>{answer.hint}</td>
-                    <td className='text-break'>{answer.guessed ? answer.value : '-'}</td>
+                    {answer.guessed ? (
+                      <td className={`${styles.TableCell} text-break`}>{answer.value}</td>
+                    ) : (
+                      <td className={'text-break'}>-</td>
+                    )}
                   </tr>
                 )}
               </tbody>

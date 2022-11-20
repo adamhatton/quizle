@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import { useHistory } from 'react-router-dom';
 import { useRedirect } from '../../hooks/useRedirect';
 import styles from '../../styles/SignInUpForm.module.css'
+import btnStyles from '../../styles/Button.module.css'
 
 /* State variables, handleChange(), handleSubmit() and error handling taken
  from Code Institute 'Moments' walkthrough project */
@@ -43,9 +44,9 @@ const SignUpForm = () => {
 
   return (
     <Form onSubmit={handleSubmit} className={`${styles.SignInUpForm} mt-5`}>
-      <h1 className='mb-4'>Sign Up</h1>
+      <h1 className={`${styles.Heading} mb-4`}>Sign Up</h1>
       <Form.Group controlId='username'>
-        <Form.Label>Username</Form.Label>
+        <Form.Label srOnly>Username</Form.Label>
         <Form.Control
           type='text'
           placeholder='Username'
@@ -60,7 +61,7 @@ const SignUpForm = () => {
       )}
 
       <Form.Group controlId='password1'>
-        <Form.Label>Password</Form.Label>
+        <Form.Label srOnly>Password</Form.Label>
         <Form.Control
           type='password'
           placeholder='Password'
@@ -75,7 +76,7 @@ const SignUpForm = () => {
       )}
 
       <Form.Group controlId='password2'>
-        <Form.Label>Confirm Password</Form.Label>
+        <Form.Label srOnly>Confirm Password</Form.Label>
         <Form.Control
           type='password'
           placeholder='Confirm Password'
@@ -89,7 +90,7 @@ const SignUpForm = () => {
         <Alert variant="warning" key={idx}>{message}</Alert>
       )}
 
-      <Button variant='primary' type='submit'>
+      <Button className={btnStyles.Btn} type='submit'>
         Submit
       </Button>
 

@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useRedirect } from '../../hooks/useRedirect';
 import styles from '../../styles/SignInUpForm.module.css'
+import btnStyles from '../../styles/Button.module.css'
 import { setTokenTimestamp } from '../../utils/Utils';
 
 /* State variables, handleChange(), handleSubmit() and error handling taken
@@ -48,10 +49,10 @@ const SignInForm = () => {
 
   return (
     <Form onSubmit={handleSubmit} className={`${styles.SignInUpForm} mt-5`}>
-      <h1 className='mb-4'>Sign In</h1>
+      <h1 className={`${styles.Heading} mb-4`}>Sign In</h1>
 
       <Form.Group controlId='username'>
-        <Form.Label>Username</Form.Label>
+        <Form.Label srOnly>Username</Form.Label>
         <Form.Control
           type='text'
           placeholder='Username'
@@ -67,7 +68,7 @@ const SignInForm = () => {
 
 
       <Form.Group controlId='password'>
-        <Form.Label>Password</Form.Label>
+        <Form.Label srOnly>Password</Form.Label>
         <Form.Control
           type='password'
           placeholder='Password'
@@ -81,7 +82,7 @@ const SignInForm = () => {
         <Alert variant="warning" key={idx}>{message}</Alert>
       )}
 
-      <Button variant='primary' type='submit'>
+      <Button className={btnStyles.Btn} type='submit'>
         Submit
       </Button>
 

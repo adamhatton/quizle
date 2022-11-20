@@ -54,6 +54,10 @@
     width: 50%;
 }
 
+.TableCell {
+    animation: guessed 1.2s;
+}
+
 .Like {
     font-size: 2.5rem;
 }
@@ -75,6 +79,11 @@
     line-height: 46px;
     margin: 0;
 }
+
+@keyframes guessed {
+    from {background-color: red;}
+    to {background-color: #fff;}
+  }
 
 @media screen and (max-width: 530px) {
 
