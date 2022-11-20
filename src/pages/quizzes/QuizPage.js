@@ -63,6 +63,7 @@ function QuizPage() {
         setQuizInfo={setQuizInfo}
         quizAnswers={quizAnswers}
         setQuizAnswers={setQuizAnswers}
+        mobile
       />
     ) : (
       <Asset spinner />
