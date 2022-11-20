@@ -5,12 +5,14 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useHistory } from 'react-router-dom';
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import { useRedirect } from '../../hooks/useRedirect';
 import styles from '../../styles/SignInUpForm.module.css'
 
 /* State variables, handleChange(), handleSubmit() and error handling taken
  from Code Institute 'Moments' walkthrough project */
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
+  useRedirect('loggedIn');
 
   const [signInData, setSignInData] = useState({
     username: '',
@@ -36,7 +38,7 @@ const SignInForm = () => {
     try {
         const {data} = await axios.post('/dj-rest-auth/login/', signInData);
         setCurrentUser(data.user);
-        history.push('/');
+        history.goBack();
     } catch(err){
         setErrors(err.response?.data);
     }

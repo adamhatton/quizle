@@ -4,11 +4,13 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useHistory } from 'react-router-dom';
+import { useRedirect } from '../../hooks/useRedirect';
 import styles from '../../styles/SignInUpForm.module.css'
 
 /* State variables, handleChange(), handleSubmit() and error handling taken
  from Code Institute 'Moments' walkthrough project */
 const SignUpForm = () => {
+  useRedirect('loggedIn');
   const [signUpData, setSignUpData] = useState({
     username: '',
     password1: '',

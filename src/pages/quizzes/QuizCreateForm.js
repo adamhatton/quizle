@@ -6,8 +6,11 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
+import { useRedirect } from '../../hooks/useRedirect';
 
 function QuizCreateForm() {
+  useRedirect('loggedOut');
+
   // Set state for quiz data
   const [quizData, setQuizData] = useState({
     title: '',
