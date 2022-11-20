@@ -26,7 +26,7 @@ function App() {
           <Route exact path='/quizzes/music' render={() => <QuizzesPage filter={'category=music&'} page={'Music'}  />} />
           <Route exact path='/quizzes/entertainment' render={() => <QuizzesPage filter={'category=entertainment&'} page={'Entertainment'}  />} />
           <Route exact path='/quizzes/general' render={() => <QuizzesPage filter={'category=general&'} page={'General Knowledge'} />} />
-          <Route exact path='/quizzes/popular' render={() => <QuizzesPage page={'Most Popular'} />} />
+          <Route exact path='/quizzes/popular' render={() => <QuizzesPage filter={'ordering=-likes_count&'} page={'Most Popular'} />} />
           <Route exact path='/quizzes/create' render={() => <QuizCreateForm />} />
           <Route exact path='/quizzes/:id' render={() => <QuizPage />} />
           <Route exact path='/quizzes/:id/edit' render={() => <QuizEditForm />} />
