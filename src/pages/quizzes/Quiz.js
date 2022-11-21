@@ -64,6 +64,12 @@ const Quiz = (props) => {
         setQuizActive(false);
         const score = time_limit_seconds - seconds;
         handleCreateScore(score);
+      } else if (seconds === 0 && !giveUp){
+        setGiveUp(true);
+        setQuizActive(false);
+        setQuizAnswers(quizAnswers.map(answer => {
+          return {...answer, guessed: true}
+        }))
       }
     }
 
@@ -102,7 +108,16 @@ const Quiz = (props) => {
       }
     }
     handleCompleted();
-}, [quizAnswers, id, giveUp, score_id, score_time, seconds, time_limit_seconds, setQuizInfo])
+}, [quizAnswers,
+    id,
+    giveUp,
+    score_id,
+    score_time,
+    seconds,
+    time_limit_seconds,
+    setQuizInfo,
+    setQuizAnswers,
+  ])
 
   // If user own's quiz send them to the edit page
   const handleEdit = () => {

@@ -23,7 +23,6 @@ export const CurrentUserProvider = ({children}) => {
           setCurrentUser(data);
         } catch(err){
           console.log(err);
-          console.log('Error coming from currentUser mount')
         }
     };
     
@@ -41,7 +40,6 @@ export const CurrentUserProvider = ({children}) => {
             try {
               await axios.post('/dj-rest-auth/token/refresh/');
             } catch (err) {
-              console.log('Error coming from axiosRequ')
               setCurrentUser((prevCurrentUser) => {
                 if (prevCurrentUser) {
                   history.push('/signin');
@@ -68,7 +66,6 @@ export const CurrentUserProvider = ({children}) => {
             try{
               await axios.post('/dj-rest-auth/token/refresh/');
             } catch(err){
-              console.log('Error coming from axiosResp')
               setCurrentUser(prevCurrentUser => {
                 if (prevCurrentUser){
                   history.push('/signin');
