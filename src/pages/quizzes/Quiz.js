@@ -60,7 +60,6 @@ const Quiz = (props) => {
       }, 0);
       const allGuessed = guessedAnswers === 10 ? true : false;
       if (allGuessed && quizActive) {
-        console.log('all guessed runs')
         setCompleted(true);
         setQuizActive(false);
         const score = time_limit_seconds - seconds;

@@ -1,0 +1,17 @@
+.QuizForm {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.FormLabel {
+    font-weight: 700;
+}
+
+.FormGroup {
+    justify-content: center;
+    align-items: center;
+}
+
+.FormList {
+    list-style-position: inside;
+}
