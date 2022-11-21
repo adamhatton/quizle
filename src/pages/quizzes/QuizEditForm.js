@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
+import styles from '../../styles/QuizCreateEditForm.module.css'
+import btnStyles from '../../styles/Button.module.css'
 
 /* Form for editing a quiz */
 function QuizEditForm() {
@@ -219,7 +221,7 @@ function QuizEditForm() {
     <>
       <h1>Quiz Creation</h1>
       <p>Fill in the fields to create your quiz, please note:</p>
-      <ul>
+      <ul className={styles.FormList}>
         <li>Your quiz must have 10 hints and 10 answers</li>
         <li>If you don't want to provide hints, just enter 1-10 instead!</li>
         <li>The time limit is a minimum of 30 seconds and a maximum of 600 seconds (10 minutes)</li>
@@ -229,17 +231,18 @@ function QuizEditForm() {
   )
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className={styles.QuizForm}>
         {instructions}
-        <Form.Group as={Row} controlId='title'>
-          <Form.Label column sm={2}>Title:</Form.Label>
-          <Col sm={6}>
+        <Form.Group as={Row} controlId='title' className={styles.FormGroup}>
+          <Form.Label column md={2} className={styles.FormLabel}>
+            Title:
+          </Form.Label>
+          <Col md={6}>
             <Form.Control
               type='text'
               placeholder='Title'
               name='title'
               value={title}
-              //   className={styles.Input}
               onChange={handleChange}
             />
           </Col>
@@ -248,18 +251,17 @@ function QuizEditForm() {
           <Alert className='col-sm-8' variant="warning" key={idx}>{message}</Alert>
         )}
 
-        <Form.Group as={Row} controlId='description'>
-          <Form.Label column sm={2}>
+        <Form.Group as={Row} controlId='description' className={styles.FormGroup}>
+          <Form.Label column md={2} className={styles.FormLabel}>
             Description:
           </Form.Label>
-          <Col sm={6}>
+          <Col md={6}>
             <Form.Control
               as='textarea'
               rows={3}
               placeholder='Description'
               name='description'
               value={description}
-              //   className={styles.Input}
               onChange={handleChange}
             />
           </Col>
@@ -268,17 +270,16 @@ function QuizEditForm() {
           <Alert className='col-sm-8' variant="warning" key={idx}>{message}</Alert>
         )}
 
-        <Form.Group as={Row} controlId='category'>
-          <Form.Label column sm={2}>
+        <Form.Group as={Row} controlId='category' className={styles.FormGroup}>
+          <Form.Label column md={2} className={styles.FormLabel}>
             Category:
           </Form.Label>
-          <Col sm={6}>
+          <Col md={6}>
             <Form.Control
               as='select'
               rows={3}
               name='category'
               value={category}
-              //   className={styles.Input}
               onChange={handleChange}
             >
               <option value=''>Pick a Category</option>
@@ -293,11 +294,11 @@ function QuizEditForm() {
           <Alert className='col-sm-8' variant="warning" key={idx}>{message}</Alert>
         )}
 
-        <Form.Group as={Row} controlId='time_limit_seconds'>
-          <Form.Label column sm={2}>
+        <Form.Group as={Row} controlId='time_limit_seconds' className={styles.FormGroup}>
+          <Form.Label column md={2} className={styles.FormLabel}>
             Time Limit (seconds):
           </Form.Label>
-          <Col sm={6}>
+          <Col md={6}>
             <Form.Control
               type='number'
               min='30'
@@ -305,7 +306,6 @@ function QuizEditForm() {
               placeholder='Time Limit (seconds)'
               name='time_limit_seconds'
               value={time_limit_seconds}
-              //   className={styles.Input}
               onChange={handleChange}
             />
           </Col>
@@ -314,7 +314,7 @@ function QuizEditForm() {
           <Alert className='col-sm-8' variant="warning" key={idx}>{message}</Alert>
         )}
 
-        <Row>
+        <Row className='justify-content-center'>
             <Col xs={6} lg={4}>
                 <h2>Hints</h2>
             </Col>
@@ -324,7 +324,7 @@ function QuizEditForm() {
         </Row>
         
         {/* Hints Inputs Column */}
-        <Row>
+        <Row className='justify-content-center'>
           <Col as={Col} xs={6} lg={4}>
             { hintsArray.map((hint, idx) =>
               <Form.Group key={idx} controlId={hint.name} >
@@ -334,7 +334,6 @@ function QuizEditForm() {
                   placeholder={hint.placeholder}
                   name={hint.name}
                   value={hint.value}
-                  //   className={styles.Input}
                   onChange={handleChange}
                 />
                 {errors[hint.name]?.map((message, idx) =>
@@ -347,14 +346,13 @@ function QuizEditForm() {
           {/* Answers Inputs Column */}
           <Col as={Col} xs={6} lg={4}>
             { answersArray.map((answer, idx) =>
-              <Form.Group key={idx} controlId={answer.name} >
+              <Form.Group key={idx} controlId={answer.name}>
                 <Form.Label srOnly>{answer.placeholder}</Form.Label>
                 <Form.Control
                   type='text'
                   placeholder={answer.placeholder}
                   name={answer.name}
                   value={answer.value}
-                  //   className={styles.Input}
                   onChange={handleChange}
                 />
                 {errors[answer.name]?.map((message, idx) =>
@@ -368,12 +366,12 @@ function QuizEditForm() {
         <Button
         variant='primary'
         onClick={() => history.goBack()}
-        className='mr-3'
+        className={`${btnStyles.Btn} mr-3`}
         >
           Cancel
         </Button>
         
-        <Button variant='primary' type='submit'>
+        <Button className={btnStyles.Btn} type='submit'>
           Submit
         </Button>
 
