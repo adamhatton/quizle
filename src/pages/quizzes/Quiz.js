@@ -59,16 +59,17 @@ const Quiz = (props) => {
         return cur.guessed === true ? acc + 1 : acc
       }, 0);
       const allGuessed = guessedAnswers === 10 ? true : false;
-      if (allGuessed && !giveUp) {
+      if (allGuessed && quizActive) {
+        console.log('all guessed runs')
         setCompleted(true);
         setQuizActive(false);
         const score = time_limit_seconds - seconds;
         handleCreateScore(score);
-      } else if (seconds === 0 && !giveUp){
-        setGiveUp(true);
+      } else if (seconds === 0 && quizActive){
+        setCompleted(true);
         setQuizActive(false);
         setQuizAnswers(quizAnswers.map(answer => {
-          return {...answer, guessed: true}
+          return {...answer, revealed: true}
         }))
       }
     }
@@ -109,6 +110,7 @@ const Quiz = (props) => {
     }
     handleCompleted();
 }, [quizAnswers,
+    quizActive,
     id,
     giveUp,
     score_id,
@@ -142,7 +144,7 @@ const Quiz = (props) => {
         const formattedAnswer = answer.value.trim().toLowerCase();
         if (formattedGuess === formattedAnswer && !answer.guessed) {
           event.target.value = '';
-          return {...answer, guessed: true}
+          return {...answer, guessed: true, revealed: true}
         } else {
           return {...answer}
         } 
@@ -155,7 +157,7 @@ const Quiz = (props) => {
     setGiveUp(true);
     setQuizActive(false);
     setQuizAnswers(quizAnswers.map(answer => {
-      return {...answer, guessed: true}
+      return {...answer, revealed: true}
     }))
   }
 
@@ -166,7 +168,7 @@ const Quiz = (props) => {
     setCompleted(false);
     setSeconds(time_limit_seconds);
     setQuizAnswers(quizAnswers.map(answer => {
-      return {...answer, guessed: false}
+      return {...answer, guessed: false, revealed: false}
     }))
   }
 
@@ -295,7 +297,7 @@ const Quiz = (props) => {
               onClick={() => setQuizActive(true)}
               className={btnStyles.Btn}
             >
-                Start!
+              Start!
             </Button>
           }
           {quizActive && (seconds > 0) && !completed &&
@@ -329,8 +331,10 @@ const Quiz = (props) => {
                 { quizAnswers.map((answer) => 
                   <tr key={answer.id}>
                     <td className='text-break'>{answer.hint}</td>
-                    {answer.guessed ? (
+                    {(answer.guessed && answer.revealed) ? (
                       <td className={`${styles.TableCell} text-break`}>{answer.value}</td>
+                    ) : (!answer.guessed && answer.revealed) ? (
+                      <td className={`${styles.TableCell} ${styles.NotGuessed} text-break`}>{answer.value}</td>
                     ) : (
                       <td className={'text-break'}>-</td>
                     )}

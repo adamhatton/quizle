@@ -11,6 +11,10 @@
     color: green;
 }
 
+.NotGuessed {
+    color: #e91313;
+}
+
 .LoggedOut {
     color: #969494;
 }
@@ -46,6 +50,7 @@
     background-color: #fff;
     border: 1px rgb(150, 148, 148) solid;
     font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .TableHead {

@@ -35,16 +35,16 @@ function QuizPage() {
               completed_count: data.completed_count,
             });
             setQuizAnswers([
-              { id: 1, hint: data.hint_1, value: data.ans_1, guessed: false },
-              { id: 2, hint: data.hint_2, value: data.ans_2, guessed: false },
-              { id: 3, hint: data.hint_3, value: data.ans_3, guessed: false },
-              { id: 4, hint: data.hint_4, value: data.ans_4, guessed: false },
-              { id: 5, hint: data.hint_5, value: data.ans_5, guessed: false },
-              { id: 6, hint: data.hint_6, value: data.ans_6, guessed: false },
-              { id: 7, hint: data.hint_7, value: data.ans_7, guessed: false },
-              { id: 8, hint: data.hint_8, value: data.ans_8, guessed: false },
-              { id: 9, hint: data.hint_9, value: data.ans_9, guessed: false },
-              { id: 10, hint: data.hint_10, value: data.ans_10, guessed: false },
+              { id: 1, hint: data.hint_1, value: data.ans_1, guessed: false, revealed: false },
+              { id: 2, hint: data.hint_2, value: data.ans_2, guessed: false, revealed: false },
+              { id: 3, hint: data.hint_3, value: data.ans_3, guessed: false, revealed: false },
+              { id: 4, hint: data.hint_4, value: data.ans_4, guessed: false, revealed: false },
+              { id: 5, hint: data.hint_5, value: data.ans_5, guessed: false, revealed: false },
+              { id: 6, hint: data.hint_6, value: data.ans_6, guessed: false, revealed: false },
+              { id: 7, hint: data.hint_7, value: data.ans_7, guessed: false, revealed: false },
+              { id: 8, hint: data.hint_8, value: data.ans_8, guessed: false, revealed: false },
+              { id: 9, hint: data.hint_9, value: data.ans_9, guessed: false, revealed: false },
+              { id: 10, hint: data.hint_10, value: data.ans_10, guessed: false, revealed: false },
             ]);
             setHasLoaded(true);
         } catch(err){
