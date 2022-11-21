@@ -3,7 +3,6 @@
     background-color: #145F76;
     border-color: #145F76;
     margin: 5px 1px 0 0;
-
     min-width: 75px;
 }
 
@@ -36,4 +35,8 @@
     background-color: #3361d4;
     border-color: #3361d4;
     box-shadow: none;
+}
+
+.ProfileBtn {
+    margin: 5px 2px 2px 0;
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Container from 'react-bootstrap/Container';
 import { useParams } from 'react-router-dom'
 import { axiosReq } from '../../api/axiosDefaults';
 import Asset from '../../components/Asset';
@@ -66,7 +67,9 @@ function QuizPage() {
         mobile
       />
     ) : (
-      <Asset spinner />
+      <Container className='text-center'>
+        <Asset spinner />
+      </Container>
     )}
     </>
   )

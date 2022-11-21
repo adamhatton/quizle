@@ -14,6 +14,8 @@ import {
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
+import styles from '../../styles/ProfileEdit.module.css'
+import btnStyles from '../../styles/Button.module.css'
 
 /* Form for editing user's profile, core component taken from
 Code Institute 'Moments' with amendments made */
@@ -96,7 +98,9 @@ const ProfileEditForm = () => {
   const textFields = (
     <>
       <Form.Group controlId='name'>
-        <Form.Label>Name</Form.Label>
+        <Form.Label className={styles.FormLabel}>
+          Name
+        </Form.Label>
         <Form.Control
           type='text'
           value={name}
@@ -113,7 +117,9 @@ const ProfileEditForm = () => {
       ))}
 
       <Form.Group controlId='bio'>
-        <Form.Label>Bio</Form.Label>
+        <Form.Label className={styles.FormLabel}>
+          Bio
+        </Form.Label>
         <Form.Control
           as="textarea"
           value={bio}
@@ -130,24 +136,34 @@ const ProfileEditForm = () => {
       ))}
 
       <Button
+        className={btnStyles.Btn}
         onClick={() => history.goBack()}
       >
         Cancel
       </Button>
-      <Button type="submit">
+      <Button
+        className={btnStyles.Btn}
+        type="submit">
         Save
       </Button>
     </>
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}  className={`${styles.ProfileForm} mt-5`}>
       <Row>
         <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
           <Container>
             <Form.Group controlId='image-upload'>
               {image && (
-                <Avatar src={image} height={280} />
+                <Col xs='auto' className='mt-3 d-md-block d-none'>
+                  <Avatar src={image} height={280} />
+                </Col>
+              )}
+              {image && (
+                <Col xs='auto' className='mt-3 d-md-none'>
+                  <Avatar src={image} height={200} />
+                </Col>
               )}
               {errors?.image?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
@@ -155,12 +171,15 @@ const ProfileEditForm = () => {
                 </Alert>
               ))}
               <div>
-                <Form.Label>Change profile image</Form.Label>
+                <Form.Label className={`${styles.FormLabel} mt-3`}>
+                  Change profile image
+                </Form.Label>
               </div>
               <Form.File
                 id="image-upload"
                 ref={imageFile}
                 accept="image/*"
+                className={styles.FileInput}
                 onChange={(e) => {
                   if (e.target.files.length) {
                     URL.revokeObjectURL(image)

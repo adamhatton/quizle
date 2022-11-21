@@ -12,7 +12,6 @@ import Asset from '../../components/Asset';
 import QuizTile from '../quizzes/QuizTile';
 import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
 import { ProfileEditDropdown } from '../../components/MoreDropdown';
-import styles from '../../App.module.css'
 import btnStyles from '../../styles/Button.module.css'
 import pageStyles from '../../styles/ProfilePage.module.css'
 
@@ -144,7 +143,8 @@ const ProfilePage = ({mobile}) => {
           {profile.is_owner &&
             <ProfileEditDropdown
               id={id}
-            />}
+            />
+          }
           <p className='text-break'><strong>Name:</strong> {profile.name}</p>
           <p><strong>Created quizzes:</strong> {profile.created_quizzes_count ? profile.created_quizzes_count : 0}</p>
           <p><strong>Completed quizzes:</strong> {profile.completed_quizzes_count ? profile.completed_quizzes_count : 0}</p>
@@ -156,14 +156,14 @@ const ProfilePage = ({mobile}) => {
         <Col className='text-center'>
           <ButtonGroup aria-label='Quizzes created and quizzes completed selector'>
               <Button
-                className={btnStyles.BtnBarBtn}
+                className={`${btnStyles.BtnBarBtn} ${btnStyles.ProfileBtn}`}
                 onClick={() => setQuizView('created')}
                 autoFocus
               >
                 Created Quizzes
               </Button>
               <Button
-                className={btnStyles.BtnBarBtn}
+                className={`${btnStyles.BtnBarBtn} ${btnStyles.ProfileBtn}`}
                 onClick={() => setQuizView('completed')}
               >
                 Completed Quizzes

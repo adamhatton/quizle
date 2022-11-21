@@ -7,6 +7,8 @@ import Form from "react-bootstrap/Form";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from '../../styles/UsernamePasswordForm.module.css'
+import btnStyles from '../../styles/Button.module.css'
 
 /* Form for editing user's password, core component taken from
 Code Institute 'Moments' with amendments made */
@@ -50,13 +52,15 @@ const UserPasswordForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className={`${styles.UsernameForm} mt-5`}>
+      <h1 className={`${styles.Heading} mb-3`}>Change Password</h1>
       <Form.Group controlId='new_password1'>
-        <Form.Label>New password</Form.Label>
+        <Form.Label srOnly>New password</Form.Label>
           <Form.Control
             placeholder="New password"
             type="password"
             value={new_password1}
+            className={styles.Input}
             onChange={handleChange}
             name="new_password1"
             />
@@ -67,11 +71,12 @@ const UserPasswordForm = () => {
           </Alert>
         ))}
       <Form.Group controlId='new_password2'>
-        <Form.Label>Confirm password</Form.Label>
+        <Form.Label srOnly>Confirm password</Form.Label>
           <Form.Control
             placeholder="Confirm new password"
             type="password"
             value={new_password2}
+            className={styles.Input}
             onChange={handleChange}
             name="new_password2"
             />
@@ -81,10 +86,16 @@ const UserPasswordForm = () => {
             {message}
           </Alert>
         ))}
-      <Button onClick={() => history.goBack()}>
+      <Button
+        className={btnStyles.Btn}
+        onClick={() => history.goBack()}
+      >
         Cancel
       </Button>
-      <Button type="submit">
+      <Button
+        className={btnStyles.Btn}
+        type="submit"
+      >
         Save
       </Button>
     </Form>

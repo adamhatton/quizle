@@ -10,6 +10,8 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
+import styles from '../../styles/UsernamePasswordForm.module.css'
+import btnStyles from '../../styles/Button.module.css'
 
 /* Form for editing user's username, core component taken from
 Code Institute 'Moments' with amendments made */
@@ -51,14 +53,16 @@ const UsernameForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="my-2">
+    <Form onSubmit={handleSubmit} className={`${styles.UsernameForm} mt-5`}>
+      <h1 className={`${styles.Heading} mb-3`}>Change Username</h1>
       <Form.Group controlId='username'>
-        <Form.Label>Change username</Form.Label>
+        <Form.Label srOnly>Change username</Form.Label>
         <Form.Control
         placeholder='Username'
         type='text'
         value={username}
         name='username'
+        className={styles.Input}
         onChange={(event) => setUsername(event.target.value)}
       />
       </Form.Group>
@@ -67,11 +71,17 @@ const UsernameForm = () => {
             {message}
           </Alert>
         ))}
-      <Button onClick={() => history.goBack()}>
+      <Button
+        className={btnStyles.Btn}
+        onClick={() => history.goBack()}
+      >
         Cancel
       </Button>
-      <Button type="submit">
-        save
+      <Button
+        className={btnStyles.Btn}
+        type="submit"
+      >
+        Save
       </Button>
     </Form>
   );
