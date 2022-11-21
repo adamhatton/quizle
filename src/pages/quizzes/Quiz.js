@@ -15,7 +15,8 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Timer from '../../components/Timer';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import { Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Modal from 'react-bootstrap/Modal';
 
 /* Display quiz and enable a user to complete it */
 const Quiz = (props) => {
@@ -24,17 +25,13 @@ const Quiz = (props) => {
     owner,
     title,
     description,
-    category,
     time_limit_seconds,
-    created_on,
-    updated_on,
     profile_id,
     profile_image,
     like_id,
     score_id,
     score_time,
     likes_count,
-    completed_count,
     setQuizInfo,
     quizAnswers,
     setQuizAnswers,
@@ -45,11 +42,17 @@ const Quiz = (props) => {
   const [giveUp, setGiveUp] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [seconds, setSeconds] = useState(time_limit_seconds);
-
+  const [show, setShow] = useState(false);
+  
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
-
   const history = useHistory();
+
+  const handleClose = () => {
+    setShow(false);
+    history.goBack();
+  }
+  const handleShow = () => setShow(true);
 
   // Check if user has completed quiz and, if yes, create a score
   useEffect(() => {
@@ -129,7 +132,7 @@ const Quiz = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/quizzes/${id}/`);
-      history.goBack();
+      handleShow();
     } catch (err) {
       console.log(err);
     }
@@ -434,6 +437,14 @@ const Quiz = (props) => {
       </Row>
       {/* Show created by and high score below answers table on smaller screens */}
       {scoreRowMobile}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body>Quiz has been deleted!</Modal.Body>
+        <Modal.Footer>
+          <Button className={btnStyles.Btn} onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }
