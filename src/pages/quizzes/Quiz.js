@@ -199,44 +199,146 @@ const Quiz = (props) => {
     }
   };
 
-  return (
+  const quizInfoRow = (
+    <Row>
+      <Col className='text-center'>
+        <Row>
+          <Col className='text-center mt-3'>
+            <h1 className={styles.Heading1}>{title}</h1>
+            {is_owner &&
+            <MoreDropdown
+              item='Quiz'
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            />}
+          </Col>
+        </Row>        
+        <p className={`${styles.Description} mb-1`}>{description}</p>
+      </Col>
+    </Row>
+  )
+
+  const scoreRowDesktop = (
+    <Row className='align-items-center justify-content-center px-3 d-none d-md-flex'>
+      <Media className={`align-items-center text-right ${styles.QuizMedia}`}>
+        <Media.Body>
+          <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Created by</h2>
+          <p className={`${styles.NoMargins} ${styles.BiggerText}`}>{owner}</p>
+        </Media.Body>
+        <Link to={`/profiles/${profile_id}`}>
+          <Avatar src={profile_image} height={64} />
+        </Link>
+      </Media>
+      {currentUser ? (
+        <Media className={`align-items-center ${styles.QuizMedia}`}>
+          {score_id ? (
+            <i className={`${styles.ScoreIcon} ${styles.Completed} far fa-check-circle`}></i>    
+          ) : (
+            <i className={`${styles.ScoreIcon} ${styles.NotCompleted} far fa-times-circle`}></i>
+          )}
+          <Media.Body>
+            <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
+            <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
+              {score_id ? (
+                <>
+                  {Math.floor(score_time / 60)}:
+                  {(score_time % 60) < 10 ? `0${score_time % 60}` : (score_time % 60)}
+                </>
+              ) : (
+                'Quizle not completed!'
+              )}
+            </p>
+          </Media.Body>
+        </Media>
+      ) : (
+        <Media className={`align-items-center ${styles.QuizMedia}`}>
+            <i className={`${styles.ScoreIcon} ${styles.LoggedOut} far fa-times-circle`}></i>
+          <Media.Body>
+            <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
+            <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
+              Login for high scores!
+            </p>
+          </Media.Body>
+        </Media>
+      )}
+    </Row>
+  )
+
+  const gameControls = (
+    <Row className='my-3 align-items-center justify-content-center'>
+      <Col xs='auto' className='pr-2'>
+        <Form.Group controlId='guess_input' className='mb-0'>
+        <Form.Label srOnly>Guess:</Form.Label>
+        <Form.Control
+          type='text'
+          placeholder='Guess'
+          name='title'
+          onKeyUp={handleGuess}
+          disabled={!quizActive}
+          className={styles.Guess}
+        />
+        </Form.Group>
+      </Col>
+      <Col xs='auto' className='pl-2'>
+        { seconds > 0 ? (
+          <Timer
+            isActive={quizActive}
+            seconds={seconds}
+            setSeconds={setSeconds}
+            stop={giveUp}
+            completed={completed}
+          />
+        ) : (
+          <p className={styles.TimeText}>Time's up!</p>
+        )}
+      </Col>
+      <Col xs={12} className='text-center mt-3'>
+        {!quizActive && !giveUp && !completed && 
+          <Button
+            onClick={() => setQuizActive(true)}
+            className={btnStyles.Btn}
+          >
+            Start!
+          </Button>
+        }
+        {quizActive && (seconds > 0) && !completed &&
+          <Button
+            onClick={handleGiveUp}
+            className={btnStyles.Btn}
+          >
+            Give Up?
+          </Button>}
+        {!quizActive && (seconds < time_limit_seconds) &&
+          <Button
+            onClick={handleReset}
+            className={btnStyles.Btn}
+          >
+            Reset
+          </Button>
+        }
+      </Col>
+    </Row>
+  )
+
+  const scoreRowMobile = (
     <>
-      {/* Quiz title and description */}
-      <Row>
-        <Col className='text-center'>
-          <Row>
-            <Col className='text-center mt-3'>
-              <h1 className={styles.Heading1}>{title}</h1>
-              {is_owner &&
-              <MoreDropdown
-                item='Quiz'
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              />}
-            </Col>
-          </Row>        
-          <p className={`${styles.Description} mb-1`}>{description}</p>
-        </Col>
-      </Row>
-      {/* Creator's profile Avatar and current user's high score information */}
-      <Row className='align-items-center justify-content-center px-3 d-none d-md-flex'>
-          <Media className={`align-items-center text-right ${styles.QuizMedia}`}>
-            <Media.Body>
-              <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Created by</h2>
-              <p className={`${styles.NoMargins} ${styles.BiggerText}`}>{owner}</p>
-            </Media.Body>
-            <Link to={`/profiles/${profile_id}`}>
-              <Avatar src={profile_image} height={64} />
-            </Link>
-          </Media>
+      {mobile &&
+        <Row className='flex-column text-center px-3 d-md-none'>
+          <Link to={`/profiles/${profile_id}`}>
+            <Avatar src={profile_image} height={64} />
+          </Link>
+          <Col>
+            <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Created by</h2>
+            <p className={`${styles.NoMargins} ${styles.BiggerText}`}>{owner}</p>
+          </Col>
           {currentUser ? (
-            <Media className={`align-items-center ${styles.QuizMedia}`}>
+            <>
               {score_id ? (
                 <i className={`${styles.ScoreIcon} ${styles.Completed} far fa-check-circle`}></i>    
               ) : (
                 <i className={`${styles.ScoreIcon} ${styles.NotCompleted} far fa-times-circle`}></i>
               )}
-              <Media.Body>
+              <Col>
                 <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
                 <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
                   {score_id ? (
@@ -248,74 +350,32 @@ const Quiz = (props) => {
                     'Quizle not completed!'
                   )}
                 </p>
-              </Media.Body>
-            </Media>
+              </Col>
+            </>
           ) : (
-            <Media className={`align-items-center ${styles.QuizMedia}`}>
-                <i className={`${styles.ScoreIcon} ${styles.LoggedOut} far fa-times-circle`}></i>
-              <Media.Body>
-                <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>High Score</h2>
+            <>
+              <i className={`${styles.ScoreIcon} ${styles.LoggedOut} far fa-times-circle`}></i>
+              <Col>
+                <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
                 <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
                   Login for high scores!
                 </p>
-              </Media.Body>
-            </Media>
+              </Col>
+            </>
           )}
-      </Row>
+        </Row>
+      }
+    </>
+  )
+
+  return (
+    <>
+      {/* Quiz title and description */}
+      {quizInfoRow}
+      {/* Creator's profile Avatar and current user's high score information */}
+      {scoreRowDesktop}
       {/* Guess input and timer */}
-      <Row className='my-3 align-items-center justify-content-center'>
-        <Col xs='auto' className='pr-2'>
-          <Form.Group controlId='guess_input' className='mb-0'>
-          <Form.Label srOnly>Guess:</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Guess'
-            name='title'
-            onKeyUp={handleGuess}
-            disabled={!quizActive}
-            className={styles.Guess}
-          />
-          </Form.Group>
-        </Col>
-        <Col xs='auto' className='pl-2'>
-          { seconds > 0 ? (
-            <Timer
-              isActive={quizActive}
-              seconds={seconds}
-              setSeconds={setSeconds}
-              stop={giveUp}
-              completed={completed}
-            />
-          ) : (
-            <p className={styles.TimeText}>Time's up!</p>
-          )}
-        </Col>
-        <Col xs={12} className='text-center mt-3'>
-          {!quizActive && !giveUp && !completed && 
-            <Button
-              onClick={() => setQuizActive(true)}
-              className={btnStyles.Btn}
-            >
-              Start!
-            </Button>
-          }
-          {quizActive && (seconds > 0) && !completed &&
-            <Button
-              onClick={handleGiveUp}
-              className={btnStyles.Btn}
-            >
-              Give Up?
-            </Button>}
-          {!quizActive && (seconds < time_limit_seconds) &&
-            <Button
-              onClick={handleReset}
-              className={btnStyles.Btn}
-            >
-              Reset
-            </Button>
-          }
-        </Col>
-      </Row>
+      {gameControls}
       {/* Hints and Answers table */}
       <Row>
         <Col xs={12}>
@@ -372,49 +432,8 @@ const Quiz = (props) => {
           </Container>
         </Col>
       </Row>
-        {mobile &&
-          <Row className='flex-column text-center px-3 d-md-none'>
-              <Link to={`/profiles/${profile_id}`}>
-                <Avatar src={profile_image} height={64} />
-              </Link>
-              <Col>
-                <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Created by</h2>
-                <p className={`${styles.NoMargins} ${styles.BiggerText}`}>{owner}</p>
-              </Col>
-          {currentUser ? (
-            <>
-              {score_id ? (
-                <i className={`${styles.ScoreIcon} ${styles.Completed} far fa-check-circle`}></i>    
-              ) : (
-                <i className={`${styles.ScoreIcon} ${styles.NotCompleted} far fa-times-circle`}></i>
-              )}
-              <Col>
-                <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
-                <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
-                  {score_id ? (
-                    <>
-                      {Math.floor(score_time / 60)}:
-                      {(score_time % 60) < 10 ? `0${score_time % 60}` : (score_time % 60)}
-                    </>
-                  ) : (
-                    'Quizle not completed!'
-                  )}
-                </p>
-              </Col>
-            </>
-          ) : (
-            <>
-                <i className={`${styles.ScoreIcon} ${styles.LoggedOut} far fa-times-circle`}></i>
-              <Col>
-                <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
-                <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
-                  Login for high scores!
-                </p>
-              </Col>
-            </>
-          )}
-        </Row>
-      }
+      {/* Show created by and high score below answers table on smaller screens */}
+      {scoreRowMobile}
     </>
   )
 }
