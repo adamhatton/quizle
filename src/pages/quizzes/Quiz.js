@@ -203,6 +203,7 @@ const Quiz = (props) => {
     }
   };
 
+  // JSX for quiz information
   const quizInfoRow = (
     <Row>
       <Col className='text-center'>
@@ -222,6 +223,7 @@ const Quiz = (props) => {
     </Row>
   )
 
+  // JSX for profile image and high score info
   const scoreRowDesktop = (
     <Row className='align-items-center justify-content-center px-3 d-none d-md-flex'>
       <Media className={`align-items-center text-right ${styles.QuizMedia}`}>
@@ -268,6 +270,7 @@ const Quiz = (props) => {
     </Row>
   )
 
+  // JSX for guess bar, timer and game buttons
   const gameControls = (
     <Row className='my-3 align-items-center justify-content-center'>
       <Col xs='auto' className='pr-2'>
@@ -324,6 +327,7 @@ const Quiz = (props) => {
     </Row>
   )
 
+  // JSX for profile image and high score info on mobile
   const scoreRowMobile = (
     <>
       {mobile &&
