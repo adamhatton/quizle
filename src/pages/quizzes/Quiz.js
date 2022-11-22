@@ -16,7 +16,7 @@ import Timer from '../../components/Timer';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Container from 'react-bootstrap/Container';
-import Modal from 'react-bootstrap/Modal';
+import MessageModal from '../../components/MessageModal'
 
 /* Display quiz and enable a user to complete it */
 const Quiz = (props) => {
@@ -447,14 +447,11 @@ const Quiz = (props) => {
       </Row>
       {/* Show created by and high score below answers table on smaller screens */}
       {scoreRowMobile}
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Body>Quiz has been deleted!</Modal.Body>
-        <Modal.Footer>
-          <Button className={btnStyles.Btn} onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <MessageModal 
+        message='Quiz has been deleted!'
+        show={show}
+        handleClose={handleClose}
+      />
     </>
   )
 }

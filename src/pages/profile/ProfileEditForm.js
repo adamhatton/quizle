@@ -16,6 +16,7 @@ import {
 import Avatar from "../../components/Avatar";
 import styles from '../../styles/ProfileEdit.module.css'
 import btnStyles from '../../styles/Button.module.css'
+import MessageModal from "../../components/MessageModal";
 
 /* Form for editing user's profile, core component taken from
 Code Institute 'Moments' with amendments made */
@@ -35,6 +36,7 @@ const ProfileEditForm = () => {
   const { name, bio, image } = profileData;
 
   const [errors, setErrors] = useState({});
+  const [show, setShow] = useState(false);
 
   // On mount if user owns profile get the profile data else redirect to homepage
   useEffect(() => {
@@ -62,6 +64,13 @@ const ProfileEditForm = () => {
     }
   }, [currentUser, history, id]);
 
+    // Handle closing modal
+    const handleClose = () => {
+      setShow(false);
+      history.goBack();
+    }
+    const handleShow = () => setShow(true);
+
   // handleChange function uses computed property so all inputs can call it
   const handleChange = (event) => {
     setProfileData({
@@ -87,7 +96,7 @@ const ProfileEditForm = () => {
         ...currentUser,
         profile_image: data.image,
       }));
-      history.goBack();
+      handleShow();
     } catch (err) {
       console.log(err);
       setErrors(err.response?.data);
@@ -198,6 +207,11 @@ const ProfileEditForm = () => {
           <Container>{textFields}</Container>
         </Col>
       </Row>
+      <MessageModal 
+        message='Profile has been updated!'
+        show={show}
+        handleClose={handleClose}
+      />
     </Form>
   );
 };

@@ -159,7 +159,6 @@ function QuizCreateForm() {
         <li>Your quiz must have 10 hints and 10 answers</li>
         <li>If you don't want to provide hints, just enter 1-10 instead!</li>
         <li>The time limit is a minimum of 30 seconds and a maximum of 600 seconds (10 minutes)</li>
-        <li>Scroll down to see some examples of completed quiz forms</li>
       </ul>
     </>
   )

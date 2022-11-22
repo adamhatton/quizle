@@ -12,12 +12,14 @@ import {
 } from "../../contexts/CurrentUserContext";
 import styles from '../../styles/UsernamePasswordForm.module.css'
 import btnStyles from '../../styles/Button.module.css'
+import MessageModal from "../../components/MessageModal";
 
 /* Form for editing user's username, core component taken from
 Code Institute 'Moments' with amendments made */
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
+  const [show, setShow] = useState(false);
 
   const history = useHistory();
   const { id } = useParams();
@@ -34,6 +36,13 @@ const UsernameForm = () => {
     }
   }, [currentUser, history, id]);
 
+  // Handle closing modal
+  const handleClose = () => {
+    setShow(false);
+    history.goBack();
+  }
+  const handleShow = () => setShow(true);
+
   // Submit new username to the database
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -45,7 +54,7 @@ const UsernameForm = () => {
         ...prevUser,
         username,
       }));
-      history.goBack();
+      handleShow();
     } catch (err) {
       console.log(err);
       setErrors(err.response?.data);
@@ -83,6 +92,11 @@ const UsernameForm = () => {
       >
         Save
       </Button>
+      <MessageModal 
+        message='Username has been updated!'
+        show={show}
+        handleClose={handleClose}
+      />
     </Form>
   );
 };

@@ -8,6 +8,7 @@ import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
 import styles from '../../styles/QuizCreateEditForm.module.css'
 import btnStyles from '../../styles/Button.module.css'
+import MessageModal from '../../components/MessageModal';
 
 /* Form for editing a quiz */
 function QuizEditForm() {
@@ -101,6 +102,8 @@ function QuizEditForm() {
     {name: 'ans_10', value: ans_10, placeholder: 'Answer 10'},
   ]
 
+  const [show, setShow] = useState(false);
+
   // On mount get the existing quiz information to pre-populate fields
   useEffect(() => {
     const handleMount = async () => {
@@ -168,6 +171,13 @@ function QuizEditForm() {
     handleMount();
   }, [history, id]);
 
+  // Handle closing modal
+  const handleClose = () => {
+    setShow(false);
+    history.push(`/quizzes/${id}`);
+  }
+  const handleShow = () => setShow(true);
+
   // handleChange function uses computed property so all inputs can call it
   const handleChange = (event) => {
     setQuizData({
@@ -208,7 +218,7 @@ function QuizEditForm() {
 
     try {
         await axiosReq.put(`/quizzes/${id}`, formData);
-        history.push(`/quizzes/${id}`);
+        handleShow();
     } catch(err){
         if (err.response?.status !==401){
             setErrors(err.response?.data);
@@ -380,6 +390,11 @@ function QuizEditForm() {
           {message}
         </Alert>
       ))}
+      <MessageModal 
+        message='Quiz has been updated!'
+        show={show}
+        handleClose={handleClose}
+      />
     </Form>
   )
 }

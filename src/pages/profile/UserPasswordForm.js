@@ -9,6 +9,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from '../../styles/UsernamePasswordForm.module.css'
 import btnStyles from '../../styles/Button.module.css'
+import MessageModal from "../../components/MessageModal";
 
 /* Form for editing user's password, core component taken from
 Code Institute 'Moments' with amendments made */
@@ -24,6 +25,7 @@ const UserPasswordForm = () => {
   const { new_password1, new_password2 } = userData;
 
   const [errors, setErrors] = useState({});
+  const [show, setShow] = useState(false);
 
   const handleChange = (event) => {
     setUserData({
@@ -39,12 +41,19 @@ const UserPasswordForm = () => {
     }
   }, [currentUser, history, id]);
 
+  // Handle closing modal
+  const handleClose = () => {
+    setShow(false);
+    history.goBack();
+  }
+  const handleShow = () => setShow(true);
+
   // Submit new password to the database
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
-      history.goBack();
+      handleShow();
     } catch (err) {
       console.log(err);
       setErrors(err.response?.data);
@@ -98,6 +107,11 @@ const UserPasswordForm = () => {
       >
         Save
       </Button>
+      <MessageModal 
+        message='Password has been updated!'
+        show={show}
+        handleClose={handleClose}
+      />
     </Form>
   );
 };
