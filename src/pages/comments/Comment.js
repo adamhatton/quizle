@@ -1,4 +1,5 @@
 import React from "react";
+import Col from "react-bootstrap/Col";
 import Media from "react-bootstrap/Media";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
@@ -17,7 +18,7 @@ const Comment = (props) => {
   } = props;
 
   return (
-    <>
+    <Col className={styles.CommentCol}>
       <hr />
       <Media>
         <Link to={`/profiles/${profile_id}`}>
@@ -29,7 +30,7 @@ const Comment = (props) => {
           <p>{content}</p>
         </Media.Body>
       </Media>
-    </>
+    </Col>
     );
   };
 

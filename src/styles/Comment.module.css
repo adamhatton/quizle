@@ -1,0 +1,15 @@
+.Owner {
+    font-weight: 700;
+    color: #145F76;
+    margin-right: 8px;
+}
+  
+.Date {
+    font-weight: lighter;
+    color: #969494;
+}
+
+.CommentCol {
+  max-width: 900px;
+  margin: auto;
+}

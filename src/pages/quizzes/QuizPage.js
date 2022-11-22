@@ -7,6 +7,8 @@ import Quiz from './Quiz';
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreData } from '../../utils/Utils';
+import Comment from '../comments/Comment';
 
 /* Component to obtain quiz information and display it*/
 function QuizPage() {
@@ -92,25 +94,29 @@ function QuizPage() {
         "Comments"
       ) : null}
       {comments.results.length ? (
-        // <InfiniteScroll
-        //   children={comments.results.map((comment) => (
-        //     <Comment
-        //       key={comment.id}
-        //       {...comment} 
-        //       setPost={setPost}
-        //       setComments={setComments}
-        //     />
-        //   ))}
-        //   dataLength={comments.results.length}
-        //   loader={<Asset spinner />}
-        //   hasMore={!!comments.next}
-        //   next={() => fetchMoreData(comments, setComments)}
-        // />
-        comments.results.map(comment => <p>{comment.content}</p>)
+        <InfiniteScroll
+          children={comments.results.map((comment) => (
+            <Comment
+              key={comment.id}
+              {...comment} 
+              setQuizInfo={setQuizInfo}
+              setComments={setComments}
+            />
+          ))}
+          dataLength={comments.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!comments.next}
+          next={() => fetchMoreData(comments, setComments)}
+        />
       ) : currentUser ? (
-        <span>No comments yet, be the first to comment!</span>
+        <Container className='text-center'>
+          <p>No comments yet, be the first to comment!</p>
+        </Container>
+        
       ) : (
-        <span>No comments yet, login to add a comment!</span>
+        <Container className='text-center mt-4'>
+          <p>No comments yet, login to add a comment!</p>
+        </Container>
       )}
     </>
     ) : (
