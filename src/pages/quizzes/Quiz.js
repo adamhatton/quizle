@@ -406,41 +406,40 @@ const Quiz = (props) => {
               </tbody>
           </Table>
         </Col>
+      </Row>
+      <Row className='justify-content-center'>
         {/* Like button */}
-        <Col className={'text-center mt-2'}>
-          <Container className='d-flex flex-column'>
+          <Container className={`d-flex flex-column align-items-center ${styles.IconContainer}`}>
             {is_owner ? (
               <OverlayTrigger
                 placement='top'
                 overlay={<Tooltip>You can't like your own quiz!</Tooltip>}
               >
-                <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeOutline}`} />
+                <i className={`far fa-thumbs-up ${styles.Icon} ${styles.LikeOutline}`} />
               </OverlayTrigger>
             ) : like_id ? (
               <span onClick={handleUnlike}>
-                <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeFill}`} />
+                <i className={`far fa-thumbs-up ${styles.Icon} ${styles.LikeFill}`} />
               </span>
             ) : currentUser ? (
               <span onClick={handleLike}>
-                <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeOutline}`} />
+                <i className={`far fa-thumbs-up ${styles.Icon} ${styles.LikeOutline}`} />
               </span>
             ) : (
               <OverlayTrigger
                 placement='top'
                 overlay={<Tooltip>Log in to like posts!</Tooltip>}
               >
-                <i className={`far fa-thumbs-up ${styles.Like} ${styles.LikeOutline}`} />
+                <i className={`far fa-thumbs-up ${styles.Icon} ${styles.LikeOutline}`} />
               </OverlayTrigger>
             )}
             {likes_count}
           </Container>
-        </Col>
-        <Col className={'text-center mt-2'}>
-          <Container className='d-flex flex-column'>
-            <i className="far fa-comment-alt"></i>
+        {/* Comments Icon */}
+          <Container className={`d-flex flex-column align-items-center ${styles.IconContainer}`}>
+            <i className={`far fa-comment-alt ${styles.Icon}`}></i>
             {comments_count}
           </Container>
-        </Col>
       </Row>
       {/* Show created by and high score below answers table on smaller screens */}
       {scoreRowMobile}

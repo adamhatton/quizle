@@ -63,8 +63,14 @@
     animation: guessed 1.2s;
 }
 
-.Like {
+.Icon {
     font-size: 2.5rem;
+}
+
+.IconContainer {
+    width: max-content;
+    margin: 0;
+    padding: 0 5px;
 }
 
 .LikeOutline {
