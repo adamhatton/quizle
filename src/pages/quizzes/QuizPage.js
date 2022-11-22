@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import { axiosReq } from '../../api/axiosDefaults';
 import Asset from '../../components/Asset';
 import Quiz from './Quiz';
+import CommentCreateForm from "../comments/CommentCreateForm";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 /* Component to obtain quiz information and display it*/
 function QuizPage() {
@@ -12,6 +14,11 @@ function QuizPage() {
   const [quizInfo, setQuizInfo] = useState({});
   const [quizAnswers, setQuizAnswers] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [comments, setComments] = useState({ results: [] });
+
+  const currentUser = useCurrentUser();
+  const profile_image = currentUser?.profile_image;
+
 
   // On mount get quiz information and set Info and Answers state variables
   useEffect(() => {
@@ -33,6 +40,7 @@ function QuizPage() {
               score_id: data.score_id,
               score_time: data.score_time,
               likes_count: data.likes_count,
+              comments_count: data.comments_count,
               completed_count: data.completed_count,
             });
             setQuizAnswers([
@@ -59,6 +67,7 @@ function QuizPage() {
   return (
     <>
     { hasLoaded ? (
+    <>
       <Quiz
         {...quizInfo}
         setQuizInfo={setQuizInfo}
@@ -66,6 +75,18 @@ function QuizPage() {
         setQuizAnswers={setQuizAnswers}
         mobile
       />
+      {currentUser ? (
+        <CommentCreateForm
+        profile_id={currentUser.profile_id}
+        profileImage={profile_image}
+        quiz={id}
+        setQuizInfo={setQuizInfo}
+        setComments={setComments}
+      />
+      ) : comments.results.length ? (
+        "Comments"
+      ) : null}
+    </>
     ) : (
       <Container className='text-center'>
         <Asset spinner />

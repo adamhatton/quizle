@@ -32,6 +32,7 @@ const Quiz = (props) => {
     score_id,
     score_time,
     likes_count,
+    comments_count,
     setQuizInfo,
     quizAnswers,
     setQuizAnswers,
@@ -432,6 +433,12 @@ const Quiz = (props) => {
               </OverlayTrigger>
             )}
             {likes_count}
+          </Container>
+        </Col>
+        <Col className={'text-center mt-2'}>
+          <Container className='d-flex flex-column'>
+            <i className="far fa-comment-alt"></i>
+            {comments_count}
           </Container>
         </Col>
       </Row>
