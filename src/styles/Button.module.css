@@ -26,6 +26,10 @@
     font-size: 1.2rem;
 }
 
+.CommentBtn {
+    color: #fff;
+}
+
 .Btn:hover {
     background-color: #3361d4;
     border-color: #3361d4;

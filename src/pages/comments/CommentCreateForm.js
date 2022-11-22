@@ -39,9 +39,12 @@ function CommentCreateForm(props) {
   };
 
   return (
-    <Form className="mt-2" onSubmit={handleSubmit}>
+    <Form
+      className={`${styles.CommentForm} mt-3`}
+      onSubmit={handleSubmit}
+    >
       <Form.Group>
-        <InputGroup>
+        <InputGroup className='align-items-center'>
           <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profileImage} />
           </Link>
@@ -55,7 +58,7 @@ function CommentCreateForm(props) {
         </InputGroup>
       </Form.Group>
       <button
-        className={`${btnStyles.Btn} d-block ml-auto`}
+        className={`${btnStyles.Btn} ${btnStyles.CommentBtn} d-block ml-auto`}
         disabled={!content.trim()}
         type="submit"
       >
