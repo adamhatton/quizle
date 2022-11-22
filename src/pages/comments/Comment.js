@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Media from "react-bootstrap/Media";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Comment.module.css";
+import CommentEditForm from "./CommentEditForm";
 
 const Comment = (props) => {
   const {
@@ -19,6 +20,8 @@ const Comment = (props) => {
     setQuizInfo,
     setComments,
   } = props;
+
+  const [showEditForm, setShowEditForm] = useState(false);
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -47,12 +50,23 @@ const Comment = (props) => {
         <Media.Body className="align-self-center ml-2">
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_at}</span>
-          <p>{content}</p>
+          {showEditForm ? (
+            <CommentEditForm
+              id={id}
+              profile_id={profile_id}
+              content={content}
+              profileImage={profile_image}
+              setComments={setComments}
+              setShowEditForm={setShowEditForm}
+            />
+          ) : (
+            <p>{content}</p>
+          )}
         </Media.Body>
         {is_owner && (
             <MoreDropdown
               item='Comment'
-              handleEdit={() => {}}
+              handleEdit={() => setShowEditForm(true)}
               handleDelete={handleDelete}
             />
         )}
