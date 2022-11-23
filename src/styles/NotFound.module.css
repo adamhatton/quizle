@@ -1,0 +1,23 @@
+.NotFound {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+    margin: 5vh 0;
+}
+
+.ImgContainer {
+    max-width: 500px;
+    margin: auto;
+}
+
+.NotFoundPara {
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.ImgLink {
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: center;
+}
