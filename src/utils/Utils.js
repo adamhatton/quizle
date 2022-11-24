@@ -1,9 +1,9 @@
 import jwtDecode from "jwt-decode";
 import { axiosReq } from "../api/axiosDefaults";
-import Entertainment from '../assets/entertainment.png';
-import General from '../assets/general.png';
-import Music from '../assets/music.png';
-import Sport from '../assets/sport.png';
+import Entertainment from '../assets/entertainment.webp';
+import General from '../assets/general.webp';
+import Music from '../assets/music.webp';
+import Sport from '../assets/sport.webp';
 
 /* fetchMoreData taken from Code Institute 'Moments' walkthrough project */
 // Gets next set of resources for use with InfiniteScroll component

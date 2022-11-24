@@ -1,5 +1,5 @@
 import React from 'react';
-import NoResults from "../assets/no-results.png";
+import NoResults from "../assets/no-results.webp";
 import styles from '../styles/NotFound.module.css';
 
 /* Component for displaying a 404 error */
