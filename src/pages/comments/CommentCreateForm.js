@@ -43,14 +43,16 @@ function CommentCreateForm(props) {
       className={`${styles.CommentForm} mt-3`}
       onSubmit={handleSubmit}
     >
-      <Form.Group>
+      <Form.Group controlId='comment'>
         <InputGroup className='align-items-center'>
           <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profileImage} />
           </Link>
-          <Form.Control
-            placeholder="Add a comment..."
-            as="textarea"
+          <Form.Label srOnly>Enter a comment:</Form.Label>
+          <Form.Control 
+            placeholder='Add a comment...'
+            as='textarea'
+            name='comment'
             value={content}
             onChange={handleChange}
             rows={2}

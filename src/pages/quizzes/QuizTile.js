@@ -17,7 +17,7 @@ const QuizTile = ({ src, message, title, owner, likes_count, category, id }) => 
             alt={message}
         />
         <Media.Body>
-            <h5 className={`${tileStyles.QuizTitle} text-break`}>{title}</h5>
+            <h2 className={`${tileStyles.QuizTitle} text-break`}>{title}</h2>
             <hr className={tileStyles.Rule} />
             <p className={`${tileStyles.QuizSmallText} text-break`}>Creator: {owner}</p>
             <p className={tileStyles.QuizSmallText}>Likes: {likes_count}</p>

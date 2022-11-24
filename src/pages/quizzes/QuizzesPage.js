@@ -131,9 +131,10 @@ const QuizzesPage = ({ filter='', page='All' }) => {
                 className='mr-sm-2'
                 placeholder='Search quizzes'
                 name='search'
+                id='search'
             />
 
-            <Form.Label htmlFor='search' srOnly >Search bar</Form.Label>
+            <Form.Label htmlFor='search' srOnly>Search bar</Form.Label>
           </Form>
         </Col>
         <hr className={pageStyles.Rule} />
