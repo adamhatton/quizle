@@ -7,8 +7,8 @@ import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useRedirect } from '../../hooks/useRedirect';
-import styles from '../../styles/QuizCreateEditForm.module.css'
-import btnStyles from '../../styles/Button.module.css'
+import styles from '../../styles/QuizCreateEditForm.module.css';
+import btnStyles from '../../styles/Button.module.css';
 
 /* Form for creating a new quiz */
 function QuizCreateForm() {
@@ -82,7 +82,7 @@ function QuizCreateForm() {
     {name: 'hint_8', value: hint_8, placeholder: 'Hint 8'},
     {name: 'hint_9', value: hint_9, placeholder: 'Hint 9'},
     {name: 'hint_10', value: hint_10, placeholder: 'Hint 10'},
-  ]
+  ];
 
   // set up an array for use with outputting the answers input fields
   const answersArray = [
@@ -96,7 +96,7 @@ function QuizCreateForm() {
     {name: 'ans_8', value: ans_8, placeholder: 'Answer 8'},
     {name: 'ans_9', value: ans_9, placeholder: 'Answer 9'},
     {name: 'ans_10', value: ans_10, placeholder: 'Answer 10'},
-  ]
+  ];
 
   const [errors, setErrors] = useState({});
 
@@ -161,7 +161,7 @@ function QuizCreateForm() {
         <li>The time limit is a minimum of 30 seconds and a maximum of 600 seconds (10 minutes)</li>
       </ul>
     </>
-  )
+  );
 
   return (
     <Form onSubmit={handleSubmit} className={styles.QuizForm}>
@@ -314,7 +314,7 @@ function QuizCreateForm() {
         </Alert>
       ))}
     </Form>
-  )
+  );
 }
 
-export default QuizCreateForm
+export default QuizCreateForm;

@@ -1,22 +1,25 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useRedirect } from '../../hooks/useRedirect';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useHistory } from 'react-router-dom';
-import { useRedirect } from '../../hooks/useRedirect';
-import styles from '../../styles/SignInUpForm.module.css'
-import btnStyles from '../../styles/Button.module.css'
+import styles from '../../styles/SignInUpForm.module.css';
+import btnStyles from '../../styles/Button.module.css';
 
 /* State variables, handleChange(), handleSubmit() and error handling taken
  from Code Institute 'Moments' walkthrough project */
+
+// Form for creating an account with the website
 const SignUpForm = () => {
   useRedirect('loggedIn');
   const [signUpData, setSignUpData] = useState({
     username: '',
     password1: '',
     password2: '',
-  })
+  });
+
   const { username, password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
@@ -100,7 +103,7 @@ const SignUpForm = () => {
         </Alert>
       ))}
     </Form>
-  )
-}
+  );
+};
 
-export default SignUpForm
+export default SignUpForm;

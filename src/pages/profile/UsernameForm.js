@@ -10,8 +10,8 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-import styles from '../../styles/UsernamePasswordForm.module.css'
-import btnStyles from '../../styles/Button.module.css'
+import styles from '../../styles/UsernamePasswordForm.module.css';
+import btnStyles from '../../styles/Button.module.css';
 import MessageModal from "../../components/MessageModal";
 
 /* Form for editing user's username, core component taken from
@@ -40,7 +40,8 @@ const UsernameForm = () => {
   const handleClose = () => {
     setShow(false);
     history.goBack();
-  }
+  };
+  
   const handleShow = () => setShow(true);
 
   // Submit new username to the database

@@ -14,8 +14,8 @@ import {
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
-import styles from '../../styles/ProfileEdit.module.css'
-import btnStyles from '../../styles/Button.module.css'
+import styles from '../../styles/ProfileEdit.module.css';
+import btnStyles from '../../styles/Button.module.css';
 import MessageModal from "../../components/MessageModal";
 
 /* Form for editing user's profile, core component taken from
@@ -61,15 +61,16 @@ const ProfileEditForm = () => {
 
     return () => {
         componentMounted.current = false;
-    }
+    };
   }, [currentUser, history, id]);
 
-    // Handle closing modal
-    const handleClose = () => {
-      setShow(false);
-      history.goBack();
-    }
-    const handleShow = () => setShow(true);
+  // Handle closing modal
+  const handleClose = () => {
+    setShow(false);
+    history.goBack();
+  };
+
+  const handleShow = () => setShow(true);
 
   // handleChange function uses computed property so all inputs can call it
   const handleChange = (event) => {

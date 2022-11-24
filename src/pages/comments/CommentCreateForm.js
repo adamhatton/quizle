@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { axiosRes } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-
+import Avatar from "../../components/Avatar";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../api/axiosDefaults";
 
+/* Form to create and post a user comment.
+Taken from Code Institute 'Moments' walkthrough */
 function CommentCreateForm(props) {
   const { quiz, setQuizInfo, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");

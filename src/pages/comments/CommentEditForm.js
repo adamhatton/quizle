@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-
-import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
-
+import Form from "react-bootstrap/Form";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
+/* Form to edit a user comment. Taken from Code Institute 'Moments' walkthrough */
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
 

@@ -10,8 +10,8 @@ const Avatar = ({src, height = 40, text }) => {
         height={height} width={height} alt="avatar" />
         {text}
     </span>
-  )
-}
+  );
+};
 
 
-export default Avatar
+export default Avatar;

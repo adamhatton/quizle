@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
+import { axiosReq } from '../../api/axiosDefaults';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { Link, useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { axiosReq } from '../../api/axiosDefaults';
-
 import QuizTile from './QuizTile';
 import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import styles from '../../App.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import pageStyles from '../../styles/QuizzesPage.module.css';
 
-import styles from '../../App.module.css'
-import btnStyles from '../../styles/Button.module.css'
-import pageStyles from '../../styles/QuizzesPage.module.css'
-import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 /* Quizzes page fetches all quizzes to display and enables filtering */
 const QuizzesPage = ({ filter='', page='All' }) => {
@@ -80,7 +79,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
         </ButtonGroup>
       </ButtonToolbar>
     </>
-  )
+  );
 
   // Button group JSX for larger screens
   const desktopButtonGroup = (
@@ -106,7 +105,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
         </Link>
       </ButtonGroup>
     </>
-  )
+  );
 
   return (
     <>
@@ -120,7 +119,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
             )}
         </Col>
         <Col xs={12} lg={6}>
-          <i className={`${pageStyles.Search} fas fa-search`}></i>
+          <i className={`${pageStyles.Search} fas fa-search`} />
           <Form
             className='mb-3'
             onSubmit={(event) => event.preventDefault()}
@@ -180,7 +179,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
           )}
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default QuizzesPage
+export default QuizzesPage;

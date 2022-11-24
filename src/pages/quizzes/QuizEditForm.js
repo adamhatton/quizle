@@ -6,8 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
-import styles from '../../styles/QuizCreateEditForm.module.css'
-import btnStyles from '../../styles/Button.module.css'
+import styles from '../../styles/QuizCreateEditForm.module.css';
+import btnStyles from '../../styles/Button.module.css';
 import MessageModal from '../../components/MessageModal';
 
 /* Form for editing a quiz */
@@ -86,7 +86,7 @@ function QuizEditForm() {
     {name: 'hint_8', value: hint_8, placeholder: 'Hint 8'},
     {name: 'hint_9', value: hint_9, placeholder: 'Hint 9'},
     {name: 'hint_10', value: hint_10, placeholder: 'Hint 10'},
-  ]
+  ];
 
   // set up an array for use with outputting the hints input fields
   const answersArray = [
@@ -100,7 +100,7 @@ function QuizEditForm() {
     {name: 'ans_8', value: ans_8, placeholder: 'Answer 8'},
     {name: 'ans_9', value: ans_9, placeholder: 'Answer 9'},
     {name: 'ans_10', value: ans_10, placeholder: 'Answer 10'},
-  ]
+  ];
 
   const [show, setShow] = useState(false);
 
@@ -175,7 +175,8 @@ function QuizEditForm() {
   const handleClose = () => {
     setShow(false);
     history.push(`/quizzes/${id}`);
-  }
+  };
+
   const handleShow = () => setShow(true);
 
   // handleChange function uses computed property so all inputs can call it
@@ -229,16 +230,15 @@ function QuizEditForm() {
   // JSX for instructions
   const instructions = (
     <>
-      <h1>Quiz Creation</h1>
-      <p>Fill in the fields to create your quiz, please note:</p>
+      <h1>Edit Quiz</h1>
+      <p>Amend the fields to edit your quiz, please note:</p>
       <ul className={styles.FormList}>
         <li>Your quiz must have 10 hints and 10 answers</li>
         <li>If you don't want to provide hints, just enter 1-10 instead!</li>
         <li>The time limit is a minimum of 30 seconds and a maximum of 600 seconds (10 minutes)</li>
-        <li>Scroll down to see some examples of completed quiz forms</li>
       </ul>
     </>
-  )
+  );
 
   return (
     <Form onSubmit={handleSubmit} className={styles.QuizForm}>
@@ -396,7 +396,7 @@ function QuizEditForm() {
         handleClose={handleClose}
       />
     </Form>
-  )
+  );
 }
 
-export default QuizEditForm
+export default QuizEditForm;

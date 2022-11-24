@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import Media from 'react-bootstrap/Media';
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Avatar from '../../components/Avatar';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import styles from '../../styles/Quiz.module.css'
-import btnStyles from '../../styles/Button.module.css'
+import Media from 'react-bootstrap/Media';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
@@ -13,10 +13,10 @@ import { MoreDropdown } from '../../components/MoreDropdown';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Timer from '../../components/Timer';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
-import Container from 'react-bootstrap/Container';
-import MessageModal from '../../components/MessageModal'
+import Avatar from '../../components/Avatar';
+import MessageModal from '../../components/MessageModal';
+import styles from '../../styles/Quiz.module.css';
+import btnStyles from '../../styles/Button.module.css';
 
 /* Display quiz and enable a user to complete it */
 const Quiz = (props) => {
@@ -52,7 +52,8 @@ const Quiz = (props) => {
   const handleClose = () => {
     setShow(false);
     history.goBack();
-  }
+  };
+
   const handleShow = () => setShow(true);
 
   // Check if user has completed quiz and, if yes, create a score
@@ -60,7 +61,7 @@ const Quiz = (props) => {
       // Checks how many answers user has guessed
       const handleCompleted = () => {
       const guessedAnswers = quizAnswers.reduce((acc, cur) => {
-        return cur.guessed === true ? acc + 1 : acc
+        return cur.guessed === true ? acc + 1 : acc;
       }, 0);
       const allGuessed = guessedAnswers === 10 ? true : false;
       if (allGuessed && quizActive) {
@@ -72,10 +73,10 @@ const Quiz = (props) => {
         setCompleted(true);
         setQuizActive(false);
         setQuizAnswers(quizAnswers.map(answer => {
-          return {...answer, revealed: true}
-        }))
+          return {...answer, revealed: true};
+        }));
       }
-    }
+    };
 
     // If user has guessed all answers, create a score for them
     const handleCreateScore = async (score) => {
@@ -90,9 +91,9 @@ const Quiz = (props) => {
               ...prevQuiz,
               score_time: data.completed_time,
               score_id: data.id
-            }))
+            }));
         } catch(err){
-          console.log(err)
+          console.log(err);
         }
       } 
       // If user has previously completed quiz, update their score
@@ -105,24 +106,24 @@ const Quiz = (props) => {
             setQuizInfo((prevQuiz) => ({
               ...prevQuiz,
               score_time: data.completed_time
-            }))
+            }));
           } catch(err){
-          console.log(err)
+          console.log(err);
           }
       }
-    }
+    };
     handleCompleted();
-}, [quizAnswers,
-    quizActive,
-    id,
-    giveUp,
-    score_id,
-    score_time,
-    seconds,
-    time_limit_seconds,
-    setQuizInfo,
-    setQuizAnswers,
-  ])
+  }, [quizAnswers,
+      quizActive,
+      id,
+      giveUp,
+      score_id,
+      score_time,
+      seconds,
+      time_limit_seconds,
+      setQuizInfo,
+      setQuizAnswers,
+  ]);
 
   // If user own's quiz send them to the edit page
   const handleEdit = () => {
@@ -147,11 +148,11 @@ const Quiz = (props) => {
         const formattedAnswer = answer.value.trim().toLowerCase();
         if (formattedGuess === formattedAnswer && !answer.guessed) {
           event.target.value = '';
-          return {...answer, guessed: true, revealed: true}
+          return {...answer, guessed: true, revealed: true};
         } else {
-          return {...answer}
+          return {...answer};
         } 
-      }))
+      }));
     }
   };
 
@@ -160,9 +161,9 @@ const Quiz = (props) => {
     setGiveUp(true);
     setQuizActive(false);
     setQuizAnswers(quizAnswers.map(answer => {
-      return {...answer, revealed: true}
-    }))
-  }
+      return {...answer, revealed: true};
+    }));
+  };
 
   // Reset the state variables
   const handleReset = () => {
@@ -171,9 +172,9 @@ const Quiz = (props) => {
     setCompleted(false);
     setSeconds(time_limit_seconds);
     setQuizAnswers(quizAnswers.map(answer => {
-      return {...answer, guessed: false, revealed: false}
-    }))
-  }
+      return {...answer, guessed: false, revealed: false};
+    }));
+  };
 
   // Enable a user to like the quiz
   const handleLike = async () => {
@@ -221,7 +222,7 @@ const Quiz = (props) => {
         <p className={`${styles.Description} mb-1`}>{description}</p>
       </Col>
     </Row>
-  )
+  );
 
   // JSX for profile image and high score info
   const scoreRowDesktop = (
@@ -238,9 +239,9 @@ const Quiz = (props) => {
       {currentUser ? (
         <Media className={`align-items-center ${styles.QuizMedia}`}>
           {score_id ? (
-            <i className={`${styles.ScoreIcon} ${styles.Completed} far fa-check-circle`}></i>    
+            <i className={`${styles.ScoreIcon} ${styles.Completed} far fa-check-circle`} />    
           ) : (
-            <i className={`${styles.ScoreIcon} ${styles.NotCompleted} far fa-times-circle`}></i>
+            <i className={`${styles.ScoreIcon} ${styles.NotCompleted} far fa-times-circle`} />
           )}
           <Media.Body>
             <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
@@ -258,7 +259,7 @@ const Quiz = (props) => {
         </Media>
       ) : (
         <Media className={`align-items-center ${styles.QuizMedia}`}>
-            <i className={`${styles.ScoreIcon} ${styles.LoggedOut} far fa-times-circle`}></i>
+            <i className={`${styles.ScoreIcon} ${styles.LoggedOut} far fa-times-circle`} />
           <Media.Body>
             <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
             <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
@@ -268,7 +269,7 @@ const Quiz = (props) => {
         </Media>
       )}
     </Row>
-  )
+  );
 
   // JSX for guess bar, timer and game buttons
   const gameControls = (
@@ -325,7 +326,7 @@ const Quiz = (props) => {
         }
       </Col>
     </Row>
-  )
+  );
 
   // JSX for profile image and high score info on mobile
   const scoreRowMobile = (
@@ -342,9 +343,9 @@ const Quiz = (props) => {
           {currentUser ? (
             <>
               {score_id ? (
-                <i className={`${styles.ScoreIcon} ${styles.Completed} far fa-check-circle`}></i>    
+                <i className={`${styles.ScoreIcon} ${styles.Completed} far fa-check-circle`} />    
               ) : (
-                <i className={`${styles.ScoreIcon} ${styles.NotCompleted} far fa-times-circle`}></i>
+                <i className={`${styles.ScoreIcon} ${styles.NotCompleted} far fa-times-circle`} />
               )}
               <Col>
                 <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
@@ -362,7 +363,7 @@ const Quiz = (props) => {
             </>
           ) : (
             <>
-              <i className={`${styles.ScoreIcon} ${styles.LoggedOut} far fa-times-circle`}></i>
+              <i className={`${styles.ScoreIcon} ${styles.LoggedOut} far fa-times-circle`} />
               <Col>
                 <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Your High Score</h2>
                 <p className={`${styles.NoMargins} ${styles.BiggerText}`}>
@@ -374,7 +375,7 @@ const Quiz = (props) => {
         </Row>
       }
     </>
-  )
+  );
 
   return (
     <>
@@ -441,7 +442,7 @@ const Quiz = (props) => {
           </Container>
         {/* Comments Icon */}
           <Container className={`d-flex flex-column align-items-center ${styles.IconContainer}`}>
-            <i className={`far fa-comment-alt ${styles.Icon}`}></i>
+            <i className={`far fa-comment-alt ${styles.Icon}`} />
             {comments_count}
           </Container>
       </Row>
@@ -453,7 +454,7 @@ const Quiz = (props) => {
         handleClose={handleClose}
       />
     </>
-  )
-}
+  );
+};
 
-export default Quiz
+export default Quiz;

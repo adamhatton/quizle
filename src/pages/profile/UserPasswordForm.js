@@ -7,8 +7,8 @@ import Form from "react-bootstrap/Form";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import styles from '../../styles/UsernamePasswordForm.module.css'
-import btnStyles from '../../styles/Button.module.css'
+import styles from '../../styles/UsernamePasswordForm.module.css';
+import btnStyles from '../../styles/Button.module.css';
 import MessageModal from "../../components/MessageModal";
 
 /* Form for editing user's password, core component taken from
@@ -45,7 +45,8 @@ const UserPasswordForm = () => {
   const handleClose = () => {
     setShow(false);
     history.goBack();
-  }
+  };
+  
   const handleShow = () => setShow(true);
 
   // Submit new password to the database

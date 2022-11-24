@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import btnStyles from "../styles/Button.module.css";
 
+/* Reusable modal component for showing messages */
 const MessageModal = ( {message, handleClose, show } ) => {
   return (
     <Modal show={show} onHide={handleClose}>
@@ -13,7 +14,7 @@ const MessageModal = ( {message, handleClose, show } ) => {
         </Button>
     </Modal.Footer>
   </Modal>
-  )
-}
+  );
+};
 
-export default MessageModal
+export default MessageModal;

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { fetchMoreData } from '../../utils/Utils';
+import CommentCreateForm from "../comments/CommentCreateForm";
+import InfiniteScroll from 'react-infinite-scroll-component';
 import Asset from '../../components/Asset';
 import Quiz from './Quiz';
-import CommentCreateForm from "../comments/CommentCreateForm";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { fetchMoreData } from '../../utils/Utils';
 import Comment from '../comments/Comment';
 
 /* Component to obtain quiz information and display it*/
@@ -30,7 +30,7 @@ function QuizPage() {
             const [ {data: quiz}, {data: comments} ] = await Promise.all([
               axiosReq.get(`/quizzes/${id}`),
               axiosReq.get(`/comments/?quiz=${id}`)
-            ])
+            ]);
             setComments(comments);
             setQuizInfo({
               id: quiz.id,
@@ -66,7 +66,7 @@ function QuizPage() {
         } catch(err){
             console.log(err);
         }
-    }
+    };
     handleMount();
 
   }, [id]);
@@ -125,7 +125,7 @@ function QuizPage() {
       </Container>
     )}
     </>
-  )
+  );
 }
 
-export default QuizPage
+export default QuizPage;

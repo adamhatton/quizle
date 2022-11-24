@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styles from '../styles/Timer.module.css'
+import styles from '../styles/Timer.module.css';
 
 /* Timer component takes gamestate and seconds input and counts down to 0 */
 const Timer = ({isActive, seconds, setSeconds, stop, completed=false }) => {
@@ -18,7 +18,7 @@ const Timer = ({isActive, seconds, setSeconds, stop, completed=false }) => {
       }
     return () => {
         clearInterval(interval);
-    }
+    };
     }, [isActive, stop, completed, setSeconds]);
   
   return (
@@ -26,7 +26,7 @@ const Timer = ({isActive, seconds, setSeconds, stop, completed=false }) => {
       {Math.floor(seconds / 60)}: 
       { (seconds % 60) < 10 ? `0${seconds % 60}` : (seconds % 60)}
     </div>
-  )
-}
+  );
+};
 
-export default Timer
+export default Timer;

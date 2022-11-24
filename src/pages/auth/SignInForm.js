@@ -1,17 +1,19 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import { useHistory } from 'react-router-dom';
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useRedirect } from '../../hooks/useRedirect';
-import styles from '../../styles/SignInUpForm.module.css'
-import btnStyles from '../../styles/Button.module.css'
 import { setTokenTimestamp } from '../../utils/Utils';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import styles from '../../styles/SignInUpForm.module.css';
+import btnStyles from '../../styles/Button.module.css';
 
 /* State variables, handleChange(), handleSubmit() and error handling taken
  from Code Institute 'Moments' walkthrough project */
+
+// Form for signing into the website
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
   useRedirect('loggedIn');
@@ -19,7 +21,8 @@ const SignInForm = () => {
   const [signInData, setSignInData] = useState({
     username: '',
     password: '',
-  })
+  });
+
   const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
@@ -92,7 +95,7 @@ const SignInForm = () => {
         </Alert>
       ))}
     </Form>
-  )
-}
+  );
+};
 
-export default SignInForm
+export default SignInForm;

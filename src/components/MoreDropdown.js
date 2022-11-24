@@ -1,21 +1,21 @@
 import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
 import { useHistory } from 'react-router-dom';
-import styles from '../styles/MoreDropdown.module.css'
+import Dropdown from 'react-bootstrap/Dropdown';
+import styles from '../styles/MoreDropdown.module.css';
 
 /* All components here Taken from Code Institute 'Moments' walkthrough. */
 
 // Change the default dropdown to a 3 dots fontawesome icon. 
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
-    <i
-      className="fas fa-ellipsis-v"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    />
-  ));
+  <i
+    className="fas fa-ellipsis-v"
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+  />
+));
 
 // Provide a dropdown menu with edit and delete options
 export const MoreDropdown = ({item, handleEdit, handleDelete}) => {
@@ -29,19 +29,19 @@ export const MoreDropdown = ({item, handleEdit, handleDelete}) => {
               aria-label="edit"
             >
               Edit {item}
-              <i className='fas fa-marker'></i>
+              <i className='fas fa-marker' />
             </Dropdown.Item>
             <Dropdown.Item
               onClick={handleDelete}
               aria-label="delete"
             >
               Delete {item}
-              <i className='fas fa-trash'></i>
+              <i className='fas fa-trash' />
             </Dropdown.Item>
         </Dropdown.Menu>
     </Dropdown>
-  )
-}
+  );
+};
 
 /* Provide a dropdown menu for profile component with edit profile, 
 username, and password options */
@@ -56,23 +56,23 @@ export const ProfileEditDropdown = ({ id }) => {
           aria-label="edit-profile"
         >
           Edit Profile
-          <i className='fas fa-marker'></i>
+          <i className='fas fa-marker' />
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/username`)}
           aria-label="edit-username"
         >
           Change Username
-          <i className="fas fa-user-circle"></i>
+          <i className="fas fa-user-circle" />
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/password`)}
           aria-label="edit-password"
         >
           Change Password
-          <i className="fas fa-lock-open"></i>
+          <i className="fas fa-lock-open" />
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
-}
+};

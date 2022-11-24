@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
 import NoResults from "../assets/no-results.png";
-import styles from '../styles/NotFound.module.css'
+import styles from '../styles/NotFound.module.css';
 
+/* Component for displaying a 404 error */
 const NotFound = () => {
   return (
     <div className={`${styles.ImgContainer}`}>
@@ -18,7 +19,7 @@ const NotFound = () => {
           </a> on Freepik
         </p>
     </div>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;

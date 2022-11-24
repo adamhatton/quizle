@@ -9,7 +9,7 @@ const Asset = ({ spinner, message, question }) => {
   return (
     <div className={`${styles.Asset} p-4`}>
       {spinner && <Spinner animation="border" />}
-      {question && <i className={`${styles.Icon} far fa-question-circle`}></i>}
+      {question && <i className={`${styles.Icon} far fa-question-circle`} />}
       {message && <p className={`${styles.Text} mt-4`}>{message}</p>}
     </div>
   );

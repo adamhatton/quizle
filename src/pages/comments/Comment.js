@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import Col from "react-bootstrap/Col";
-import Media from "react-bootstrap/Media";
 import { Link } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
-import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import styles from "../../styles/Comment.module.css";
+import Avatar from "../../components/Avatar";
 import CommentEditForm from "./CommentEditForm";
+import Col from "react-bootstrap/Col";
+import Media from "react-bootstrap/Media";
+import styles from "../../styles/Comment.module.css";
 
+/* Reusable component to show a user comment and profile Avatar.
+Taken from Code Institute 'Moments' walkthrough */
 const Comment = (props) => {
   const {
     profile_id,
@@ -37,7 +39,9 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -75,4 +79,4 @@ const Comment = (props) => {
     );
   };
 
-export default Comment
+export default Comment;

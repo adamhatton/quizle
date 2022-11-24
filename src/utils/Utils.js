@@ -19,51 +19,53 @@ export const fetchMoreData = async (resource, setResource) => {
             : [...acc, cur];
         }, prevResource.results),
       }));
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // Return the image to use in a QuizTile
   export const setImageSource = (quizCategory) => {
     switch (quizCategory) {
       case 'sport': 
-        return Sport
+        return Sport;
       case 'music':
-        return Music
+        return Music;
       case 'entertainment':
-        return Entertainment
+        return Entertainment;
       case 'general':
-        return General
+        return General;
       default:
-        return General
+        return General;
     }
-  }
+  };
 
   // Return the alt text to use in a QuizTile
   export const setImageAlt = (quizCategory) => {
     switch (quizCategory) {
       case 'sport': 
-        return 'A simple icon of a football pitch'
+        return 'A simple icon of a football pitch';
       case 'music':
-        return 'A simple icon of a pair of headphones'
+        return 'A simple icon of a pair of headphones';
       case 'entertainment':
-        return "A simple icon of a director's clapperboard"
+        return "A simple icon of a director's clapperboard";
       case 'general':
-        return 'A simple icon of a question mark'
+        return 'A simple icon of a question mark';
       default:
-        return 'A simple icon of a question mark'
+        return 'A simple icon of a question mark';
     }
-  }
+  };
 
   // Utility functions to ensure token refresh is only requested when necessary
   export const setTokenTimestamp = (data) => {
-    const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp
-    localStorage.setItem('refreshTokenTimestamp', refreshTokenTimestamp)
-  }
+    const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
+    localStorage.setItem('refreshTokenTimestamp', refreshTokenTimestamp);
+  };
   
   export const shouldRefreshToken = () => {
-    return !!localStorage.getItem('refreshTokenTimestamp')
-  }
+    return !!localStorage.getItem('refreshTokenTimestamp');
+  };
   
   export const removeTokenTimestamp = () => {
-    localStorage.removeItem('refreshTokenTimestamp')
-  }
+    localStorage.removeItem('refreshTokenTimestamp');
+  };

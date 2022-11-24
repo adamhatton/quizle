@@ -1,14 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import Avatar from './Avatar';
+import axios from 'axios';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-import { NavLink } from 'react-router-dom'
-import styles from '../styles/NavBar.module.css';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
-import Avatar from './Avatar';
-import axios from 'axios';
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
 import { removeTokenTimestamp } from '../utils/Utils';
+import styles from '../styles/NavBar.module.css';
 
 /* Navigation bar component, core structure taken from
  Code Institute 'Moments' Walkthrough*/
@@ -37,7 +37,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <i className='fas fa-plus'></i>
+        <i className='fas fa-plus' />
           Create
       </NavLink>
       <NavLink
@@ -45,7 +45,7 @@ const NavBar = () => {
         className={styles.NavLink}
         onClick={handleSignOut}
       >
-        <i className='fas fa-sign-out-alt'></i>
+        <i className='fas fa-sign-out-alt' />
           Sign Out
       </NavLink>
       <NavLink 
@@ -56,7 +56,7 @@ const NavBar = () => {
         <Avatar src={currentUser?.profile_image} text='Profile' />
       </NavLink>
     </>
-  )
+  );
 
   // Links to be displayed when user is logged out
   const loggedOutIcons = (
@@ -66,7 +66,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <i className='fas fa-sign-in-alt'></i>
+        <i className='fas fa-sign-in-alt' />
           Sign In
       </NavLink>
       <NavLink
@@ -74,11 +74,11 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <i className='far fa-user-circle'></i>
+        <i className='far fa-user-circle' />
           Sign Up
       </NavLink>
     </>
-  )
+  );
 
   return (
     <Navbar expanded={expanded} className={styles.NavBar} expand='md' fixed='top'>
@@ -99,7 +99,7 @@ const NavBar = () => {
               className={styles.NavLink}
               activeClassName={styles.Active}
             >
-              <i className='far fa-question-circle'></i>
+              <i className='far fa-question-circle' />
                 Quizzes
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
@@ -107,7 +107,7 @@ const NavBar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

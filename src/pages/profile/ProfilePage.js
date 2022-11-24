@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import Avatar from '../../components/Avatar';
+import { useParams } from 'react-router-dom';
+import { axiosReq } from '../../api/axiosDefaults';
+import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
-import Avatar from '../../components/Avatar';
-import { useParams } from 'react-router-dom';
-import { axiosReq } from '../../api/axiosDefaults';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Container from 'react-bootstrap/Container';
 import Asset from '../../components/Asset';
 import QuizTile from '../quizzes/QuizTile';
-import { fetchMoreData, setImageAlt, setImageSource } from '../../utils/Utils';
 import { ProfileEditDropdown } from '../../components/MoreDropdown';
-import btnStyles from '../../styles/Button.module.css'
-import pageStyles from '../../styles/ProfilePage.module.css'
+import btnStyles from '../../styles/Button.module.css';
+import pageStyles from '../../styles/ProfilePage.module.css';
 
 /* ProfilePage component shows user's profile info and fetches any quizzes 
 they have created or completed for display */
@@ -38,17 +38,17 @@ const ProfilePage = ({mobile}) => {
                 axiosReq.get(`/profiles/${id}/`),
                 axiosReq.get(`/quizzes/?owner=${id}`),
                 axiosReq.get(`/quizzes/?scores__owner=${id}`),
-            ])
+            ]);
             setProfile(pageProfile);
             setCreatedQuizzes(createdQuizzes);
             setCompletedQuizzes(completedQuizzes);
             setHasLoaded(true);
         } catch(err) {
-            console.log(err)
+            console.log(err);
         }
-    }
+    };
 
-    fetchData()
+    fetchData();
   }, [id]);
 
   // JSX for displaying QuizTiles for quizzes created by the user
@@ -87,7 +87,7 @@ const ProfilePage = ({mobile}) => {
         </Container>
       )}
     </>
-  )
+  );
 
   // JSX for displaying QuizTiles for quizzes completed by the user
   const completedQuizTiles = (
@@ -125,7 +125,7 @@ const ProfilePage = ({mobile}) => {
         </Container>
       )}
     </>
-  )
+  );
 
   return (
     <>
@@ -174,7 +174,7 @@ const ProfilePage = ({mobile}) => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;
