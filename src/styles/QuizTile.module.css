@@ -13,6 +13,11 @@
     margin-top: 25px;
 }
 
+.QuizSmallText {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
 .Category {
     position: absolute;
     right: 0;
@@ -25,18 +30,14 @@
     border-top-right-radius: 5px;
 }
 
-.QuizSmallText {
-    font-size: 1rem;
-    margin-bottom: 0;
-}
-
 .Rule {
     width: 50%;
     margin: auto;
     margin-bottom: 5px;
 }
 
-/* -----------------------------------Media queries for smaller screens */
+/*------------------------------------- Media Queries */
+/* For screen sizes 400px and below */
 @media screen and (max-width: 400px) {
 
     .Image {
@@ -46,7 +47,7 @@
 
 }
 
-/* -----------------------------------Media queries for medium screens and below */
+/* For screen sizes 768px and below */
 @media screen and (max-width: 768px) {
 
     .QuizTile {

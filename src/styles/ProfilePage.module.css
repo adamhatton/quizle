@@ -33,6 +33,8 @@ margin-bottom: 5px;
     min-height: 100vh;
 }
 
+/*------------------------------------- Media Queries */
+/* For screen sizes 768px and above */
 @media screen and (min-width: 768px) {
 
     .ProfileCol {

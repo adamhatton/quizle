@@ -5,15 +5,15 @@
     margin: 5vh 0;
 }
 
-.ImgContainer {
-    max-width: 500px;
-    margin: auto;
-}
-
 .NotFoundPara {
     font-weight: 700;
     font-size: 1.2rem;
     text-align: center;
+}
+
+.ImgContainer {
+    max-width: 500px;
+    margin: auto;
 }
 
 .ImgLink {

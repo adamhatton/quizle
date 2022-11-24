@@ -1,3 +1,4 @@
+/*------------------------------------- General Styling (Global) */
 * {
     margin: 0;
     padding: 0;
@@ -50,6 +51,8 @@ i:hover {
     min-height: 100vh;
 }
 
+/*------------------------------------- Media Queries */
+/* For screen sizes 576px and below */
 @media screen and (max-width: 576px) {
 
     h1 {

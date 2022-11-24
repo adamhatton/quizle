@@ -1,24 +1,6 @@
-.ScoreIcon {
-    font-size: 4rem;
-    cursor: auto;
-}
+/*------------------------------------- Quiz Component Styles */
 
-.NotCompleted {
-    color: #e91313;
-}
-
-.Completed {
-    color: green;
-}
-
-.NotGuessed {
-    color: #e91313;
-}
-
-.LoggedOut {
-    color: #969494;
-}
-
+/* General styling rules */
 .NoMargins {
     margin: 0;
 }
@@ -43,6 +25,57 @@
     flex-basis: 50%;
 }
 
+.TimeText {
+    min-height: 46px;
+    line-height: 46px;
+    margin: 0;
+}
+
+/* Icon styles */
+.Icon {
+    font-size: 2.5rem;
+}
+
+.IconContainer {
+    width: max-content;
+    margin: 0;
+    padding: 0 5px;
+}
+
+.ScoreIcon {
+    font-size: 4rem;
+    cursor: auto;
+}
+
+.NotCompleted {
+    color: #e91313;
+}
+
+.Completed {
+    color: green;
+}
+
+.NotGuessed {
+    color: #e91313;
+}
+
+.LoggedOut {
+    color: #969494;
+}
+
+.LikeOutline {
+    color: #969494;
+}
+
+.LikeOutline:hover {
+    color: #ff5900;
+}
+
+.LikeFill {
+    color: #0048ff;
+}
+
+/* Table styles */
 .Table {
     text-align: center;
     max-width: 900px;
@@ -63,39 +96,14 @@
     animation: guessed 1.2s;
 }
 
-.Icon {
-    font-size: 2.5rem;
-}
-
-.IconContainer {
-    width: max-content;
-    margin: 0;
-    padding: 0 5px;
-}
-
-.LikeOutline {
-    color: #969494;
-}
-
-.LikeOutline:hover {
-    color: #ff5900;
-}
-
-.LikeFill {
-    color: #0048ff;
-}
-
-.TimeText {
-    min-height: 46px;
-    line-height: 46px;
-    margin: 0;
-}
-
+/*------------------------------------- Animations */
 @keyframes guessed {
     from {background-color: red;}
     to {background-color: #fff;}
-  }
+}
 
+/*------------------------------------- Media Queries */
+/* For screen sizes 530px and below */  
 @media screen and (max-width: 530px) {
 
     .QuizMedia {
@@ -104,6 +112,7 @@
 
 }
 
+/* For screen sizes 530px and above */  
 @media screen and (min-width: 530px) {
 
     .Guess {

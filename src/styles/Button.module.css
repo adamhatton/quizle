@@ -1,3 +1,7 @@
+/*------------------------------------- Global Button styles */
+
+
+/* Buttons within a Button Bar */
 .BtnBarBtn {
     border-radius: 0;
     background-color: #145F76;
@@ -17,6 +21,7 @@
     box-shadow: none;
 }
 
+/* Standalone buttons */
 .Btn {
     border-radius: 0;
     background-color: #0048ff;
@@ -24,10 +29,6 @@
     margin: 5px 1px 0 0;
     min-width: 75px;
     font-size: 1.2rem;
-}
-
-.CommentBtn {
-    color: #fff;
 }
 
 .Btn:hover {
@@ -39,6 +40,10 @@
     background-color: #3361d4;
     border-color: #3361d4;
     box-shadow: none;
+}
+
+.CommentBtn {
+    color: #fff;
 }
 
 .ProfileBtn {
