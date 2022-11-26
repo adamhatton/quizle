@@ -113,12 +113,12 @@ function QuizPage() {
         />
       ) : currentUser ? (
         <Container className='text-center'>
-          <p>No comments yet, be the first to comment!</p>
+          <p className='pb-3 mb-0'>No comments yet, be the first to comment!</p>
         </Container>
         
       ) : (
         <Container className='text-center mt-4'>
-          <p>No comments yet, login to add a comment!</p>
+          <p className='pb-3 mb-0'>No comments yet, login to add a comment!</p>
         </Container>
       )}
     </>
