@@ -145,7 +145,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
           {desktopButtonGroup}
         </Col>
       </Row>
-      <Row className={`${styles.MinHeight} mt-3`}>
+      <Row className={`${styles.MinHeight} mt-3 justify-content-center`}>
         { hasLoaded ? (
           <>
             {quizzes.results.length ? (
@@ -163,7 +163,7 @@ const QuizzesPage = ({ filter='', page='All' }) => {
                 loader={<Asset spinner />}
                 hasMore={!!quizzes.next}
                 next={() => fetchMoreData(quizzes, setQuizzes)}
-                className={'d-flex flex-wrap pb-3'}
+                className={'d-flex flex-wrap pb-3 align-items-center'}
               />
                 
               ) : (
