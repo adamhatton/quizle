@@ -56,12 +56,3 @@
     }
 
 }
-
-/* For screen sizes 768px and above */
-@media screen and (min-width: 768px) {
-
-    .QuizTile {
-        min-width: 330px;
-    }
-
-}

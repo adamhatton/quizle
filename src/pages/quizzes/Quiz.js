@@ -230,7 +230,10 @@ const Quiz = (props) => {
       <Media className={`align-items-center text-right ${styles.QuizMedia}`}>
         <Media.Body>
           <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Created by</h2>
-          <p className={`${styles.NoMargins} ${styles.BiggerText}`}>{owner}</p>
+          <div className={`${styles.ProfileName} ml-auto`}> 
+            <p className={`${styles.NoMargins} ${styles.BiggerText} text-truncate`}>{owner}</p>
+          </div>
+
         </Media.Body>
         <Link to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} height={64} />
@@ -338,7 +341,7 @@ const Quiz = (props) => {
           </Link>
           <Col>
             <h2 className={`${styles.NoMargins} ${styles.Heading2}`}>Created by</h2>
-            <p className={`${styles.NoMargins} ${styles.BiggerText}`}>{owner}</p>
+            <p className={`${styles.NoMargins} ${styles.BiggerText} text-truncate `}>{owner}</p>
           </Col>
           {currentUser ? (
             <>

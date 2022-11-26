@@ -145,39 +145,40 @@ const QuizzesPage = ({ filter='', page='All' }) => {
           {desktopButtonGroup}
         </Col>
       </Row>
-      <Row className={`${styles.MinHeight} mt-3 justify-content-center`}>
-        { hasLoaded ? (
-          <>
-            {quizzes.results.length ? (
-              <InfiniteScroll 
-                children={quizzes.results.map(quiz => {
-                  const imageSource = setImageSource(quiz.category);
-                  const imageAlt = setImageAlt(quiz.category);
-                  return (
-                    <Col key={quiz.id} xs={12} md={6}>
-                      <QuizTile {...quiz} src={imageSource} message={imageAlt} />
-                    </Col>
-                  )
-                })}
-                dataLength={quizzes.results.length}
-                loader={<Asset spinner />}
-                hasMore={!!quizzes.next}
-                next={() => fetchMoreData(quizzes, setQuizzes)}
-                className={'d-flex flex-wrap pb-3 align-items-center'}
-              />
-                
+      <Row className={`${styles.MinHeight} mt-3`}>
+        <Col>
+          { hasLoaded ? (
+            <>
+              {quizzes.results.length ? (
+                <InfiniteScroll 
+                  children={quizzes.results.map(quiz => {
+                    const imageSource = setImageSource(quiz.category);
+                    const imageAlt = setImageAlt(quiz.category);
+                    return (
+                      <Col key={quiz.id} xs={12} md={6}>
+                        <QuizTile {...quiz} src={imageSource} message={imageAlt} />
+                      </Col>
+                    )
+                  })}
+                  dataLength={quizzes.results.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!quizzes.next}
+                  next={() => fetchMoreData(quizzes, setQuizzes)}
+                  className={'d-flex flex-wrap pb-3 align-items-center'}
+                />
               ) : (
-              <Container className='text-center'>
-                <Asset question message='No quizles found!' />
-              </Container>
+                <Container className='text-center'>
+                  <Asset question message='No quizles found!' />
+                </Container>
               )
             }
-          </>
+            </>
           ) : (
             <Container className='text-center'>
               <Asset spinner></Asset>
             </Container>
           )}
+        </Col>
       </Row>
     </>
   );

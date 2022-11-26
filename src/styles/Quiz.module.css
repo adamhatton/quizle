@@ -31,6 +31,10 @@
     margin: 0;
 }
 
+.ProfileName {
+    max-width: 200px;
+}
+
 /* Icon styles */
 .Icon {
     font-size: 2.5rem;
