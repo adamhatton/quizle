@@ -210,7 +210,7 @@ const Quiz = (props) => {
       <Col className='text-center'>
         <Row>
           <Col className='text-center mt-3'>
-            <h1 className={styles.Heading1}>{title}</h1>
+            <h1 className={`${styles.Heading1} text-break`}>{title}</h1>
             {is_owner &&
             <MoreDropdown
               item='Quiz'
@@ -219,7 +219,7 @@ const Quiz = (props) => {
             />}
           </Col>
         </Row>        
-        <p className={`${styles.Description} mb-1`}>{description}</p>
+        <p className={`${styles.Description} mb-1 text-break`}>{description}</p>
       </Col>
     </Row>
   );
