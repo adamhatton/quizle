@@ -9,6 +9,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Asset from '../../components/Asset';
 import Quiz from './Quiz';
 import Comment from '../comments/Comment';
+import styles from '../../styles/QuizPage.module.css'
 
 /* Component to obtain quiz information and display it*/
 function QuizPage() {
@@ -91,7 +92,9 @@ function QuizPage() {
         setComments={setComments}
       />
       ) : comments.results.length ? (
-        "Comments"
+        <h2 className={`${styles.Heading2} text-center mt-3`}>
+          Comments
+        </h2>
       ) : null}
       {comments.results.length ? (
         <InfiniteScroll
