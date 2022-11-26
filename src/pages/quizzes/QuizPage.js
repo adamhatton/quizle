@@ -65,7 +65,7 @@ function QuizPage() {
             ]);
             setHasLoaded(true);
         } catch(err){
-            console.log(err);
+            //console.log(err);
         }
     };
     handleMount();

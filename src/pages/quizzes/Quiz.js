@@ -93,7 +93,7 @@ const Quiz = (props) => {
               score_id: data.id
             }));
         } catch(err){
-          console.log(err);
+          //console.log(err);
         }
       } 
       // If user has previously completed quiz, update their score
@@ -108,7 +108,7 @@ const Quiz = (props) => {
               score_time: data.completed_time
             }));
           } catch(err){
-          console.log(err);
+          //console.log(err);
           }
       }
     };
@@ -125,18 +125,18 @@ const Quiz = (props) => {
       setQuizAnswers,
   ]);
 
-  // If user own's quiz send them to the edit page
+  // If user owns quiz send them to the edit page
   const handleEdit = () => {
     history.push(`/quizzes/${id}/edit`);
   };
 
-  // If user own's quiz then allow them to delete it
+  // If user owns quiz then allow them to delete it
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/quizzes/${id}/`);
       handleShow();
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -186,7 +186,7 @@ const Quiz = (props) => {
         like_id: data.id 
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -200,7 +200,7 @@ const Quiz = (props) => {
         like_id: null 
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 

@@ -49,7 +49,7 @@ const ProfileEditForm = () => {
             setProfileData({ name, bio, image });
           }
         } catch (err) {
-          console.log(err);
+          //console.log(err);
           history.push("/");
         }
       } else {
