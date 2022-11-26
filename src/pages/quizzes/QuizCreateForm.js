@@ -178,11 +178,11 @@ function QuizCreateForm() {
               value={title}
               onChange={handleChange}
             />
+            {errors.title?.map((message, idx) =>
+              <Alert className='col' variant="warning" key={idx}>{message}</Alert>
+            )}
           </Col>
         </Form.Group>
-        {errors.title?.map((message, idx) =>
-          <Alert className='col-sm-8' variant="warning" key={idx}>{message}</Alert>
-        )}
 
         <Form.Group as={Row} controlId='description' className={styles.FormGroup}>
           <Form.Label column md={2} className={styles.FormLabel}>
@@ -197,11 +197,12 @@ function QuizCreateForm() {
               value={description}
               onChange={handleChange}
             />
+            {errors.description?.map((message, idx) =>
+              <Alert className='col' variant="warning" key={idx}>{message}</Alert>
+            )}
           </Col>
         </Form.Group>
-        {errors.description?.map((message, idx) =>
-          <Alert className='col-sm-8' variant="warning" key={idx}>{message}</Alert>
-        )}
+
 
         <Form.Group as={Row} controlId='category' className={styles.FormGroup}>
           <Form.Label column md={2} className={styles.FormLabel}>
@@ -221,11 +222,12 @@ function QuizCreateForm() {
               <option value='entertainment'>Entertainment</option>
               <option value='general'>General Knowledge</option>    
             </Form.Control>
+            {errors.category?.map((message, idx) =>
+              <Alert className='col' variant="warning" key={idx}>{message}</Alert>
+            )}
           </Col>
         </Form.Group>
-        {errors.category?.map((message, idx) =>
-          <Alert className='col-sm-8' variant="warning" key={idx}>{message}</Alert>
-        )}
+
 
         <Form.Group as={Row} controlId='time_limit_seconds' className={styles.FormGroup}>
           <Form.Label column md={2} className={styles.FormLabel}>
@@ -241,11 +243,12 @@ function QuizCreateForm() {
               value={time_limit_seconds}
               onChange={handleChange}
             />
+            {errors.time_limit_seconds?.map((message, idx) =>
+              <Alert className='col' variant="warning" key={idx}>{message}</Alert>
+            )}
           </Col>
         </Form.Group>
-        {errors.time_limit_seconds?.map((message, idx) =>
-          <Alert className='col-sm-8' variant="warning" key={idx}>{message}</Alert>
-        )}
+
 
         <Row className='justify-content-center'>
             <Col xs={6} lg={4}>
