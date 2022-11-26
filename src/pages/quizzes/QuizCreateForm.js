@@ -297,7 +297,6 @@ function QuizCreateForm() {
         </Row>
 
         <Button
-        variant='primary'
         onClick={() => history.goBack()}
         className={`${btnStyles.Btn} mr-3`}
         >
