@@ -5,8 +5,8 @@ import General from '../assets/general.webp';
 import Music from '../assets/music.webp';
 import Sport from '../assets/sport.webp';
 
-/* fetchMoreData taken from Code Institute 'Moments' walkthrough project */
-// Gets next set of resources for use with InfiniteScroll component
+/* fetchMoreData taken from Code Institute 'Moments' walkthrough project.
+Gets next set of resources for use with InfiniteScroll component */
 export const fetchMoreData = async (resource, setResource) => {
     try {
       const { data } = await axiosReq.get(resource.next);
@@ -25,6 +25,7 @@ export const fetchMoreData = async (resource, setResource) => {
   };
 
   // Return the image to use in a QuizTile
+  // Images taken from Pixabay user IO-Images https://pixabay.com/users/io-images-1096650/
   export const setImageSource = (quizCategory) => {
     switch (quizCategory) {
       case 'sport': 

@@ -51,7 +51,7 @@ const Quiz = (props) => {
 
   const handleClose = () => {
     setShow(false);
-    history.goBack();
+    history.push('/');
   };
 
   const handleShow = () => setShow(true);

@@ -38,7 +38,9 @@ const ProfileEditForm = () => {
   const [errors, setErrors] = useState({});
   const [show, setShow] = useState(false);
 
-  // On mount if user owns profile get the profile data else redirect to homepage
+  /* On mount if user owns profile get the profile data else redirect to homepage
+  Method of checking if component is mounted taken from user Dzmitry Kulahin on:
+  https://stackoverflow.com/questions/54954385/react-useeffect-causing-cant-perform-a-react-state-update-on-an-unmounted-comp */
   useEffect(() => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
