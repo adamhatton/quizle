@@ -218,12 +218,12 @@ function QuizEditForm() {
     formData.append('ans_10', ans_10);
 
     try {
-        await axiosReq.put(`/quizzes/${id}`, formData);
-        handleShow();
+      await axiosReq.put(`/quizzes/${id}`, formData);
+      handleShow();
     } catch(err){
-        if (err.response?.status !==401){
-            setErrors(err.response?.data);
-        }
+      if (err.response?.status !==401){
+        setErrors(err.response?.data);
+      }
     }
   };
 

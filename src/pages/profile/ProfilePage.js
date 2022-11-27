@@ -29,23 +29,23 @@ const ProfilePage = ({mobile}) => {
   // On mount fetch profile info, created quiz info, and completed quiz info
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const [
-              {data: pageProfile},
-              {data: createdQuizzes},
-              {data: completedQuizzes}
-            ] = await Promise.all([
-                axiosReq.get(`/profiles/${id}/`),
-                axiosReq.get(`/quizzes/?owner=${id}`),
-                axiosReq.get(`/quizzes/?scores__owner=${id}`),
-            ]);
-            setProfile(pageProfile);
-            setCreatedQuizzes(createdQuizzes);
-            setCompletedQuizzes(completedQuizzes);
-            setHasLoaded(true);
-        } catch(err) {
-            //console.log(err);
-        }
+      try {
+        const [
+          {data: pageProfile},
+          {data: createdQuizzes},
+          {data: completedQuizzes}
+        ] = await Promise.all([
+            axiosReq.get(`/profiles/${id}/`),
+            axiosReq.get(`/quizzes/?owner=${id}`),
+            axiosReq.get(`/quizzes/?scores__owner=${id}`),
+          ]);
+        setProfile(pageProfile);
+        setCreatedQuizzes(createdQuizzes);
+        setCompletedQuizzes(completedQuizzes);
+        setHasLoaded(true);
+      } catch(err) {
+        //console.log(err);
+      }
     };
 
     fetchData();
@@ -72,8 +72,7 @@ const ProfilePage = ({mobile}) => {
             hasMore={!!createdQuizzes.next}
             next={() => fetchMoreData(createdQuizzes, setCreatedQuizzes)}
             className='d-flex flex-wrap'
-          />
-            
+          />            
           ) : (
           <Container className='text-center'>
             <Asset question message='No quizzes created!' />
@@ -111,7 +110,6 @@ const ProfilePage = ({mobile}) => {
             next={() => fetchMoreData(completedQuizzes, setCompletedQuizzes)}
             className='d-flex flex-wrap'
           />
-            
           ) : (
           <Container className='text-center'>
             <Asset question message='No quizzes completed!' />

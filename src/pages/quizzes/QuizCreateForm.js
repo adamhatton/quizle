@@ -141,12 +141,12 @@ function QuizCreateForm() {
     formData.append('ans_10', ans_10);
 
     try {
-        const {data} = await axiosReq.post('/quizzes/', formData);
-        history.push(`/quizzes/${data.id}`);
+      const {data} = await axiosReq.post('/quizzes/', formData);
+      history.push(`/quizzes/${data.id}`);
     } catch(err){
-        if (err.response?.status !==401){
-            setErrors(err.response?.data);
-        }
+      if (err.response?.status !==401){
+        setErrors(err.response?.data);
+      }
     }
   };
 

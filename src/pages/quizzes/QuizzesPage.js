@@ -131,7 +131,6 @@ const QuizzesPage = ({ filter='', page='All' }) => {
                 name='search'
                 id='search'
             />
-
             <Form.Label htmlFor='search' srOnly>Search bar</Form.Label>
           </Form>
         </Col>

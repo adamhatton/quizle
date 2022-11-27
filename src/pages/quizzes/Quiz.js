@@ -83,33 +83,33 @@ const Quiz = (props) => {
       // If user has not previously completed quiz, create a new score
       if (!score_id) {
         try {
-            const {data} = await axiosReq.post('/scores/', {
-              quiz: id,
-              completed_time: score,
-            });
-            setQuizInfo((prevQuiz) => ({
-              ...prevQuiz,
-              score_time: data.completed_time,
-              score_id: data.id
-            }));
+          const {data} = await axiosReq.post('/scores/', {
+            quiz: id,
+            completed_time: score,
+          });
+          setQuizInfo((prevQuiz) => ({
+            ...prevQuiz,
+            score_time: data.completed_time,
+            score_id: data.id
+          }));
         } catch(err){
           //console.log(err);
         }
       } 
       // If user has previously completed quiz, update their score
       else if (score < score_time) {
-          try {
-            const {data} = await axiosReq.put(`/scores/${score_id}`, {
-              quiz: id,
-              completed_time: score,
-            });
-            setQuizInfo((prevQuiz) => ({
-              ...prevQuiz,
-              score_time: data.completed_time
-            }));
-          } catch(err){
+        try {
+          const {data} = await axiosReq.put(`/scores/${score_id}`, {
+            quiz: id,
+            completed_time: score,
+          });
+          setQuizInfo((prevQuiz) => ({
+            ...prevQuiz,
+            score_time: data.completed_time
+          }));
+        } catch(err){
           //console.log(err);
-          }
+        }
       }
     };
     handleCompleted();
