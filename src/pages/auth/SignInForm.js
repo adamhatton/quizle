@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useRedirect } from '../../hooks/useRedirect';
 import { setTokenTimestamp } from '../../utils/Utils';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
 import styles from '../../styles/SignInUpForm.module.css';
 import btnStyles from '../../styles/Button.module.css';
 
@@ -94,6 +95,11 @@ const SignInForm = () => {
           {message}
         </Alert>
       ))}
+      <Container className={`${styles.FormText} mt-4`}>
+        <Link to="/signup">
+          Don't have an account? <span>Sign up</span>
+        </Link>
+      </Container>
     </Form>
   );
 };
