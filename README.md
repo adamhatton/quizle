@@ -793,8 +793,8 @@ Once a React project has been set up and developed, it can be deployed to Heroku
 8.	Go to the Heroku app for the back end API linked to this project (for example, for this project it would be the quizle-drf-api app)
 9.	Open the 'Settings' tab, and select 'Reveal Config Vars'
 10.	Add 2 new Config Vars as follows (these will allow the front end to access the back end API from the development environment and the production environment):
-- Key: CLIENT_ORIGIN, Value: <your front end app url> (for example, for this project it would be CLIENT_ORIGIN: https://quizle-ah.herokuapp.com)
-- Key: CLIENT_ORIGIN_DEV, Value <your development url> (for example, CLIENT_ORIGIN_DEV: https://3000-adamhatton-quizle-<unique-code>.gitpod.io/)
+    - Key: CLIENT_ORIGIN, Value: "your front end app url" (for example, for this project it would be CLIENT_ORIGIN: https://quizle-ah.herokuapp.com)
+    - Key: CLIENT_ORIGIN_DEV, Value: "your development url" (for example, CLIENT_ORIGIN_DEV: https://3000-adamhatton-quizle-uniquecode.gitpod.io/)
 11.	Return to the Heroku app for the front end, and go back to the 'Deploy' tab
 12.	In the 'Manual Deploy' section, select 'Deploy Branch'
 13.	When the branch is manually deployed, Heroku will build and deploy the branch. Upon completion, a link to the deployed project will be generated
@@ -823,11 +823,11 @@ Below are resources I used to further my understanding of different topics. The 
 
 - All non-quiz content was written by the developer (Adam Hatton)
 - Quiz answers were taken predominantly from [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) but the following sites were used for the answers of other quizzes:
--- Most Oscars - [goldderby](https://www.goldderby.com/gallery/movies-most-oscars-won/most-oscar-wins-lord-of-the-rings-return-of-the-king/)
--- UK Prime Ministers - [gov.uk](https://www.gov.uk/government/history/past-prime-ministers)
--- Countries beginning with P - [the world bank](https://data.worldbank.org/country)
--- Best Selling ABBA singles - [official charts](https://www.officialcharts.com/chart-news/abbas-official-top-20-biggest-songs__26113/)
--- Various Premier League quizzes - [premier league](https://www.premierleague.com/stats/all-time)
+    - Most Oscars - [goldderby](https://www.goldderby.com/gallery/movies-most-oscars-won/most-oscar-wins-lord-of-the-rings-return-of-the-king/)
+    - UK Prime Ministers - [gov.uk](https://www.gov.uk/government/history/past-prime-ministers)
+    - Countries beginning with P - [the world bank](https://data.worldbank.org/country)
+    - Best Selling ABBA singles - [official charts](https://www.officialcharts.com/chart-news/abbas-official-top-20-biggest-songs__26113/)
+    - Various Premier League quizzes - [premier league](https://www.premierleague.com/stats/all-time)
 
 ### Media
 
