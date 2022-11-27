@@ -17,7 +17,6 @@ import styles from '../../App.module.css';
 import btnStyles from '../../styles/Button.module.css';
 import pageStyles from '../../styles/QuizzesPage.module.css';
 
-
 /* Quizzes page fetches all quizzes to display and enables filtering */
 const QuizzesPage = ({ filter='', page='All' }) => {
   const [quizzes, setQuizzes] = useState({ results: [] });
@@ -49,7 +48,6 @@ const QuizzesPage = ({ filter='', page='All' }) => {
       clearTimeout(timer);
     };
   }, [filter, pathname, query, currentUser]);
-
 
   // Button group JSX for smaller screens
   const mobileButtonGroup = (

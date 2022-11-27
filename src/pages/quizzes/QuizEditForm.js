@@ -261,7 +261,6 @@ function QuizEditForm() {
           </Col>
         </Form.Group>
 
-
         <Form.Group as={Row} controlId='description' className={styles.FormGroup}>
           <Form.Label column md={2} className={styles.FormLabel}>
             Description:
@@ -280,7 +279,6 @@ function QuizEditForm() {
             )}
           </Col>
         </Form.Group>
-
 
         <Form.Group as={Row} controlId='category' className={styles.FormGroup}>
           <Form.Label column md={2} className={styles.FormLabel}>
@@ -305,7 +303,6 @@ function QuizEditForm() {
             )}
           </Col>
         </Form.Group>
-
 
         <Form.Group as={Row} controlId='time_limit_seconds' className={styles.FormGroup}>
           <Form.Label column md={2} className={styles.FormLabel}>

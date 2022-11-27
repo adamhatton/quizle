@@ -70,7 +70,6 @@ const SignInForm = () => {
         <Alert variant="warning" key={idx}>{message}</Alert>
       )}
 
-
       <Form.Group controlId='password'>
         <Form.Label srOnly>Password</Form.Label>
         <Form.Control

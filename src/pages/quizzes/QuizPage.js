@@ -23,7 +23,6 @@ function QuizPage() {
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
 
-
   // On mount get quiz information and set Info and Answers state variables
   useEffect(() => {
     const handleMount = async () => {
