@@ -19,7 +19,7 @@ The goals of the website are:
 - To be able create quizzes that can be shared with others
 - To be able to interact with the website by leaving comments and updating profile information
 - To be able to keep track of the quizzes they have created/completed
-- To have quick and responsive user experience, with easy navigation
+- To have a quick and responsive user experience, with easy navigation
 
 
 ![responsive mockups](docs/screenshots/responsive-mockups.jpg)
@@ -36,7 +36,7 @@ The repository for the back end can be found [here](https://github.com/adamhatto
 - [Agile Methodology](<#agile-methodology>)
 	- [Feasibility Matrix](<#feasibility-matrix>)
 	- [Epics and User Stories](<#epics-and-user-stories>)
-		- [Navigation & Authentication](<#navigation-&-authentication>)
+		- [Navigation & Authentication](<#navigation-and-authentication>)
 		- [Enable Profiles and Profile Editing](<#enable-profiles-and-profile-editing>)
 		- [Enable users to play quizzes](<#enable-users-to-play-quizzes>)
 		- [Enable users to create quizzes](<#enable-users-to-create-quizzes>)
@@ -75,10 +75,10 @@ The repository for the back end can be found [here](https://github.com/adamhatto
 		- [Edit Password](<#edit-password>)
 		- [Sign Up](<#sign-up>)
 		- [Sign In](<#sign-in>)
-	- [General](<#general>)
+	- [General Features](<#general-features>)
 		- [Security](<#security>)
 		- [General](<#general>)
-		- [General](<#404>)
+		- [404](<#404>)
 - [Design](<#design>)
 	- [Colours](<#colours>)
 	- [Typography](<#typography>)
@@ -117,7 +117,7 @@ An Agile methodology was used throughout the planning and development of the web
 
 ### Feasibility Matrix
 
-At the start of the project, I listed out all of potential goals of the website. I then assigned each goal (or opportunity) an importance and viability score which enabled me to create a feasibility matrix as below:
+At the start of the project, I listed out all the potential goals of the website. I then assigned each goal (or opportunity) an importance and viability score which enabled me to create a feasibility matrix as below:
 
 ![feasibility matrix screenshot](docs/screenshots/feasibility-matrix-table.jpg)
 
@@ -127,7 +127,7 @@ Plotting the table onto a chart helped me see which elements were most important
 
 This work enabled me to see that importance was greater than viability so it was likely that I wouldn't be able to implement everything so at this point I decided to deprioritise the 'like' functionality, and this is reflected in the User Story importance rating. However, during development I managed to implement certain features quicker than anticipated which gave me the time to implement 'like' functionality. Not only this, I was also able to implement an Epic that I had not originally considered, which was the ability for users to add comments.
 
-The feasibility matrix can also be seen in the associated excel document, on the tab named 'Feasibility Matrix': TO INPUT
+The feasibility matrix can also be seen in the [associated excel document](docs/project/user-stories-and-feature-prep.xlsx), on the tab named 'Feasibility Matrix'.
 
 ### Epics and User Stories
 
@@ -143,7 +143,7 @@ Following the feasibility matrix, I used the opportunities to determine what my 
 
 I then broke each Epic down into User Stories:
 
-- #### Navigation & Authentication
+- #### Navigation and Authentication
 - Navigation: As a site user I can view a navbar from every page so that I can navigate easily between pages
 - Routing: As a site user I can navigate through pages quickly so that I can view content seamlessly without page refresh
 - Authentication - Sign up: As a site user I can create a new account so that I can access all the features for signed up users
@@ -206,13 +206,13 @@ These stories were implemented to achieve the project goal of allowing users to 
 
 Using the MoSCoW method, I assigned each story a priority to help me determine the order of development (note that as the Comment functionality wans't originally in scope, these were all given a priority of 'Should Have' as new backlog items).
 
-The Epics, User Stories and associated MoSCoW/story points can also be seen in the associated excel document, on the tab named 'User Stories': TO INPUT
+The Epics, User Stories and associated MoSCoW/story points can also be seen in the [associated excel document](docs/project/user-stories-and-feature-prep.xlsx), on the tab named 'User Stories'.
 
 ### Acceptance Criteria
 
 Once I had my User Stories, I worked through these to break them down into Acceptance Criteria. The purpose of this was to provide a reference point for the development to ensure that what was being implemented is actually what was needed. It also helped with Testing to ensure that all necessary scenarios were covered.
 
-I have provided an example of some acceptance criteria below, the full list for each user story can be seen in the associated excel document, on the tab named 'User Story AC': TO INPUT
+I have provided an example of some acceptance criteria below, the full list for each user story can be seen in the [associated excel document](docs/project/user-stories-and-feature-prep.xlsx), on the tab named 'User Story AC'.
 
 **Play State Timer: As a site user, I can start a quiz so that I can begin a countdown timer for my responses**
 - When a user presses the 'start quiz' button, a timer should start counting down to indicate the quiz has started
@@ -226,7 +226,7 @@ I have provided an example of some acceptance criteria below, the full list for 
 
 When working on each User Story, I broke them down into Tasks to identify the technical work required to implement the story. This helped keep the development focussed as well as ensuring I didn't miss any technical elements.
 
-I have provided an example of the tasks for a User Story below, the full list for each user story can be seen in the associated excel document, on the tab named 'User Story AC': TO INPUT
+I have provided an example of the tasks for a User Story below, the full list for each user story can be seen on the project board by accessing the user stories themselves: https://github.com/users/adamhatton/projects/4.
 
 **Authentication - Sign up: As a site user I can create a new account so that I can access all the features for signed up users**
 - Install axios and add axios defaults
@@ -310,7 +310,7 @@ The second sprint was about adding the additional functionality to the website t
 - Underneath the search bar and buttons are the available quizzes that a user can complete
 - Quizzes are automatically loaded upon accessing the page and are within an Infinite Scroll component that allows users to load more quizzes as they scroll
 - Quiz information is contained within 'QuizTile' components which show an image representing the quiz category, the title of the quiz, the creator of the quiz and the number of likes it has received
-- Quiz tiles change cover when the mouse is hovering over them to indicate that they link to a different page
+- Quiz tiles change colour when the mouse is hovering over them to indicate that they link to a different page
 - On smaller screens the quiz tiles are displayed in a single column instead of 2
 
 ![quizzes page screenshot](docs/screenshots/quizzes-page.jpg)
@@ -342,10 +342,10 @@ The second sprint was about adding the additional functionality to the website t
 #### Quiz Info
 
 - The quiz info shows the title and the description of the quiz to give the user a clear understanding of what they are trying to guess
-- The creator's profile is shown along with their profile avatar which links to the creator's profile. The username also has overflow applied to prevent long usernames affecting the styling
+- The creator's username is shown along with their profile avatar which links to the creator's profile. The username also has overflow applied to prevent long usernames affecting the styling
 - The user's score is displayed and changes depending on context. For logged out users, it will show a grey icon and a message that they should login to access high score functionality. For logged in users it is a red cross if they haven't completed the quiz, and a green tick along with their fastest time if they have completed the quiz
 - A quiz is only considered 'completed' if a user has guessed all the answers in any given attempt
-- The profile and score information are placed at the bottom of the quiz on smaller screens so as to not distract from the main quiz elements
+- On smaller screens the profile and score information are placed at the bottom of the quiz so as to not distract from the main quiz elements
 
 ![quiz info screenshot](docs/screenshots/quiz-info.jpg)
 
@@ -387,8 +387,8 @@ The second sprint was about adding the additional functionality to the website t
 #### Likes Icon
 
 - Below the answer table is a 'thumbs up' icon which enables a user to 'like' a quiz
-- When the mouse is hovered over the icon it changes colour to orange show it is interactive, and when it is clicked it changes colour to blue to represent that the quiz has been liked
-- Liking a quiz will increment the like count by 1, and this also displayed on the quiz tiles on the home page
+- When the mouse is hovered over the icon it changes colour to orange to show it is interactive, and when it is clicked it changes colour to blue to represent that the quiz has been liked
+- Liking a quiz will increment the like count by 1, and this is also displayed on the quiz tiles on the home page
 - The quiz owner cannot like their own quiz and is shown a tooltip explaining this if they try
 - Logged out users cannot like a quiz and are shown a tooltip explaining this which encourages them to sign up
 
@@ -467,7 +467,7 @@ The second sprint was about adding the additional functionality to the website t
 
 ![signin screenshot](docs/screenshots/sign-in.jpg)
 
-### General
+### General Features
 
 #### Security
 
@@ -526,7 +526,7 @@ The wireframes for the website can be seen below, these were generated at the st
 
 **Home Page**
 
-The goal of this page is to display quizzes for selection, so I knew it needed to include search and filtering features, as well as an area to show the quizzes themselves. I decided to dedicate most of the screen to displaying 2 columns quizzes (with the idea that infinite scroll would be enabled), and have the search/filter features at the top of the page. On mobile, the quizzes drop down to 1 column:
+The goal of this page is to display quizzes for selection, so I knew it needed to include search and filtering features, as well as an area to show the quizzes themselves. I decided to dedicate most of the screen to displaying 2 columns of quizzes (with the idea that infinite scroll would be enabled), and have the search/filter features at the top of the page. On mobile, the quizzes drop down to 1 column:
 
 <details><summary>Main Page Wireframes</summary>
 
@@ -558,11 +558,9 @@ I knew a page would be needed for creating quizzes and due to the amount of info
 
 **Profile Page**
 
-The goal of the profile page is to allow a user to see more information about themselves or another user, as well as to see their quiz stats. I positioned the user information prominently at the top so that it is easy to find, and used the bottomo half of the page to display quizzes that the user has created or completed.
+The goal of the profile page is to allow a user to see more information about themselves or another user, as well as to see their quiz stats. I positioned the user information prominently at the top so that it is easy to find, and used the bottom half of the page to display quizzes that the user has created or completed.
 
 The final design differs slightly in that there was originally a middle section to show the number of quizzes a user had completed. I decided that this was using a lot of space for no real benefit, so I included it in the profile information instead.
-
-![home page wireframes](docs/wireframes/wireframes-home.jpg)
 
 <details><summary>Profile Page Wireframes</summary>
 
@@ -589,7 +587,7 @@ I also completed mockups for the Signup/Signin page and the Profile Edit page. T
 
 ## Database Schema
 
-The database schema is detailed in the repository for the back end of the website here: TO INPUT
+The database schema is detailed in the repository for the back end of the website here: https://github.com/adamhatton/quizle-drf-api#database-schema
 
 ## React
 
@@ -597,9 +595,9 @@ The database schema is detailed in the repository for the back end of the websit
 
 As the front end of this website was built using ReactJS, a number of the components created are reusable:
 
-- Asset.js - renders a loading spinner, or a question mark icon with a message. It is used in several places across the site, including where API calls are made for data to show a loading spinner, and in instances where no results are found to show a message to the user (such as an invalid search, or on a profile page for someone who has not completed any quizzes).
+- Asset.js - renders a loading spinner, or a question mark icon with a message. It is used in several places across the site, including showing a loading spinner where API calls are made, and in instances where no results are found to show a message to the user (such as an invalid search, or on a profile page for someone who has not completed any quizzes).
 - Avatar.js - displays a user's profile image and some optional text. It is used in the Navbar, on the Quiz page next to the creator's name, in the comments component to show the user's profile image next to their comments, and on the profile page itself. There is an optional height property that allows it to be sized differently based on the use case.
-- MessageModal.js - displays a confirmation message that is passed to it as a pop-up modal. It is used to confirm user actions in various places, such as submitting the Quiz Edit form, deleting a quiz, editing a profile, and changing a username/password.
+- MessageModal.js - A pop-up modal that displays a confirmation message which has been passed as a property. It is used to confirm user actions in various places, such as submitting the Quiz Edit form, deleting a quiz, editing a profile, and changing a username/password.
 - MoreDropdown.js - provides a dropdown menu with some additional actions a user can take, such as editing and deleting. This is used on the quiz page, the comments component, and on the profile page. It allows the owner of the relevant component to see the options for editing and deleting.
 - Timer.js - renders a countdown timer based on a provided number of seconds and control properties. This component is only used within the Quiz component, but due to how it is designed it could theoretically be used elsewhere if a timer is needed.
 - QuizTile.js - displays a tile containing the key information for a quiz that links to that quiz's page. This component is used on the Home page to display quizzes, and on the profile page to show quizzes that a user has created or completed.
@@ -610,7 +608,7 @@ This site uses a number of different libraries and components to implement the d
 
 - axios - this is used to manage the calls to the database. It is used in order to simplify the API requests, as well as the fact that it includes interceptors for refreshing JSON Web Tokens which the site uses.
 - react-bootstrap - this is used extensively to manage the layout and styling of the website. I am familiar with standard bootstrap so I chose to use this library to help implement the design of the site. The library makes it easy to create and use standard interface elements that are responsive as well as having useful styling classes to make arranging layouts simpler.
-- jwt-decode - this is used to help with remove requests to refresh an access token for logged out users. It enables the refresh token to be decoded so that a timestamp can be put in local storage, if a timestamp does not exist in the user's local storage then access refresh requests will not be made.
+- jwt-decode - this is used to help remove requests to refresh an access token for logged out users. It enables the refresh token to be decoded so that a timestamp can be put in local storage, if a timestamp does not exist in the user's local storage then access refresh requests will not be made.
 - infinite-scroll-component - this is used to enable infinite scrolling on the QuizTile components and on comments. Infinite scrolling is a standard feature of today's user experience and this component makes it very easy to implement which is why it has been included.
 - react-router-dom - this library makes it easy to manage the site navigation without needing to refresh the page and so has been used to provide a quick and responsive user experience.
 
@@ -626,7 +624,7 @@ This site uses a number of different libraries and components to implement the d
 
 **Frameworks & Libraries**
 - [React Bootstrap4](https://react-bootstrap-v4.netlify.app/) - used for styling the site and making it responsive on different devices
-- [ReactJS](https://www.djangoproject.com/) - used to build the database and the structure/logic of the site
+- [ReactJS](https://reactjs.org/) - used to build the functionality of the site
 - [Font Awesome](https://fontawesome.com/) - used to add various icons to the site
 
 **Tools**
@@ -640,6 +638,7 @@ This site uses a number of different libraries and components to implement the d
 - [GitHub](https://github.com/) – used to store the source code for the application
 - [Heroku](https://www.heroku.com/) - used to host and deploy the live website
 - [jpg2png](https://jpg2png.com/) - used for converting jpg files to png
+- [Sessions colour picker](https://www.sessions.edu/color-calculator/) - used to help create a colour palette
 - [Techsini](http://techsini.com/multi-mockup/) - used to generate a multi-device mockup (as seen at the beginning of the README)
 - [TinyPNG](https://tinypng.com/) - used for reducing image file sizes
 
@@ -653,7 +652,7 @@ This site uses a number of different libraries and components to implement the d
 
 ## Testing
 
-The testing was broken down into two categories: manual and validation. A separate document detailing the testing can be found TO INPUT, but a summary is below.
+The testing was broken down into two categories: manual and validation. A separate document detailing the testing can be found [here](TESTING.md), but a summary is below.
 
 ### Manual Testing
 
@@ -743,29 +742,34 @@ After deployment I found a bug whereby if a user created a quiz, immediately cho
 
 ### ReactJS
 
-This website is built on using ReactJS, so having a React project set up is necessary for deployment.
+This website is built using ReactJS, so having a React project set up is necessary for deployment.
 
 1. To set up this project, a new GitHub repository was created and opened as a workspace in GitPod. I then ran the following commands:
-
-`npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm`
+~~~
+npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm
+~~~
 
 Note that a template was used here to ensure dependencies between different libraries worked correctly, it is also possible to create the project just using `npx create-react-app . --use-npm`
 
 2. To test that the project has been created successfully, use the command:
-
-`npm start`
+~~~
+npm start
+~~~
 
 3. For deployment to Heroku to work, it is necessary to have a Procfile. Create a 'Procfile' at the top level of your project, and add the following command into it:
-
-`web: serve -s build`
+~~~
+web: serve -s build
+~~~
 
 4. In addition, ensure that the following line appears in the `scripts` section of the `package.json` file:
-
-`"heroku-prebuild": "npm install -g serve"`
+~~~
+"heroku-prebuild": "npm install -g serve"
+~~~
 
 5. To enable the Heroku build to work, it is also necessary to specify the version of node in the `package.json` file. To determine your version of node, use the command:
-
-`node --version`
+~~~
+node --version
+~~~
 
 6. Then add the version into the `package.json` file as a key/value pair in the top level object. For instance, for this project the following was added:
 ~~~
@@ -774,10 +778,12 @@ Note that a template was used here to ensure dependencies between different libr
 },
 ~~~
 
-7. Once development is complete a ready for deployment, commit the changes and push them to Github using:
-`git add .`
-`git commit -m '<commit message here>'`
-`git push`
+7. Once development is complete and ready for deployment, commit the changes and push them to Github using:
+~~~
+git add .
+git commit -m '<commit message here>'
+git push
+~~~
 
 ### Heroku
 
@@ -803,6 +809,7 @@ Once a React project has been set up and developed, it can be deployed to Heroku
 
 ### Code
 
+- Much of the base code and concepts were provided in the Code Institute Walkthrough Project 'Moments' and these have been expanded on in this project. I have attributed the code from the Moments project with comments in .js files.
 - In order to fix an error with React trying to update state on an unmounted component I used the method suggested by Dzmitry Kulahin on [this post](https://stackoverflow.com/questions/54954385/react-useeffect-causing-cant-perform-a-react-state-update-on-an-unmounted-comp). I have also added comments in the code to credit Dzmitry Kulahin
 - When building the Timer component, I used the code from [this post by James Dietrich](https://upmostly.com/tutorials/build-a-react-timer-component-using-hooks). Whilst the code has been amended, the core concept was taken from the post.
 
@@ -837,5 +844,5 @@ Below are resources I used to further my understanding of different topics. The 
 
 ### Acknowledgements
 
-- I'd like to thank my parter Nichola for helping to amend the colours of the images, for helping me test the finished project, and for encouraging me through the development process!
+- I'd like to thank my partner Nichola for helping to amend the colours of the images, for helping me test the finished project, and for encouraging me through the development process!
 - I'd like to thank my mentor Spencer Barriball for his feedback on the project and suggestions for improvement

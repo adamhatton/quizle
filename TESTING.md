@@ -1,8 +1,8 @@
 # Quizle - Testing
 
 ## Table of Contents
-- [Manual Testing](<#features>)
-- [Validation Testing](<#validation-testing>)
+- [Manual Testing](<#manual-testing>)
+- [Validation](<#validation>)
 	- [CSS](<#css>)
 	- [JavaScript](<#javascript>)
 	- [JSX](<#jsx>)
@@ -11,7 +11,7 @@
 
 ## Manual Testing
 
-The manual testing can be seen in the manual testing spreadsheet TO INPUT.
+The manual testing can be seen in the [manual testing spreadsheet](docs/testing/quizle-frontend-testing.xlsx).
 
 I performed manual testing of the site on a variety of browsers on desktop (Chrome, Firefox, Edge), and on Chrome on my mobile device.
 
@@ -56,8 +56,6 @@ The specific tests performed are below:
 </details>
 
 ## Validation
-
-The validation testing can be seen in the validation testing spreadsheet here.
 
 ### CSS
 
@@ -110,11 +108,26 @@ After fixing the issue, the results were as follows:
 
 Screenshots of the results can be seen below:
 
-<details><summary>Performance Validation</summary>
+<details><summary>Quizzes Page</summary>
 
 ![quizzes page validation screenshot](docs/testing/lighthouse-quizzes-page.jpg)
+
+</details>
+
+<details><summary>Quiz Page</summary>
+
 ![quiz page validation screenshot](docs/testing/lighthouse-quiz-page.jpg)
+
+</details>
+
+<details><summary>Create Page</summary>
+
 ![create page validation screenshot](docs/testing/lighthouse-create-page.jpg)
+
+</details>
+
+<details><summary>Profile Page</summary>
+
 ![profile page validation screenshot](docs/testing/lighthouse-profile-page.jpg)
 
 </details>
