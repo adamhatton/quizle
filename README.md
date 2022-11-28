@@ -16,7 +16,7 @@ The goals of the website are:
 **Site Users**
 
 - To play a variety of quizzes for entertainment purposes
-- To be able create quizzes that can be shared with others
+- To be able to create quizzes that can be shared with others
 - To be able to interact with the website by leaving comments and updating profile information
 - To be able to keep track of the quizzes they have created/completed
 - To have a quick and responsive user experience, with easy navigation
@@ -207,7 +207,7 @@ These stories were implemented to achieve the project goal of allowing users to 
 
 Using the MoSCoW method, I assigned each story a priority to help me determine the order of development (note that as the Comment functionality wans't originally in scope, these were all given a priority of 'Should Have' as new backlog items).
 
-The Epics, User Stories and associated MoSCoW/story points can also be seen in the [associated excel document](docs/project/user-stories-and-feature-prep.xlsx), on the tab named 'User Stories'.
+The Epics, User Stories and associated MoSCoW can also be seen in the [associated excel document](docs/project/user-stories-and-feature-prep.xlsx), on the tab named 'User Stories'.
 
 ### Acceptance Criteria
 
@@ -364,9 +364,10 @@ The second sprint was about adding the additional functionality to the website t
 
 - Whilst the quiz is active, anything the user types in will be checked against the answers after every keystroke. If an answer is correct it will automatically be revealed without the user needing to press enter
 - The guesses are automatically trimmed for whitespace and converted to lowercase before comparison
-- Guessing an already guessed answer will have no impact. If an answer appears more than once in the quiz, guessing it once will reveal every instance. 
+- Guessing an already guessed answer will have no impact. If an answer appears more than once in the quiz, guessing it once will reveal every instance
 - There is back end validation to ensure guesses are only checked if the game is active
 - These features mean that it is simple and intuitive for users to make guesses with minimal input
+- The answers are stored as state in the front to enable the comparison, as I wanted a check to be made with every keystroke this was preferred to checking answers against the backend due to the number of API calls that it would result in
 
 ![guess input screenshot](docs/screenshots/guess-input.jpg)
 
@@ -427,7 +428,7 @@ The second sprint was about adding the additional functionality to the website t
 #### Created and Completed Quizzes
 
 - Below the profile information, the user can see any quizzes they have created or completed in the form of quiz tiles
-- The quiz tiles are implemented in an infinite scroll, so more are loaded as a user scrolls
+- The quiz tiles are implemented in an Infinite Scroll component, so more are loaded as a user scrolls
 - The button bar allows users to flip between completed and created quizzes
 
 ![completed quizzes screenshot](docs/screenshots/completed-quizzes.jpg)
@@ -439,17 +440,21 @@ The second sprint was about adding the additional functionality to the website t
 - The form contains validation so that only image files can be uploaded for the profile image
 - When a user makes a change and presses save, they are shown a confirmation message that their update has been made
 
-![completed quizzes screenshot](docs/screenshots/profile-edit-form.jpg)
+![profile edit screenshot](docs/screenshots/profile-edit-form.jpg)
 
 #### Edit Username
 
 - If a user owns a profile they can choose to edit their username which will display a separate form
 - When a user makes a change and presses save, they are shown a confirmation message that their update has been made
 
+![username edit screenshot](docs/screenshots/username-form.jpg)
+
 #### Edit Password
 
 - If a user owns a profile they can choose to edit their password which will display a separate form
 - When a user makes a change and presses save, they are shown a confirmation message that their update has been made
+
+![password edit screenshot](docs/screenshots/password-form.jpg)
 
 ### Authorisation
 
@@ -512,7 +517,7 @@ The font used is 'Quicksand' with a fallback of sans-serif. This font is clean a
 
 There is limited imagery on the website and it is used as supporting content for the text:
 
-- There are 4 images to reflect the category of a quiz: Sport, Music, Entertainment, General Knowledge. These are simple graphics and are used to make it easy to quickly identify a quizzes category
+- There are 4 images to reflect the category of a quiz: Sport, Music, Entertainment, General Knowledge. These are simple graphics and are used to make it easy to quickly identify a quizze's category
 - A 404 image of a robot malfunctioning. This is used to provide a lighthearted notification that a page does not exist
 
 The category images were taken from Pixabay.
