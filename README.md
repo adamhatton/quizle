@@ -32,6 +32,7 @@ The live site for the back end can be found [here](https://quizle-drf-api.heroku
 
 The repository for the back end can be found [here](https://github.com/adamhatton/quizle-drf-api).
 
+## Table of Contents
 
 - [Agile Methodology](<#agile-methodology>)
 	- [Feasibility Matrix](<#feasibility-matrix>)
