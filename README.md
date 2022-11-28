@@ -271,6 +271,8 @@ Sprint two focused on the following Epics/Milestones:
 
 The second sprint was about adding the additional functionality to the website that enhanced the core offering. It is also when most of the more detailed styling was implemented.
 
+[Back to top ⇧](#quizle)
+
 ## Features
 
 ### Quizzes Page
@@ -484,6 +486,7 @@ The second sprint was about adding the additional functionality to the website t
 
 ![404 page screenshot](docs/screenshots/404-page.jpg)
 
+[Back to top ⇧](#quizle)
 
 ## Design
 
@@ -585,6 +588,7 @@ I also completed mockups for the Signup/Signin page and the Profile Edit page. T
 
 </details>
 
+[Back to top ⇧](#quizle)
 
 ## Database Schema
 
@@ -680,6 +684,8 @@ I validated all aspects of my codes as follows:
 - Site performance via [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
 **Note that for the JavaScript code, all console.log calls that appear in catch blocks have been left in but commented out. This has been done on the advice from the Code Institute Moments Walkthrough project that it is useful to keep them in for easier debugging**
+
+[Back to top ⇧](#quizle)
 
 ## Bugs and Issues
 
@@ -847,3 +853,5 @@ Below are resources I used to further my understanding of different topics. The 
 
 - I'd like to thank my partner Nichola for helping to amend the colours of the images, for helping me test the finished project, and for encouraging me through the development process!
 - I'd like to thank my mentor Spencer Barriball for his feedback on the project and suggestions for improvement
+
+[Back to top ⇧](#quizle)
