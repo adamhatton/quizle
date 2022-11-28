@@ -73,10 +73,15 @@
 
 .LikeOutline:hover {
     color: #ff5900;
+    cursor: pointer;
 }
 
 .LikeFill {
     color: #0048ff;
+}
+
+.LikeFill:hover {
+    cursor: pointer;
 }
 
 /* Table styles */

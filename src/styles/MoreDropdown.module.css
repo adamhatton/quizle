@@ -3,6 +3,7 @@
     right: 0;
     top: 0;
     margin: 5px 15px 0 0;
+    cursor: pointer;
 }
 
 .AbsoluteProfile {
@@ -11,4 +12,5 @@
     top: 0;
     margin-top: 3px;
     padding-left: 15px;
+    cursor: pointer;
 }
